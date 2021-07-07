@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+h2{
+    font-family: 'Raleway', sans-serif;font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing:  0.09em;
+    color: rgba(0, 0, 0, 0.61);
+}
+
+.datepicker{
+    border-radius: 40px;
+    outline: none;
+    border-color:#d9534f;
+    padding: 25px;
+    font-size: larger;
+}
+
+.datepicker:hover{
+    border-color:#000000c9;
+}
+
+.btn , .btn:focus , .btn:active{
+    border-radius: 40px;
+    border-color:#d9534f;
+    background-color:#d9534f;
+    padding: 12px 30px;
+    color: ivory;
+    font-family: 'Raleway', sans-serif;font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    letter-spacing:  0.09em;
+    outline: 0 !important;
+}
+
+.btn:hover {
+    border-color:#000000c9;
+    background-color:#000000c9;
+    color: ivory;
+    
+    
+}

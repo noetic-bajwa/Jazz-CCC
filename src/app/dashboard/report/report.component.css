@@ -1,0 +1,27 @@
+.my-pagination::ng-deep .page-item.active .page-link {
+    z-index: 1;
+    color: #FFFFFF;
+    background-color:#d9534f !important;
+    border-color: #d9534f;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing:  0.03em; 
+    
+}
+
+
+
+.my-pagination::ng-deep .page-link {
+    z-index: 1;
+    color: #d9534f;
+    background-color:ivory !important;
+    border-color: #d9534f;
+}
+
+.msg{
+    color:rgba(0, 0, 0, 0.815);
+    font-family: 'Roboto', sans-serif;
+    letter-spacing:  0.03em;
+}
+
+
+
