@@ -1,0 +1,109 @@
+<div class="container"> 
+ 
+    <div class="row pl-5 pt-2">
+     
+    </div>  
+  
+  <div >
+      
+  <form class="p-5"  #myForm="ngForm">
+      <!-- <b>{{recordID}}</b> -->
+      <div class="text-center"><p><b>ID : </b> {{data.id}}</p></div>
+      <!-- <p>Created Date {{data.cDate}}</p> -->
+      
+      <div class="form-group">
+          <label for="name"><b>Unique Paid Base</b></label>
+          <input type="text"  class="form-control"  id="uniquePaidBase" name="uniquePaidBase" placeholder="Enter Unique Paid Base"  [(ngModel)]="data.uniquePaidBase" >
+      </div>
+  
+      <div class="form-group">
+          <label for="totalEngageBase"><b>Total Engage Base</b></label>
+          <input type="text" class="form-control" id="totalEngageBase"  name="totalEngageBase" placeholder="Enter Total Engage Base" [(ngModel)]="data.totalEngageBase" >
+          <!-- <small style="color:red">Suggested Value : {{ calculateTotalEngageBase(engagementRate.value) }} =  {{engagementRate.value}} / 100 * {{totalBase_n}}    </small> -->
+      </div>
+  
+      <div class="form-group">
+          <label for="engagementRate"><b>Engagement Rate</b></label>
+          <input #engagementRate type="text" class="form-control" id="engagementRate"  name="engagementRate" placeholder="Enter Engagement Rate" [(ngModel)]="data.engagementRate" >
+      </div>
+  
+      <div class="form-group">
+          <label for="engageTime"><b>Engage Time</b></label>
+          <input type="text"  class="form-control" id="engageTime"  name="engageTime" placeholder="Enter Engage Time" [(ngModel)]="data.engageTime" >
+      </div>
+  
+      <div class="form-group">
+          <label for="totalGamePlayed"><b>Total Game Played</b></label>
+          <input #totalGamePlayed type="text" class="form-control" id="totalGamePlayed"  name="totalGamePlayed" placeholder="Enter Total Game Played" [(ngModel)]="data.totalGamePlayed" >
+          <small style="color:red">Suggested Value : <b>{{ calculateTotalGamePlayed(uniquePlayers.value,gamePlayRate.value) }}</b> =  {{uniquePlayers.value}} *  {{gamePlayRate.value}}    </small>
+      </div>
+  
+      <div class="form-group">
+          <label for="gamePlayRate"><b>Game Play Rate</b></label>
+          <input #gamePlayRate type="text" class="form-control" id="gamePlayRate"  name="gamePlayRate" placeholder="Enter Game Play Rate" [(ngModel)]="data.gamePlayRate" >
+      </div>
+  
+      <div class="form-group">
+          <label for="gamePlayRate"><b>Unique Players</b></label>
+          <input #uniquePlayers type="text" class="form-control" id="uniquePlayers"  name="uniquePlayers" placeholder="Enter Unique Players" [(ngModel)]="data.uniquePlayers" >
+      </div>
+  
+      <div class="form-group">
+          <label for="totalTournaments"><b>Total Tournaments</b></label>
+          <input type="text" class="form-control" id="totalTournaments"  name="totalTournaments" placeholder="Enter Total Tournaments" [(ngModel)]="data.totalTournaments" >
+      </div>
+      
+      <div class="form-group">
+        <label for="totalDailyActiveUsers"><b>Total Daily Active Users</b></label>
+        <input type="text"  class="form-control" id="totalDailyActiveUsers"  name="totalDailyActiveUsers" placeholder="Enter Total Daily Active Users" [(ngModel)]="data.totalDailyActiveUsers" >
+      </div>
+  
+      <div class="form-group">
+          <label for="totalMonthlyActiveUsers"><b>Total Monthly Active Users</b></label>
+          <input type="text"  class="form-control" id="totalMonthlyActiveUsers"  name="totalMonthlyActiveUsers" placeholder="Enter Total Monthly Active Users" [(ngModel)]="data.totalMonthlyActiveUsers" >
+      </div>
+  
+      <div class="form-group">
+          <label for="totalWeeklyActiveUsers"><b>Total Weekly Active Users</b></label>
+          <input type="text"  class="form-control" id="totalWeeklyActiveUsers"  name="totalWeeklyActiveUsers" placeholder="Enter Total Weekly Active Users" [(ngModel)]="data.totalWeeklyActiveUsers" >
+      </div>
+  
+  
+      <!-- <button  type="button"  data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success mr-3" >Save</button> -->
+      <button (click)="onSubmit(myForm)">Save</button>
+      <button  class="btn btn-secondary mr-3" (click)="onClickReset()" type="button">Reset</button>
+      <button routerLink="/operatorStats" class="btn btn-danger mr-3" type="submit">Back</button>
+      
+    </form>
+  
+  </div>
+  
+  </div>
+  
+  
+  
+  
+  
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          
+        <div class="modal-content">
+            
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Are you sure do you want to save changes ?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- <div class="modal-body">
+          
+          </div> -->
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="onSubmit(myForm)">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>

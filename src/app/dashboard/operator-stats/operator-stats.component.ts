@@ -42,13 +42,23 @@ export class OperatorStatsComponent implements OnInit {
 
   }
   onClickCheckRecord(fromDate:any,toDate:any){
-    if(fromDate == '' ){ 
+    if(fromDate == '' || toDate == '' ){ 
        this.msg = "Please Select the Date Range";
       setTimeout(() => {
         this.msg = "Searched Record Will be Displayed Below";
       }, 3000);
       return;
     };
+    if(fromDate > toDate  ){ 
+      this.msg = "Date Range is not Correct";
+      this.data='';
+     setTimeout(() => {
+       this.msg = "Searched Record Will be Displayed Below";
+     }, 3000);
+     this.StartingDate = '';
+     this.EndingDate = '';
+     return;
+   };
     this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
       
@@ -57,5 +67,10 @@ export class OperatorStatsComponent implements OnInit {
       
      }) 
     
+  }
+
+  onClickReset(){
+    this.StartingDate = '';
+    this.EndingDate = '';
   }
 }

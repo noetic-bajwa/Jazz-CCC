@@ -42,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     BsDatepickerModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    
   ],
   providers: [ReportDataService,DatePipe],
   bootstrap: [AppComponent]

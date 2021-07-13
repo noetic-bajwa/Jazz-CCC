@@ -10,6 +10,7 @@
                  #fromDate 
                  type="text"
                  placeholder="From"
+                 [(ngModel)]="StartingDate"
                  class="form-control datepicker"
                  bsDatepicker
                  [bsConfig]="{ containerClass: 'theme-red' }"
@@ -21,6 +22,7 @@
             <input #toDate
                    type="text"
                    placeholder="To"
+                   [(ngModel)]="EndingDate"
                    class="form-control datepicker"
                    bsDatepicker
                    [bsConfig]="{ containerClass: 'theme-red' }"
@@ -52,7 +54,7 @@
           <thead>
             <tr >
               <th>ID</th>
-              <th>Created&nbsp;Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <th>Created&nbsp;Date</th>
               <th>Total&nbsp;Monthly&nbsp;Active&nbsp;Users</th>
               <th>Unique&nbsp;Paid&nbsp;Base</th>
               <th>Total&nbsp;Daily&nbsp;Active&nbsp;Users</th>

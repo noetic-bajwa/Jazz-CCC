@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { LtvReportDataService } from '../Services/ltv-report-data.service';
 
 @Component({
   selector: 'app-ltvreport',
@@ -8,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class LTVReportComponent implements OnInit {
 
-  constructor(private pageTitle:Title) {
+  constructor(private pageTitle:Title,private dataService:LtvReportDataService) {
     this.pageTitle.setTitle('GameNow | LTV Reports');
    }
 

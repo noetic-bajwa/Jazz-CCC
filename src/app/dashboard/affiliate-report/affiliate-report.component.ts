@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AffiliateReportService } from '../Services/affiliate-report.service';
 
 @Component({
   selector: 'app-affiliate-report',
@@ -8,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class AffiliateReportComponent implements OnInit {
 
-  constructor(private pageTitle:Title) { 
+  constructor(private pageTitle:Title,private dataService:AffiliateReportService) { 
     this.pageTitle.setTitle('GameNow | Affiliate Report');
   }
 
