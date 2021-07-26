@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UnsubscribeService } from '../Services/unsubscribe.service';
 import { Papa } from 'ngx-papaparse';
-import * as XLSX from 'xlsx';
-import { invalid } from '@angular/compiler/src/render3/view/util';
+
 
 
 @Component({
