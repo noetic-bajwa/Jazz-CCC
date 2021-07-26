@@ -1,45 +1,76 @@
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    
+    <div class="row" >
         <div class="col text-center">
-            <h2>Operator Stats</h2>
-          </div>
+            <h2>OPERATOR STATS</h2>
+            
+        </div>
     </div>
-    <div class="row justify-content-center" style="margin-top: 50px;display: flex;justify-content: center;">
-        <div class="col-xs-12 col-12 col-md-3 form-group ">
+    
+    <div class="row" style="margin-top: 30px;justify-content: center;">
+        <div class="col-xs-12 col-12 col-md-12 form-group text-center" >
+          
           <input 
+                 id="fromDate"
                  #fromDate 
                  type="text"
-                 placeholder="From"
+                 placeholder="Select From Date"
                  [(ngModel)]="StartingDate"
-                 class="form-control datepicker"
+                 class="datepicker"
                  bsDatepicker
                  [bsConfig]="{ containerClass: 'theme-red' }"
-                 [bsConfig]="{showTodayButton: true, todayPosition: 'center' }"
+                 [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
                  [maxDate]="maxDate"
-                 [bsConfig]="{ isAnimated: true }" />
-        </div>
-        <div  class="col-xs-12 col-12 col-md-3 form-group">
-            <input #toDate
+                 [bsConfig]="{ isAnimated: true }" 
+                 
+          />
+          <input 
+                   id="toDate"
+                   #toDate
                    type="text"
-                   placeholder="To"
+                   placeholder="Select To Date"
+                   [(ngModel)]="EndingDate"
+                   class="datepicker"
+                   bsDatepicker
+                   [bsConfig]="{ containerClass: 'theme-red' }"
+                   [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+                   [maxDate]="maxDate"
+                   [bsConfig]="{ isAnimated: true }"
+                   
+            /> 
+            
+
+        </div>
+        
+        <!-- <div  class="col-xs-12 col-12 col-md-3 form-group" >
+            
+            <input 
+                   id="toDate"
+                   #toDate
+                   type="text"
+                   placeholder="Select To Date"
                    [(ngModel)]="EndingDate"
                    class="form-control datepicker"
                    bsDatepicker
                    [bsConfig]="{ containerClass: 'theme-red' }"
-                   [bsConfig]="{showTodayButton: true, todayPosition: 'center' }"
+                   [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
                    [maxDate]="maxDate"
-                   [bsConfig]="{ isAnimated: true }" /> 
-        </div>
+                   [bsConfig]="{ isAnimated: true }"
+                   
+            /> 
 
+        </div> -->
+          
     </div>
     <div class="row">
         <div class="col text-center">
-            <button class="btn" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Check Record</button>
+            <button class="searchRecordBtn" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search</button>
         </div>
     </div>
     
 </div>
-<div class="container-fluid" style="margin-top: 35px;">
+
+<div class="container-fluid" style="margin-top: 35px;overflow-x: auto;" >
   <ng-container *ngIf="isEmpty() == true; else elseData" class="row" >
     
       <div class="col text-center">
@@ -47,26 +78,27 @@
       
     </div>
   </ng-container>
-    <ng-template #elseData class="table-responsive">
+    
+  <ng-template  #elseData class="table-responsive">
       
     
-        <table class=" table table-striped table-bordered">
+        <table class="table table-striped table-bordered" style="overflow-x: scroll;">
           <thead>
             <tr >
-              <th>ID</th>
-              <th>Created&nbsp;Date</th>
-              <th>Total&nbsp;Monthly&nbsp;Active&nbsp;Users</th>
-              <th>Unique&nbsp;Paid&nbsp;Base</th>
-              <th>Total&nbsp;Daily&nbsp;Active&nbsp;Users</th>
-              <th>Unique&nbsp;Players</th>
-              <th>Total&nbsp;Weekly&nbsp;Active&nbsp;Users</th>
-              <th>Total&nbsp;Engage&nbsp;Base</th>
-              <th>Engagement&nbsp;Rate</th>
-              <th>Engage&nbsp;Time</th>
-              <th>Total&nbsp;Game&nbsp;Played</th>
-              <th>Game&nbsp;Play&nbsp;Rate</th>
-              <th>Total&nbsp;Tournaments</th>
-              <th>Action</th>
+              <th>ID<br>&nbsp;</th>
+              <th>Created<br>Date</th>
+              <th>Total&nbsp;Monthly<br>Active&nbsp;Users</th>
+              <th>Unique&nbsp;Paid<br>Base</th>
+              <th>Total&nbsp;Daily<br>Active&nbsp;Users</th>
+              <th>Unique<br>Players</th>
+              <th>Total&nbsp;Weekly<br>Active&nbsp;Users</th>
+              <th>Total&nbsp;Engage<br>Base</th>
+              <th>Engagement<br>Rate</th>
+              <th>Engage<br>Time</th>
+              <th>Total&nbsp;Game<br>Played</th>
+              <th>Game&nbsp;Play<br>Rate</th>
+              <!-- <th>Total<br>Tournaments</th> -->
+              <th>Action<br>&nbsp;</th>
     
             </tr>
           </thead>
@@ -86,7 +118,7 @@
               <td>{{item.engageTime}}</td>
               <td>{{item.totalGamePlayed}}</td>
               <td>{{item.gamePlayRate}}</td>
-              <td>{{item.totalTournaments}}</td>
+              <!-- <td>{{item.totalTournaments}}</td> -->
     
               <td><button  class="btn btn-outline-secondary">Edit</button></td>
               
@@ -95,11 +127,15 @@
            
           </tbody>
         </table>
-        <div class="row mt-3">
-          <div class="col-xs-12 col-12">
-            <pagination class="my-pagination" [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)"></pagination>
-          </div>
-        </div>
+        
     </ng-template>
+    
 </div>      
+
+<ng-container *ngIf="isEmpty() == false;" class="row mt-3">
+  <div class="col-xs-12 col-12 text-center">
+    <pagination class="my-pagination" [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)"></pagination>
+  </div>
+</ng-container>
+
 

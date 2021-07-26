@@ -7,6 +7,7 @@ import { LTVReportComponent } from './dashboard/ltvreport/ltvreport.component';
 import { MSISDNLogsComponent } from './dashboard/msisdnlogs/msisdnlogs.component';
 import { OperatorStatsComponent } from './dashboard/operator-stats/operator-stats.component';
 import { SingleRecordComponent } from './dashboard/operator-stats/single-record/single-record.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
 import { ReportComponent } from './dashboard/report/report.component';
 import { UnsubscribeComponent } from './dashboard/unsubscribe/unsubscribe.component';
 
@@ -45,8 +46,11 @@ const routes: Routes = [
       { 
         path:'affiliate',
         component:AffiliateReportComponent
+      },
+      { 
+        path:'profile',
+        component:ProfileComponent
       }
-      
     ]
   }
 ];

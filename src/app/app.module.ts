@@ -19,6 +19,8 @@ import { UnsubscribeComponent } from './dashboard/unsubscribe/unsubscribe.compon
 import { AffiliateReportComponent } from './dashboard/affiliate-report/affiliate-report.component';
 import { SingleRecordComponent } from './dashboard/operator-stats/single-record/single-record.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { ToastrModule } from 'ngx-toastr';
     BlacklistComponent,
     UnsubscribeComponent,
     AffiliateReportComponent,
-    SingleRecordComponent
+    SingleRecordComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,10 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BsDatepickerModule.forRoot(),
     ToastrModule.forRoot(),
+    
+    
+    
+    
     
   ],
   providers: [ReportDataService,DatePipe],

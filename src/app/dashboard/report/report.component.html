@@ -1,15 +1,18 @@
-<div class="container">
+<div class="container-fluid">
+    
   <div class="row">
       <div class="col text-center">
           <h2>Reports</h2>
-        </div>
+      </div>
   </div>
+  
   <div class="row justify-content-center" style="margin-top: 50px;display: flex;justify-content: center;">
       <div class="col-xs-12 col-12 col-md-3 form-group ">
         <input 
                #fromDate 
                type="text"
                placeholder="From"
+               [(ngModel)]="StartingDate"
                class="form-control datepicker"
                bsDatepicker
                [bsConfig]="{ containerClass: 'theme-red' }"
@@ -17,10 +20,12 @@
                [maxDate]="maxDate"
                [bsConfig]="{ isAnimated: true }" />
       </div>
+      
       <div  class="col-xs-12 col-12 col-md-3 form-group">
           <input #toDate
                  type="text"
                  placeholder="To"
+                 [(ngModel)]="EndingDate"
                  class="form-control datepicker"
                  bsDatepicker
                  [bsConfig]="{ containerClass: 'theme-red' }"
@@ -37,7 +42,8 @@
   </div>
   
 </div>
-<div class="container-fluid" style="margin-top: 35px;">
+
+<div class="container-fluid" style="margin-top: 35px;overflow-x: auto;" >
 <ng-container *ngIf="isEmpty() == true; else elseData" class="row" >
   
     <div class="col text-center">
@@ -45,10 +51,11 @@
     
   </div>
 </ng-container>
-  <ng-template #elseData class="table-responsive">
+  
+<ng-template  #elseData class="table-responsive">
     
   
-      <table class=" table table-striped table-bordered">
+      <table class="table table-striped table-bordered" style="overflow-x: scroll;">
         <thead>
           <tr >
             <th>ID</th>
@@ -93,11 +100,13 @@
          
         </tbody>
       </table>
-      <div class="row mt-3">
-        <div class="col-xs-12 col-12">
-          <pagination class="my-pagination" [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)"></pagination>
-        </div>
-      </div>
+      
   </ng-template>
+  
 </div>      
 
+<ng-container *ngIf="isEmpty() == false;" class="row mt-3">
+<div class="col-xs-12 col-12 text-center">
+  <pagination class="my-pagination" [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)"></pagination>
+</div>
+</ng-container>

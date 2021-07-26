@@ -19,14 +19,17 @@
  }
  
  #sidebar-wrapper {
-    z-index: 1000;
+    z-index: 100000000;
     position: absolute;
     left: 250px;
     width: 0;
     height: 100%;
+    border-radius: 2px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
     margin-left: -250px;
-    overflow-y: auto;
-    background: rgba(0, 0, 0, 0.767);
+    overflow: hidden;
+    background: #e4150d;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -35,6 +38,7 @@
  
  #wrapper.toggled #sidebar-wrapper {
     width: 250px;
+    
  }
  
  #page-content-wrapper {
@@ -55,40 +59,76 @@
  
  .fixed-brand {
     width: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+
  }
  /* Sidebar Styles */
  
  .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    bottom: 0;
+    width: 260px;
+    height: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
-    margin-top: 2px;
+    margin-top: 5px;
+    
+    
  }
  
  .sidebar-nav li {
     text-indent: 15px;
     line-height: 40px;
+    margin-top: 10px;
+
  }
  
  .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: rgba(255, 255, 240, 0.829);
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.02em;
  }
  
- .sidebar-nav li a:hover {
+ .myGlyph{
+   color:rgb(255, 255, 255);
+   
+ }
+
+ 
+
+ .sidebar-nav li a:hover{
     text-decoration: none;
     color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-    border-left: #d9534f 2px solid;
+    background: rgba(255, 255, 255, 0.178);
+    /* border-left: #ffffff 3px solid; */
+    border-radius: 40px;
+    margin-right: 10px;
+ }
+ 
+ .isActive{
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.178);
+    /* border-left: #ffffff 3px solid; */
+    border-radius: 40px;
+    margin-right: 10px;
+ }
+
+ .sidebar-nav li a:hover .myGlyph{
+   color:rgb(255, 255, 255);
  }
  
  .sidebar-nav li a:active,
  .sidebar-nav li a:focus {
     text-decoration: none;
+    
  }
  
  .sidebar-nav > .sidebar-brand {
@@ -98,7 +138,8 @@
  }
  
  .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+   color: #fff;
+   background: none;
  }
  
  .sidebar-nav > .sidebar-brand a:hover {
@@ -127,7 +168,7 @@
        width: 250px;
     }
     #wrapper.toggled-2 #sidebar-wrapper {
-       width: 50px;
+       width: 65px;
     }
     #wrapper.toggled-2 #sidebar-wrapper:hover {
        width: 250px;
@@ -161,3 +202,5 @@
  a{
      font-size: 15px;
  }
+
+ 
