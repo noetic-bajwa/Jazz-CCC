@@ -12,15 +12,29 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
+   // Mobile View Toggle FUnction
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
    });
+
+   //Desktop View Toggle Function
    $("#menu-toggle-2").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled-2");
       $('#menu ul').hide();
    });
+
+   //For Changing Icon on Toggle ( Mobile View )
+   $(".fas1").click(function () {
+      $(".fas1").toggleClass("fa-bars fa-times");
+  });
+
+  //For Changing Icon on Toggle ( Desktop View )
+  $(".fas2").click(function () {
+   $(".fas2").toggleClass("fa-angle-double-right");
+});
    
    function initMenu() {
       $('#menu ul').hide();
