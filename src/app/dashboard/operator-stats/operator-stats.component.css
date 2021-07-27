@@ -1,66 +1,21 @@
-/* .my-pagination::ng-deep .page-item.active .page-link {
+.my-pagination::ng-deep .page-item.active .page-link {
     z-index: 1;
     color: #FFFFFF;
-    background-color:#d9534f !important;
-    border-color: #d9534f;
+    background-color:#e4150d !important;
+    border-color: #e4150d;
     font-family: 'Roboto', sans-serif;
     letter-spacing:  0.03em; 
     
 }
 
+/* Pagination Border Color */
 .my-pagination::ng-deep .page-link {
     z-index: 1;
-    color: #d9534f;
+    color: #e4150d;
     background-color:ivory !important;
-    border-color: #d9534f;
+    border-color: #e4150d;
 }
 
-.msg{
-    color:rgba(0, 0, 0, 0.815);
-    font-family: 'Roboto', sans-serif;
-    letter-spacing:  0.03em;
-}
-
-h2{
-    font-family: 'Raleway', sans-serif;font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    letter-spacing:  0.05em;
-    color: rgba(0, 0, 0, 0.61);
-}
-
-.datepicker{
-    border-radius: 40px;
-    outline: none;
-    border-color:#d9534f;
-    padding: 20px;
-    font-size: larger;
-}
-
-
-.datepicker:hover{
-    border-color:rgba(0, 0, 0, 0.767);;
-}
-
-
-.btn , .btn:focus , .btn:active{
-    border-radius: 40px;
-    border-color:#d9534f;
-    background-color:#d9534f;
-    padding: 10px 20px;
-    color: ivory;
-    font-family: 'Raleway', sans-serif;font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    letter-spacing:  0.09em;
-    outline: 0 !important;
-}
-
-.btn:hover {
-    border-color:rgba(0, 0, 0, 0.767);;
-    background-color:rgba(0, 0, 0, 0.767);
-    color: ivory;
-    
-    
-} */
 
 .msg{
     color:rgba(0, 0, 0, 0.699);
@@ -70,4 +25,4 @@ h2{
 
 th{
     text-align: center;
-}
+} 

@@ -45,15 +45,12 @@ export class OperatorStatsComponent implements OnInit {
 
 
   }
+
+
   onClickCheckRecord(fromDate:any,toDate:any){
+    
+    //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
     if(fromDate == '' && toDate == ''){
-    //   this.data='';
-    //   this.msg = "Please Select Date Range";
-    //   document.getElementById("fromDate").focus();
-    //  setTimeout(() => {
-    //    this.msg = "Searched Records Will be Displayed Below";
-    //  }, 3000);
-    //  return;
     this.dataService.getData(0,'','').subscribe(data=>{
     this.data=data;},
     err=>{
@@ -61,6 +58,8 @@ export class OperatorStatsComponent implements OnInit {
     });
     return;
    };
+
+   //if 'From Date' is empty then it will display error for 3 sec and exit the function
     if(fromDate == '' && toDate != ''){ 
       this.data='';
        this.msg = "Please Select 'From' Date";
@@ -70,6 +69,8 @@ export class OperatorStatsComponent implements OnInit {
       }, 3000);
       return;
     };
+
+    //if 'To Date' is empty then it will display error for 3 sec and exit the function
     if(toDate == '' && fromDate != ''){ 
       this.data='';
       this.msg = "Please Select 'To' Date";
@@ -79,6 +80,8 @@ export class OperatorStatsComponent implements OnInit {
      }, 3000);
      return;
    };
+
+   //if From Date is greater than To Date then it will display error for 3 sec and exit the function
     if(fromDate > toDate  ){ 
       this.data='';
       this.msg = "Date Range is not Correct";
@@ -90,6 +93,10 @@ export class OperatorStatsComponent implements OnInit {
      return;
    };
 
+   //If there is error then the function would exit in the Above condition (If/else) statments
+   //Only the valid input field will bypass contional statments the reach this section of Function
+   // 1st Argument is 0 which means 1st page
+
     this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
     
@@ -100,6 +107,7 @@ export class OperatorStatsComponent implements OnInit {
      }) 
     
   }
+
 
   onClickReset(){
     this.StartingDate = '';
