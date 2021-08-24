@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './operator-stats.component.html',
   styleUrls: ['./operator-stats.component.css']
 })
+
 export class OperatorStatsComponent implements OnInit {
   msg:string = "Searched Records Will be Displayed Below";
   data:any={};
