@@ -20,6 +20,7 @@ import { AffiliateReportComponent } from './dashboard/affiliate-report/affiliate
 import { SingleRecordComponent } from './dashboard/operator-stats/single-record/single-record.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.component';
 
 
 
@@ -35,7 +36,8 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
     UnsubscribeComponent,
     AffiliateReportComponent,
     SingleRecordComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddUnsubComponent
   ],
   imports: [
     BrowserModule,

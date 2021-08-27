@@ -1,25 +1,16 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col text-center">
-            <h2>Unsubscribe</h2>
-            <hr style="width: 10%;">
-          </div>
-    </div>
-    <div class="row" style="display: flex;justify-content: center;margin-top: 20px;">
-        <div class="col text-center">
-            <p>Upload Record via CSV (.csv) Format</p>
-          <input  #file type="file" [(ngModel)]="myfile" accept=".csv" (change)="handleFileSelect($event)">
-          <ng-container *ngIf="file.value != '' ">
-            <button (click)="file.value=''" style="margin-top: 20px;">Remove File</button>
-            <button style="margin-top: 20px;" (click)="onClickUpload()" >Upload</button>
-          </ng-container>
-        </div>
-    </div>
-
     
-</div>
+  <!-- Main Heading (Start) -->
+  
+  <div class="row" style="justify-content: center;">
+      <div class="col text-center">
+          <h3 class="mainHeading">UNSUBSCRIBE</h3>
+          <a routerLink="add">ADD</a>
+      </div>
+  </div>
+
+  <!-- Main Heading (End) -->
 
 
 
-
-
+</div>  

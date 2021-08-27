@@ -81,9 +81,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-
-
 .mainHeading{
-  font-family: 'Roboto', sans-serif;
-  font-weight:normal;
-}
+    font-family: 'Roboto', sans-serif;
+    font-weight:normal;
+  }

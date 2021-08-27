@@ -9,6 +9,7 @@ import { OperatorStatsComponent } from './dashboard/operator-stats/operator-stat
 import { SingleRecordComponent } from './dashboard/operator-stats/single-record/single-record.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { ReportComponent } from './dashboard/report/report.component';
+import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.component';
 import { UnsubscribeComponent } from './dashboard/unsubscribe/unsubscribe.component';
 
 const routes: Routes = [
@@ -40,9 +41,13 @@ const routes: Routes = [
         path:'operatorStats',
         component:OperatorStatsComponent
       },
+      {
+        path:'unsub/add',component:AddUnsubComponent
+      },
       { path:'unsub',
         component:UnsubscribeComponent
       },
+      
       { 
         path:'affiliate',
         component:AffiliateReportComponent

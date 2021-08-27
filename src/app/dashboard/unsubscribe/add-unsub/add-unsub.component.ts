@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { UnsubscribeService } from '../Services/unsubscribe.service';
+import { UnsubscribeService } from '../../Services/unsubscribe.service';
 import { Papa } from 'ngx-papaparse';
 import { DOCUMENT } from '@angular/common'; 
 import { Inject }  from '@angular/core';
 
-
-
 @Component({
-  selector: 'app-unsubscribe',
-  templateUrl: './unsubscribe.component.html',
-  styleUrls: ['./unsubscribe.component.css']
+  selector: 'app-add-unsub',
+  templateUrl: './add-unsub.component.html',
+  styleUrls: ['./add-unsub.component.css']
 })
-export class UnsubscribeComponent implements OnInit {
+export class AddUnsubComponent implements OnInit {
 
+  
   invalidNumbers='';
   validNumbers=[];
   unsubscribeWarningMessage='';

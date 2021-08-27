@@ -36,15 +36,27 @@ export class OperatorStatsComponent implements OnInit {
   }
 
   pageChanged(event: PageChangedEvent,fromDate:any,toDate:any): void {
-    this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
-    this.data=data;
-      
-     },
-     err=>{
-      
-     }) 
+    if(fromDate == '' && toDate == ''){
+      this.dataService.getData(event.page-1,'','').subscribe(data=>{
+        this.data=data;
+          
+         },
+         err=>{
+          
+         }) 
 
+    };
+    if(fromDate != '' && toDate != ''){
+      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+        this.data=data;
+          
+         },
+         err=>{
+          
+         }) 
 
+    }
+    
   }
 
 
@@ -52,7 +64,7 @@ export class OperatorStatsComponent implements OnInit {
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
     if(fromDate == '' && toDate == ''){
-    this.dataService.getData(0,'','').subscribe(data=>{
+    this.dataService.getData('','','').subscribe(data=>{
     this.data=data;},
     err=>{
      
