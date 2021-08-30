@@ -4,7 +4,7 @@
     
     <div class="row" style="justify-content: center;">
         <div class="col text-center">
-            <h3 class="mainHeading"></h3>
+            <h3 class="mainHeading">BLACKLIST</h3>
         </div>
     </div>
 
@@ -12,25 +12,25 @@
 
 
 
-    <div class="row" style="justify-content: space-evenly;">
+    <div class="row"  style="justify-content: space-evenly;margin-top: 70px;">
         
-        <div class="col-12 col-md-5 col-lg-4 text-center" style="padding: 30px;">
-             <p class="subHeading">Enter MSISDN</p>
+        <div class="col-8 col-md-3 col-lg-3 form-group text-center" >
+             
              
              <input class="inputNumber form-control" placeholder="03xxxxxxxxx" autocomplete="off" (input)="onInputChange()" [(ngModel)]="msisdn" type="number" id="msisdn" name="msisdn">
-        
+             <label>Enter MSISDN</label>
              <div>
               <p class="error">{{singleMsisdnError}}</p>
             </div>
         
         </div>
 
-        <!-- <div  class="col-12 col-md-1 col-lg-1 text-center" style="color:crimson;font-weight: bold; display: flex;justify-content: center;align-items: center;position: fixed;">
+        <div  class="col-12 col-md-1 col-lg-1 text-center form-group" style="color:crimson;padding-top:0px;padding-bottom:15px">
           OR
-        </div> -->
+        </div>
 
-        <div class="col-12 col-md-5 col-lg-4 text-center" style="padding: 30px;">
-            <p class="subHeading">Upload Record via CSV (.csv) Format</p>
+        <div class="col-8 col-md-3 col-lg-3 form-group text-center" >
+            <label>Upload CSV File</label>
             <input class="FileInput form-control" #file type="file" [(ngModel)]="myfile" accept=".csv"  (change)="handleFileSelect($event)">
             <ng-container  *ngIf="formatNotSupportedmsg != '' ">
               <p class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;{{formatNotSupportedmsg}}</p>
@@ -49,7 +49,7 @@
     
       <div class="row">
         <div class="col text-center">
-            <button (click)="onClickUnSub()" class="unsub_btn">UNSUBSCRIBE</button>
+            <button (click)="onClickUnSub()" class="search_btn">BLACKLIST</button>
         </div>
       </div>
 

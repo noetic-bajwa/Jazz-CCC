@@ -7,8 +7,10 @@
 
 .FileInput{
     border: 1px solid #c0302d;
-    padding: 8px 12px;
-    cursor: pointer;
+  padding: 8px 12px;
+  box-shadow: none;
+  outline: none;
+  border-radius: 4px;
     
 }
 
@@ -17,29 +19,41 @@
     border: none;
     color:  white;
     outline: none;
-    padding: 6px 12px;
+    padding: 0px 7px;
+    font-size: 14px
   }
 
   .inputNumber{
     /* width: 320px; */
-    height: 54px;
     border: 1px solid #c0302d;
     padding: 8px 12px;
     box-shadow: none;
     outline: none;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   
 
-  .unsub_btn , .unsub_btn:focus , .unsub_btn:active {
-    border: 1px solid #000000;
-    background-color:#000000;
-    outline: none;
-    cursor: pointer;
-    padding: 6px 12px;
-    color: rgb(255, 255, 255); 
-  }
+  /* search button (start) */
+
+.search_btn , .search_btn:focus , .search_btn:active ,.search_btn:visited{
+  border: none !important;
+  background-color:#504c4c;
+  border-radius: 4px;
+  outline: none !important;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  color: rgb(255, 255, 255); 
+}
+
+.search_btn:hover {
+  background-color:#000000d7;
+  color: rgb(255, 255, 255); 
+  outline: none !important;
+}
+
+/* search button (end) */
 
 
 
@@ -82,9 +96,11 @@ input[type=number] {
 }
 
 .mainHeading{
-    font-family: 'Roboto', sans-serif;
-    font-weight:normal;
-  }
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.2ch;
+}
+
 
   label {
     padding-top:0;
