@@ -21,7 +21,7 @@ import { SingleRecordComponent } from './dashboard/operator-stats/single-record/
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.component';
-
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 
 @NgModule({
@@ -48,6 +48,7 @@ import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.c
     HttpClientModule,
     BsDatepickerModule.forRoot(),
     ToastrModule.forRoot(),
+    NgxUiLoaderModule
     
   ],
   providers: [ReportDataService,DatePipe],

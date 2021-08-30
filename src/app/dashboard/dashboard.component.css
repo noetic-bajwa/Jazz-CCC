@@ -20,14 +20,15 @@
  
  #sidebar-wrapper {
     z-index: 100000000;
-    position: absolute;
-    left: 250px;
+    position: fixed;
+    left: 220px;
     width: 0;
     height: 100%;
+    bottom: 0;
     border-radius: 2px;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
-    margin-left: -250px;
+    margin-left: -230px;
     overflow: hidden;
     background: #ae2424;
     -webkit-transition: all 0.5s ease;
@@ -83,6 +84,7 @@
     text-indent: 15px;
     line-height: 40px;
     margin-top: 10px;
+    margin-left: -10px;
 
  }
  
@@ -215,20 +217,25 @@
 
 
 @media screen and (min-width: 768px) {
-   #menu-toggle{
+   #mobile{
       visibility: hidden;
    }
    
-   #menu-toggle-2{
+   #desktop{
       visibility: visible;
    }
  }
 
  @media screen and (max-width: 767px) {
-   #menu-toggle{
+   #mobile{
       visibility: visible;
    }
-   #menu-toggle-2{
+   #desktop{
       visibility: hidden;
    }
+ }
+
+ #menu-toggle:focus , #menu-toggle-2:focus{
+    border:none;
+    outline: none;
  }

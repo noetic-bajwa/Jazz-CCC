@@ -167,3 +167,54 @@
 .subHeading{
     
 }
+
+.bs-datepicker-head {
+    background-color: #8a252c !important;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.bs-datepicker-body table td.week span {
+    color: #ae2424 !important;
+    
+}
+
+.bs-datepicker-body {
+    padding: 5px !important;
+    margin-top: 10px;
+    /* border: 1px solid #8a252c; */
+    border:none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+}
+   
+.bs-datepicker{
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.089) ;
+    /* box-shadow: none; */
+    /* border: 1px solid #8a252c; */
+    border-radius: 3px;  
+
+}
+
+.bs-datepicker-body table td span.selected, .bs-datepicker-body table td.selected span {
+    color: rgb(255, 254, 254);
+    background-color: #8a252c !important;
+}
+
+/* @media screen and (max-width: 767px) {
+    .bs-datepicker{
+        margin-top: 1px;
+        background-color: #00000000;
+        box-shadow: none;
+        border-radius: 0px;  
+    }
+  } */
+
+  html {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    
+}
+

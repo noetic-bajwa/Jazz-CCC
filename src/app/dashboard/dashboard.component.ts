@@ -20,17 +20,18 @@ export class DashboardComponent implements OnInit {
    });
 
    //Desktop View Toggle Function
+   $("#wrapper").toggleClass("toggled-2");
    $("#menu-toggle-2").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled-2");
-      $('#menu ul').hide();
+      // $('#menu ul').hide();
    });
 
    //For Changing Icon on Toggle ( Mobile View )
    $(".fas1").click(function () {
       $(".fas1").toggleClass("fa-bars fa-times");
   });
-
+  $(".fas2").toggleClass("fa-angle-double-right");
   //For Changing Icon on Toggle ( Desktop View )
   $(".fas2").click(function () {
    $(".fas2").toggleClass("fa-angle-double-right");

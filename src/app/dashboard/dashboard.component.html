@@ -1,6 +1,6 @@
 
  
- <body>
+ 
     
     <div id="wrapper">
        
@@ -8,40 +8,40 @@
        <div id="sidebar-wrapper" style="overflow-x: hidden;">
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li class="sidebar-brand">
-               <a  routerLink=""><span style="margin-left: 6px;">GN</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JAZZ PORTAL</a>
+               <a  routerLink=""><span style="margin-left: 25px;">GN</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JAZZ PORTAL</a>
             </li>
             
              <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
              <li>
-               <a routerLink="profile" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-circle fa-stack-1x myGlyph"></i></span>Username</a>
+               <a routerLink="profile" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-circle fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username</a>
             </li>
             <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
              
              <li>
-                <a routerLink="report" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-clipboard fa-stack-1x myGlyph"></i></span>Report</a>
+                <a routerLink="report" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-clipboard fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report</a>
              </li>
 
              <li>
-                <a routerLink="affiliate" [routerLinkActive]="['isActive']"> <span class="fa-stack fa-lg pull-left"><i class="fas fa-poll fa-stack-1x myGlyph"></i></span>Affiliate Report</a>
+                <a routerLink="affiliate" [routerLinkActive]="['isActive']"> <span class="fa-stack fa-lg pull-left"><i class="fas fa-poll fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Affiliate Report</a>
              </li>
              <li>
-                <a routerLink="blacklist" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-alt-slash fa-stack-1x myGlyph"></i></span>Blacklist</a>
+                <a routerLink="blacklist" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-alt-slash fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blacklist</a>
              </li>
              <li>
-                <a routerLink="ltv" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-file-excel fa-stack-1x myGlyph"></i></span>LTV Report</a>
+                <a routerLink="ltv" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-file-excel fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LTV Report</a>
              </li>
              <li>
-                <a routerLink="operatorStats" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-chart-bar fa-stack-1x myGlyph"></i></span>Operator Stats</a>
+                <a routerLink="operatorStats" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-chart-bar fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operator Stats</a>
              </li>
              <li>
-                <a routerLink="unsub" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-times fa-stack-1x myGlyph"></i></span>Unsubscribe</a>
+                <a routerLink="unsub" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-times fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unsubscribe</a>
              </li>
              <li>
-                <a routerLink="msisdnlogs" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x myGlyph"></i></span>MSISDN Logs</a>
+                <a routerLink="msisdnlogs" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSISDN Logs</a>
              </li>
              <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
              <li>
-                <a routerLink="" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-power-off fa-stack-1x myGlyph"></i></span>Logout</a>
+                <a routerLink="" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-power-off fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
              </li>
           </ul>
        </div>
@@ -52,42 +52,30 @@
          <nav class="navbar  no-margin" >
 
             <!-- Toogle Icon Mobile View -->
-            <button type="button" style="z-index: 99999999999;" class="navbar-toggle collapsed" style="margin-top: -15px;" data-toggle="collapse" id="menu-toggle">
-               <span class="fas1 fas fa-bars" aria-hidden="true"></span><span style="margin-left: 10px;" aria-hidden="true">GN</span>
-            </button>
+            <div id="mobile" style="margin-top:-10px;margin-left:-16px;">
+               <button type="button" style="z-index: 99999999999;" class="navbar-toggle collapsed" style="margin-top: -15px;margin-left: -12px;" data-toggle="collapse" id="menu-toggle">
+                  <span class="fas1 fas fa-bars" aria-hidden="true"></span><span style="margin-left: 10px;" aria-hidden="true"></span>
+               </button>
+            </div>
 
-            <!-- <button type="button" style="z-index: 999999999999999999;" class="navbar-toggle collapsed" style="margin-top: -15px;" data-toggle="collapse" id="menu-toggle-2">
-               <span class="fas2 fas fa-angle-double-left" aria-hidden="true"></span><span style="margin-left: 10px;" aria-hidden="true"></span>
-            </button> -->
-
-            <!-- <button type="button"  class="navbar-toggle collapsed"  style="margin:0;padding:0;z-index: 9;" data-toggle="collapse" id="menu-toggle-2"> <span class="fas2 fas fa-angle-double-left"  aria-hidden="true">GN</span>  
-            </button> -->
-            <!-- Toogle Icon Desktop View -->
-           <!-- <div class="collapse navbar-collapse" style="margin-top:20px;padding:0;padding-left:20px;z-index: 9;" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-               <li class="active"> 
-                  <button type="button"  class="navbar-toggle collapse in"  style="margin:0;padding:0;z-index: 9;" data-toggle="collapse" id="menu-toggle-2"> <span class="fas2 fas fa-angle-double-left"  aria-hidden="true"></span>  
-                  </button>
-               </li>
-            </ul>
-         </div> -->
+            <div id="desktop" style="position: absolute;margin-top:45px;z-index: 99999999;" >
+               <button type="button" style="z-index: 99999999999;" class="navbar-toggle collapsed" style="margin-top: -15px;" data-toggle="collapse" id="menu-toggle-2">
+                  <span class="fas2 fas fa-angle-double-left" aria-hidden="true"></span><span style="margin-left: 10px;" aria-hidden="true"></span>
+               </button>
+            </div>
             
-         
         
       </nav>
           
-          <div class="container-fluid xyz">
-             <div class="row">
-                <div class="col-lg-12" style="margin-top:0px" >
+          <div class="xyz" style="margin-top: -24px;">
+             
                   <router-outlet></router-outlet>
-                  <!-- <app-unsubscribe></app-unsubscribe> -->
-                </div>
-             </div>
+                  
           </div>
        </div>
     </div>
     
  
- </body>
+ 
  
  
