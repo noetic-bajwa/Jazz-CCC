@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.component';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { AddBlacklistComponent } from './dashboard/blacklist/add-blacklist/add-blacklist.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
     AffiliateReportComponent,
     SingleRecordComponent,
     ProfileComponent,
-    AddUnsubComponent
+    AddUnsubComponent,
+    AddBlacklistComponent
   ],
   imports: [
     BrowserModule,

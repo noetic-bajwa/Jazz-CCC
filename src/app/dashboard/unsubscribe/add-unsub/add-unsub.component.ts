@@ -59,19 +59,20 @@ export class AddUnsubComponent implements OnInit {
             }
 
             var ScientificNumberToNumber = function(x){
-              // console.log(x.toFixed(20))
               return Number(x).toString();
               
            }
-          //  var HyphenRemovedArray = merged.map(RemoveHyphen);
-           var ScientificNumberToNumberArray = merged.map(ScientificNumberToNumber);
+           var HyphenRemovedArray = merged.map(RemoveHyphen);
+           var ScientificNumberToNumberArray = HyphenRemovedArray.map(ScientificNumberToNumber);
 
           //  console.log("All Numbers "+ScientificNumberToNumberArray)
 
             
             var filteredValid = ScientificNumberToNumberArray.filter(returnValid);
             
-            var filteredInvalid = ScientificNumberToNumberArray.filter(returnInvalid);
+
+            
+              var filteredInvalid = ScientificNumberToNumberArray.filter(returnInvalid);
             
               // console.log(filteredInvalid);
               // console.log(filteredValid);
@@ -157,7 +158,7 @@ export class AddUnsubComponent implements OnInit {
     
     // File is empty and msisdn is invalid
     if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) == null){
-      this.unsubscribeWarningMessage = "Please enter valid msisdn or attach file (.csv)";
+      this.unsubscribeWarningMessage = "Please write valid msisdn or attach file (.csv)";
       document.getElementById("msisdn").focus();
       setTimeout(() => {
                 this.unsubscribeWarningMessage = "";
@@ -168,7 +169,7 @@ export class AddUnsubComponent implements OnInit {
 
     // File is not empty and msisdn is valid
     if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) != null){
-        this.validNumbers.push(this.msisdn.toString());
+        this.validNumbers.push(this.msisdn);
         let data = {msisdn:this.validNumbers};
         console.log(data);
         this.validNumbers = [];
@@ -192,7 +193,7 @@ export class AddUnsubComponent implements OnInit {
 
     // File is Empty and msisdn is  valid
     if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) != null){
-      this.validNumbers.push(this.msisdn.toString());
+      this.validNumbers.push(this.msisdn);
       let data = {msisdn:this.validNumbers}
       console.log(data);
       this.msisdn='';

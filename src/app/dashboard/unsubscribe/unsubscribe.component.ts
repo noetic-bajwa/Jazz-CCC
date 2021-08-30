@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { UnsubscribeService } from '../Services/unsubscribe.service';
-import { Papa } from 'ngx-papaparse';
-import { DOCUMENT } from '@angular/common'; 
+import { OperatorStatsDataService } from '../Services/operator-stats-data.service';
 import { Inject }  from '@angular/core';
+import { DOCUMENT } from '@angular/common'; 
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
 
 
 
@@ -13,232 +16,116 @@ import { Inject }  from '@angular/core';
   styleUrls: ['./unsubscribe.component.css']
 })
 export class UnsubscribeComponent implements OnInit {
+  msg:string = "Searched Records Will be Displayed Below";
+  data:any={};
+  StartingDate:any;
+  EndingDate:any;
+  maxDate: Date;
+  currentPage:number;
+  constructor(private dataService:OperatorStatsDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
+    this.pageTitle.setTitle('GameNow | Operator Stats');
+    this.maxDate = new Date();
 
-  invalidNumbers='';
-  validNumbers=[];
-  unsubscribeWarningMessage='';
-  formatNotSupportedmsg=''
-  msisdn='';
-  singleMsisdnError='';
-  csvDisable=false;
-  singleDisable=false;
-
-  myfile:any;
-  constructor(private pageTitle:Title,private dataService:UnsubscribeService,private papa: Papa,@Inject(DOCUMENT) document) {
-    this.pageTitle.setTitle('GameNow | Unsubscribe');
-    
-   }
+  }
 
   ngOnInit(): void {
+    
   }
 
-  
-  handleFileSelect(evt) {
+  isEmpty(){
+    return (Object.keys(this.data).length === 0);
+  }
+
+  pageChanged(event: PageChangedEvent,fromDate:any,toDate:any): void {
+    if(fromDate == '' && toDate == ''){
+      this.dataService.getData(event.page-1,'','').subscribe(data=>{
+        this.data=data;
+          
+         },
+         err=>{
+          
+         }) 
+
+    };
+    if(fromDate != '' && toDate != ''){
+      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+        this.data=data;
+          
+         },
+         err=>{
+          
+         }) 
+
+    }
     
-    if(evt.target.files[0].name.includes("csv")){ 
-    var files = evt.target.files; // FileList object
-    var file = files[0];
-    // console.log(file.name)
-    // console.log(file.name.includes(".csv"))
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = (event: any) => {
-      var csv = event.target.result; 
-      // console.log(csv);// Content of CSV file
-
-      
-      this.papa.parse(csv,{
-        complete: (result) => {
-            // console.log(result.data);
-            
-            let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
-            var merged = [].concat.apply([], result.data).filter(Boolean);
-            
-            //Function to remove white/blank spaces and hyphen 
-            var RemoveHyphen = function(x){
-              return x.replace(/\s/g,'').replace("-","")  //Remove blank spaces and Hyphen(-)
-            }
-
-            var ScientificNumberToNumber = function(x){
-              return Number(x).toString();
-              
-           }
-           var HyphenRemovedArray = merged.map(RemoveHyphen);
-           var ScientificNumberToNumberArray = HyphenRemovedArray.map(ScientificNumberToNumber);
-
-          //  console.log("All Numbers "+ScientificNumberToNumberArray)
-
-            
-            var filteredValid = ScientificNumberToNumberArray.filter(returnValid);
-            
-
-            
-              var filteredInvalid = ScientificNumberToNumberArray.filter(returnInvalid);
-            
-              // console.log(filteredInvalid);
-              // console.log(filteredValid);
-
-            this.invalidNumbers = filteredInvalid;
-            this.validNumbers = filteredValid;
-            
-
-            //Checking condition if the file is Empty
-            if(this.validNumbers.length === 0 && this.invalidNumbers == ''){
-              this.formatNotSupportedmsg = "File Does not contain any record";
-              this.unsubscribeWarningMessage = "Couldn't Proceed with this File";
-            }
-
-            //Checking condition if all numbers are Valid only
-            if(this.validNumbers.length !== 0 && this.invalidNumbers == ''){
-              this.formatNotSupportedmsg = "";
-              this.unsubscribeWarningMessage = "";
-            }
-
-            //Checking condition if all numbers are Invalid only
-            if(this.validNumbers.length === 0 && this.invalidNumbers != ''){
-              this.formatNotSupportedmsg = "File contain no valid msisdn";
-              this.unsubscribeWarningMessage = "Couldn't proceed";
-            }
-
-            //Checking condition if there Invalid and valid numbers both 
-            if(this.validNumbers.length !== 0 && this.invalidNumbers != ''){
-              this.formatNotSupportedmsg = "";
-              this.unsubscribeWarningMessage = "Proceeding will only unsubscribe MSISDN's with valid format";
-            }
+  }
 
 
-
-
-
-
-
-            
-            // if(this.invalidNumbers != '' ){
-            //   this.unsubscribeWarningMessage = "Proceeding will only unsubscribe MSISDN's with valid format.";
-              // setTimeout(() => {
-              //   this.unsubscribeWarningMessage = "";
-              // }, 3000); 
-            // }
-
-
-            
-        
-           
-            //Funtion to Check Valid Number
-            function returnValid(value) {
-              if(regex_phone.exec(value)){
-                return value;    
-              }
-            }
-
-            //Function to check Invalid Number
-            function returnInvalid(value) {
-              if(!regex_phone.exec(value)){
-                return value; 
-              }
-            }
-            
-        }
+  onClickCheckRecord(fromDate:any,toDate:any){
+    
+    //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
+    if(fromDate == '' && toDate == ''){
+    this.dataService.getData('','','').subscribe(data=>{
+    this.data=data;},
+    err=>{
+     
     });
-    }
-  }else{
-    this.myfile = '';
-    this.formatNotSupportedmsg = "Format not supported";
-    setTimeout(() => {
-      this.formatNotSupportedmsg = "";
-    }, 9000);
     return;
-  }
+   };
 
-  
-
-  }
-  onClickUnSub(){
-
-    let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
-    
-    // File is empty and msisdn is invalid
-    if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) == null){
-      this.unsubscribeWarningMessage = "Please write valid msisdn or attach file (.csv)";
-      document.getElementById("msisdn").focus();
+   //if 'From Date' is empty then it will display error for 3 sec and exit the function
+    if(fromDate == '' && toDate != ''){ 
+      this.data='';
+       this.msg = "Please Select 'From' Date";
+       document.getElementById("fromDate").focus();
       setTimeout(() => {
-                this.unsubscribeWarningMessage = "";
-              }, 3000);
-              
+        this.msg = "Searched Records Will be Displayed Below";
+      }, 3000);
+      return;
+    };
+
+    //if 'To Date' is empty then it will display error for 3 sec and exit the function
+    if(toDate == '' && fromDate != ''){ 
+      this.data='';
+      this.msg = "Please Select 'To' Date";
+      document.getElementById("toDate").focus();
+     setTimeout(() => {
+       this.msg = "Searched Records Will be Displayed Below";
+     }, 3000);
+     return;
+   };
+
+   //if From Date is greater than To Date then it will display error for 3 sec and exit the function
+    if(fromDate > toDate  ){ 
+      this.data='';
+      this.msg = "Date Range is not Correct";
+     setTimeout(() => {
+       this.msg = "Searched Records Will be Displayed Below";
+     }, 3000);
+     this.StartingDate = '';
+     this.EndingDate = '';
+     return;
+   };
+
+   //If there is error then the function would exit in the Above condition (If/else) statments
+   //Only the valid input field will bypass contional statments the reach this section of Function
+   // 1st Argument is 0 which means 1st page
+
+    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+    this.data=data;
+    
       
-    }
-
-    // File is not empty and msisdn is valid
-    if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) != null){
-        this.validNumbers.push(this.msisdn);
-        let data = {msisdn:this.validNumbers};
-        console.log(data);
-        this.validNumbers = [];
-        this.msisdn = '';
-        this.myfile='';
-        this.unsubscribeWarningMessage = '';
-        this.formatNotSupportedmsg = ''; 
-        
-    }
-
-    // File is not empty and msisdn is invalid
-    if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) == null){
-      let data = {msisdn:this.validNumbers}
-      console.log(data);
-
-      this.validNumbers = [];
-      this.myfile='';
-      this.unsubscribeWarningMessage = '';
-      this.formatNotSupportedmsg = ''; 
-    }
-
-    // File is Empty and msisdn is  valid
-    if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) != null){
-      this.validNumbers.push(this.msisdn);
-      let data = {msisdn:this.validNumbers}
-      console.log(data);
-      this.msisdn='';
-      this.myfile='';
-      this.validNumbers=[];
-      this.singleMsisdnError = '';
-      this.unsubscribeWarningMessage = '';
-      this.formatNotSupportedmsg = ''; 
-       
-    }
-
-
-
-    // else{
-    //   this.validNumbers.push(this.msisdn);
-    //   console.log({msisdn:this.validNumbers})
-    // }
-
+     },
+     err=>{
+      
+     }) 
     
-
-
   }
 
-  onFileRemove(file){
-    file.value='';
-    this.myfile='';
-    this.invalidNumbers='';
-    this.validNumbers=[];
-    this.unsubscribeWarningMessage = '';
-    this.formatNotSupportedmsg = ''; 
-  }
 
-  onInputChange(){
-    let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
-    if(regex_phone.exec(this.msisdn) != null){
-        this.singleMsisdnError = 'Valid Format';
-    }
-    if (regex_phone.exec(this.msisdn) == null){
-      this.singleMsisdnError = 'Invalid Format'
-    }
-    
-    if(this.msisdn == null){
-      this.singleMsisdnError = '';
-    }
+  onClickReset(){
+    this.StartingDate = '';
+    this.EndingDate = '';
   }
 
 }
