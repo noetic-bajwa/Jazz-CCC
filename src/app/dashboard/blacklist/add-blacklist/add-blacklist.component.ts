@@ -184,7 +184,6 @@ export class AddBlacklistComponent implements OnInit {
     if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) == null){
       let data = {msisdn:this.validNumbers}
       console.log(data);
-
       this.validNumbers = [];
       this.myfile='';
       this.unsubscribeWarningMessage = '';
