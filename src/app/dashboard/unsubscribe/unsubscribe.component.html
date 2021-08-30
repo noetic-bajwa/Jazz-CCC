@@ -9,13 +9,13 @@
   </div>
   <!-- Main Heading (End) -->
   
-  <div class="row" style="margin-top: -15px;">
-    <div class="col text-center"> 
+  <div class="row">
+    <div class="col"> 
       <button  class="add_btn" routerLink="add">ADD</button>
     </div>
   </div>
 
-  <div class="row" style="margin-top: 50px;justify-content: center;">
+  <div class="row" style="margin-top: 70px;justify-content: center;">
       <div class="col-8 col-md-3 col-lg-2 form-group text-center" >
         <input 
                id="fromDate"
@@ -102,9 +102,9 @@
         <tbody>
           
           
-          <tr *ngFor="let item of data.stats">
-            <td #recordID [routerLink]="['/operatorStats',item.id]">{{item.id}}</td>
-            <td>{{item.cDate | date}}</td>
+          <tr *ngFor="let item of data.items">
+            <td>{{item.msisdn}}</td>
+            <td>{{item.date | date}}</td>
             <!-- <td >{{item.totalMonthlyActiveUsers}}</td> -->
             <!-- <td >{{item.uniquePaidBase}}</td>
             <td >{{item.totalDailyActiveUsers}}</td>
@@ -141,7 +141,7 @@
 </ng-container>
 
 
-<!-- Operator Stats Guide-->
+<!-- Unsubscribe Guide-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">

@@ -232,3 +232,9 @@
     border:none;
     outline: none;
  }
+
+ .mainHeading{
+   font-family: 'Roboto', sans-serif;
+   font-size: 20px;
+   letter-spacing: 0.2ch;
+ }

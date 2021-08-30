@@ -17,7 +17,7 @@ export class UnsubscribeService {
   
   getData(page:any,startDate:any,endDate:any){
 
-    let url="https://gamenow.noeticworld.com/api/stats/?page="+page+"&fromDate="+startDate+"&toDate="+endDate;
+    let url="http://192.168.127.107:8080/cdate/?page="+page+"&fromDate="+startDate+"&toDate="+endDate;
     return this.http.get(url);
     }
 

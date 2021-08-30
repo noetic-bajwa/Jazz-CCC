@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorStatsDataService } from '../Services/operator-stats-data.service';
+import { BlacklistService } from '../Services/blacklist.service';
 import { Inject }  from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
@@ -20,7 +20,7 @@ export class BlacklistComponent implements OnInit {
   EndingDate:any;
   maxDate: Date;
   currentPage:number;
-  constructor(private dataService:OperatorStatsDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
+  constructor(private dataService:BlacklistService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | Operator Stats');
     this.maxDate = new Date();
 
