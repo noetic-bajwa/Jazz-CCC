@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AffiliateReportComponent } from './dashboard/affiliate-report/affiliate-report.component';
+import { AddBlacklistComponent } from './dashboard/blacklist/add-blacklist/add-blacklist.component';
 import { BlacklistComponent } from './dashboard/blacklist/blacklist.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LTVReportComponent } from './dashboard/ltvreport/ltvreport.component';
@@ -21,6 +22,9 @@ const routes: Routes = [
       {
         path:'blacklist',
         component:BlacklistComponent
+      },
+      {
+        path:'blacklist/add',component:AddBlacklistComponent
       },
       { 
         path:'ltv',

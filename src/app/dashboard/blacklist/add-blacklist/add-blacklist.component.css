@@ -1,0 +1,87 @@
+.alert-warning {
+    background-image: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
+    background-repeat: repeat-x;
+    border-color: #c0302d;
+    
+}
+
+.FileInput{
+    border: 1px solid #c0302d;
+    padding: 8px 12px;
+    cursor: pointer;
+    
+}
+
+::-webkit-file-upload-button {
+    background:  #ae2424;
+    border: none;
+    color:  white;
+    outline: none;
+    padding: 6px 12px;
+  }
+
+  .inputNumber{
+    /* width: 320px; */
+    height: 54px;
+    border: 1px solid #c0302d;
+    padding: 12px 12px;
+    box-shadow: none;
+    outline: none;
+    border-radius: 2px;
+  }
+
+  
+
+  .unsub_btn , .unsub_btn:focus , .unsub_btn:active {
+    border: 1px solid #000000;
+    background-color:#000000;
+    outline: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    color: rgb(255, 255, 255); 
+  }
+
+
+
+  
+  .error{
+    color:#8a252c;
+    font-size: 12px;
+  }
+
+  .instructions{
+    color:#000000;
+    font-size: 12px;
+  }
+
+  
+
+  .RemoveFileBtn{
+    border: 1px solid #c0302d;
+    color: white;
+    background-color: #c0302d ;
+    padding: 4px 8px;
+  }
+
+
+
+
+
+/* Hide Arrows for Input Number */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.mainHeading{
+    font-family: 'Roboto', sans-serif;
+    font-weight:normal;
+  }

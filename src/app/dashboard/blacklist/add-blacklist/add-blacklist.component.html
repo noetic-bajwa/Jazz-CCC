@@ -1,1 +1,152 @@
-<p>add-blacklist works!</p>
+<div class="container-fluid">
+    
+    <!-- Main Heading (Start) -->
+    
+    <div class="row" style="justify-content: center;">
+        <div class="col text-center">
+            <h3 class="mainHeading">BLACKLIST</h3>
+        </div>
+    </div>
+
+    <!-- Main Heading (End) -->
+
+
+
+    <div class="row" style="justify-content: space-evenly;">
+        
+        <div class="col-12 col-md-5 col-lg-4 text-center" style="padding: 30px;">
+             <p class="subHeading">Enter MSISDN</p>
+             
+             <input class="inputNumber form-control" placeholder="03xxxxxxxxx" autocomplete="off" (input)="onInputChange()" [(ngModel)]="msisdn" type="number" id="msisdn" name="msisdn">
+        
+             <div>
+              <p class="error">{{singleMsisdnError}}</p>
+            </div>
+        
+        </div>
+
+        <!-- <div  class="col-12 col-md-1 col-lg-1 text-center" style="color:crimson;font-weight: bold; display: flex;justify-content: center;align-items: center;position: fixed;">
+          OR
+        </div> -->
+
+        <div class="col-12 col-md-5 col-lg-4 text-center" style="padding: 30px;">
+            <p class="subHeading">Upload Record via CSV (.csv) Format</p>
+            <input class="FileInput form-control" #file type="file" [(ngModel)]="myfile" accept=".csv"  (change)="handleFileSelect($event)">
+            <ng-container  *ngIf="formatNotSupportedmsg != '' ">
+              <p class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;{{formatNotSupportedmsg}}</p>
+            </ng-container>
+            
+            <ng-container  *ngIf="file.value != '' ">
+              <div  class="col-12 text-center">
+              <button class="RemoveFileBtn" (click)="onFileRemove(file)" style="margin-top: 20px;"><i class="fas fa-times"></i> Remove File</button>
+              </div>
+            </ng-container>   
+        </div>
+
+    </div>
+
+
+    
+      <div class="row">
+        <div class="col text-center">
+            <button (click)="onClickUnSub()" class="unsub_btn">UNSUBSCRIBE</button>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col text-center">
+          <h5 class="instructions"><i style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal" class="fas fa-info-circle"></i> Please read <strong style="cursor: pointer;text-decoration: underline;" data-toggle="modal" data-target="#exampleModal" >Instructions</strong></h5>
+        </div>
+      </div>
+
+
+
+    <div>
+
+    </div>
+    
+
+
+    
+    
+</div>
+
+
+<ng-container *ngIf="unsubscribeWarningMessage != '' ">
+  <div style="margin-top: 10px;" class="text-center">
+    <p class="error">{{unsubscribeWarningMessage}}</p>
+  </div>
+</ng-container>
+
+
+<ng-container  *ngIf="invalidNumbers != '' " >
+  <div class="container">
+  <div style="margin-top: 10px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <h5 class="error">These MSISDN's Wouldn't Get <strong>Unsubscribed !</strong> Due To <strong>Incorrect Format</strong></h5>
+    
+    <ul class="error" style="margin-top: 10px;"  *ngFor="let number of invalidNumbers;let i=index">
+      <p><strong>{{i+1 }}.&nbsp;</strong>{{number}}</p>
+      
+    </ul>
+
+      <h5 class="error">Correct Format: <strong>(03xxxxxxxxx/ 92xxxxxxxxxx/ 3xxxxxxxxx)</strong></h5>
+      <h5 class="error">Please Read <strong style="cursor: pointer;text-decoration: underline;" data-toggle="modal" data-target="#exampleModal2" >Instructions</strong> For More Details</h5>
+      
+    </div>
+    
+  </div>      
+
+</ng-container>
+
+
+
+
+<!-- Modal Full Instructions -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Instructions</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        Full Instructions
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Partial Instructions -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Instructions</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        Partial Instructions
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+
