@@ -3,9 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 const httpOptions = {
-  withCredentials: false,
+  withCredentials: true,
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'  })
+    "Access-Control-Allow-Origin": "*",
+    'Content-Type':  'application/json',
+    
+    })
 };
 
 @Injectable({
@@ -23,18 +26,22 @@ export class UnsubscribeService {
 
   getStatus(){
     let url="http://192.168.127.107:8080/getresults";
-    return this.http.get(url);
+    console.log("GET STATUS Called");
+    return this.http.get(url,httpOptions);
   }
 
   UnsubscribeRecord(data:any){
       let body=JSON.stringify(data);
-      let url="http://192.168.127.107:8080/unsubscribe";
-      return this.http.put(url,body,httpOptions);
+      console.log(body);
+      console.log("UnsubscribeRecord Called");
+      let url="http://192.168.127.107:8080/user/unsubscribe";
+      return this.http.put(url,body,{responseType: 'text'});
   }
   
   getUniqueUnsubRecords(fromDate:any,toDate:any){
       let url="http://192.168.127.107:8080/getSumBlocked?fromDate="+fromDate+"&toDate="+toDate;
     return this.http.get(url);
   }
+
 
 }
