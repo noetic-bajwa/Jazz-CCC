@@ -156,22 +156,23 @@ export class AddUnsubComponent implements OnInit {
 
     let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
     
-    // File is empty and msisdn is invalid
+    // Case 1 :  File is empty and msisdn is invalid    
     if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) == null){
       this.unsubscribeWarningMessage = "Please write valid msisdn or attach file (.csv)";
       document.getElementById("msisdn").focus();
       setTimeout(() => {
                 this.unsubscribeWarningMessage = "";
               }, 3000);
-              
       
+      let data = {msisdn:this.validNumbers};
+      console.log("case 1 "+data);
     }
 
-    // File is not empty and msisdn is valid
+    // Case 2 : File is not empty and msisdn is valid   - Api Calling Case
     if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) != null){
         this.validNumbers.push(this.msisdn);
         let data = {msisdn:this.validNumbers};
-        console.log(data);
+        console.log("case 2 "+data);
         this.validNumbers = [];
         this.msisdn = '';
         this.myfile='';
@@ -180,10 +181,10 @@ export class AddUnsubComponent implements OnInit {
         
     }
 
-    // File is not empty and msisdn is invalid
+    // Case 3 : File is not empty and msisdn is invalid      - Api Calling Case
     if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) == null){
       let data = {msisdn:this.validNumbers}
-      console.log(data);
+      console.log("case 3 "+data);
 
       this.validNumbers = [];
       this.myfile='';
@@ -191,11 +192,11 @@ export class AddUnsubComponent implements OnInit {
       this.formatNotSupportedmsg = ''; 
     }
 
-    // File is Empty and msisdn is  valid
+    // Case 4 : File is Empty and msisdn is  valid           - Api Calling Case
     if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) != null){
       this.validNumbers.push(this.msisdn);
       let data = {msisdn:this.validNumbers}
-      console.log(data);
+      console.log("case 4 "+data);
       this.msisdn='';
       this.myfile='';
       this.validNumbers=[];

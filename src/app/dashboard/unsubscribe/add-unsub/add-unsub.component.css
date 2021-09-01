@@ -72,9 +72,16 @@ outline: none !important;
 
 .RemoveFileBtn{
   border: 1px solid #c0302d;
+  border-radius: 3px;
   color: white;
   background-color: #c0302d ;
-  padding: 4px 8px;
+  padding: 2px 4px;
+  /* position: absolute; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 100px; */
 }
 
 

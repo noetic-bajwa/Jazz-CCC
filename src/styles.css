@@ -202,6 +202,12 @@
     background-color: #8a252c !important;
 }
 
+.bs-datepicker-head button.next, .bs-datepicker-head button.previous {
+    border-radius: 3px;
+    width: 30px;
+    height: 30px;
+}
+
 /* @media screen and (max-width: 767px) {
     .bs-datepicker{
         margin-top: 1px;

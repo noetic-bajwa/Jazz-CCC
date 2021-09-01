@@ -10,7 +10,7 @@
     <!-- Main Heading (End) -->
     
     <div class="row" >
-      <div class="col"> 
+      <div  class="col"> 
         <button  class="add_btn" routerLink="add">ADD</button>
       </div>
     </div>
@@ -130,11 +130,11 @@
   
     
   </div>  
-  
+
   <ng-container *ngIf="isEmpty() == false;">
   <div class="mt-4" >
     <pagination 
-    class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
+    class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data['total items']" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
   
   </pagination>
   </div>

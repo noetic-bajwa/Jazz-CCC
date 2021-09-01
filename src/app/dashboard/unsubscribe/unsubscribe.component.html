@@ -1,4 +1,4 @@
-<div class="container-fluid" >
+<div class="container-fluid">
     
   <!-- Main Heading (Start) -->
   <div class="row" >
@@ -62,66 +62,62 @@
       
       <div class="col-8 col-md-3 col-lg-2 text-center form-group" >
         <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Record</button>
-    </div>
+      </div>
       
         
   </div>
    
 </div>
 
-<div class="container-fluid" style="margin-top: 30px;overflow-x: auto;" >
-<ng-container *ngIf="isEmpty() == true; else elseData" class="row" >
+<div class="container-fluid" style="margin-top: 30px;overflow-x: auto;">
+  <ng-container *ngIf="oneDay_30Day_Data == '';else elseData1" class="row">
+    <div class="col text-center">
+      <p class="error">Total Unsubscribed</p>
+      <p (click)="onClickLastDay()" class="error" style="text-decoration: underline;cursor: pointer;">Yesterday</p>
+      <p (click)="onClickLastMonth()" class="error" style="text-decoration: underline;cursor: pointer;">Last 30 Days</p>
+    </div>
+    <hr width="50%">
+  </ng-container>
+  <ng-template #elseData1>
+    <div class="col text-center">
+      <div class="col text-center">
+        <p class="error">Total Number of MSISDN Unsubscribe on 8/31/2021 are :</p>
+        <p>&nbsp;</p>
+        <p class="error">{{oneDay_30Day_Data}}</p>
+      </div>
+      <hr width="50%">
+    </div>
+  </ng-template>
+</div>
+
+
+<div  class="container-fluid" style="margin-top: 30px;overflow-x: auto;" >
+  <ng-container  *ngIf="isEmpty() == true; else elseData" class="row" >
     <div class="col text-center">
       <p class="error">{{msg}}</p>
-  </div>
-</ng-container>
+    </div>
+  </ng-container>
+
   
-<ng-template  #elseData class="table-responsive">
-    
+  <ng-template  #elseData class="table-responsive">
   
       <table class="table table-striped table-bordered" style="overflow-x: scroll;">
         <thead>
           <tr >
             <th>MSISDN<br></th>
             <th>Unsubscribed Date<br></th>
-            <!-- <th>Total&nbsp;Monthly<br>Active&nbsp;Users</th>
-            <th>Unique&nbsp;Paid<br>Base</th>
-            <th>Total&nbsp;Daily<br>Active&nbsp;Users</th>
-            <th>Unique<br>Players</th>
-            <th>Total&nbsp;Weekly<br>Active&nbsp;Users</th>
-            <th>Total&nbsp;Engage<br>Base</th>
-            <th>Engagement<br>Rate</th>
-            <th>Engage<br>Time</th>
-            <th>Total&nbsp;Game<br>Played</th>
-            <th>Game&nbsp;Play<br>Rate</th> -->
-            <!-- <th>Total<br>Tournaments</th> -->
             <th>Action<br></th>
   
           </tr>
         </thead>
         <tbody>
-          
-          
+           
           <tr *ngFor="let item of data.items">
             <td>{{item.msisdn}}</td>
             <td>{{item.date | date}}</td>
-            <!-- <td >{{item.totalMonthlyActiveUsers}}</td> -->
-            <!-- <td >{{item.uniquePaidBase}}</td>
-            <td >{{item.totalDailyActiveUsers}}</td>
-            <td >{{item.uniquePlayers}}</td>
-            <td>{{item.totalWeeklyActiveUsers}}</td>
-            <td>{{item.totalEngageBase}}</td>
-            <td>{{item.engagementRate}}</td>
-            <td>{{item.engageTime}}</td>
-            <td>{{item.totalGamePlayed}}</td>
-            <td>{{item.gamePlayRate}}</td> -->
-            <!-- <td>{{item.totalTournaments}}</td> -->
-  
             <td style="cursor: pointer;text-decoration: underline;">Remove</td>
-            
           </tr>
           
-         
         </tbody>
       </table>
       
@@ -134,9 +130,8 @@
 <ng-container *ngIf="isEmpty() == false;">
 <div class="mt-4" >
   <pagination 
-  class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
-
-</pagination>
+  class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data['total items']" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
+  </pagination>
 </div>
 </ng-container>
 

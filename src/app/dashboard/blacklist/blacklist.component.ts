@@ -111,6 +111,8 @@ export class BlacklistComponent implements OnInit {
 
     this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
+    console.log(data);
+    console.log(data['total pages'])
     
       
      },

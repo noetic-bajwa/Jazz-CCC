@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 
 
 
+
 @Component({
   selector: 'app-unsubscribe',
   templateUrl: './unsubscribe.component.html',
@@ -17,6 +18,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class UnsubscribeComponent implements OnInit {
   msg:string = "Searched Records Will be Displayed Below";
+  oneDay_30Day_Data="";
   data:any={};
   StartingDate:any;
   EndingDate:any;
@@ -113,7 +115,7 @@ export class UnsubscribeComponent implements OnInit {
 
     this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
-    
+    console.log(this.data);
       
      },
      err=>{
@@ -126,6 +128,46 @@ export class UnsubscribeComponent implements OnInit {
   onClickReset(){
     this.StartingDate = '';
     this.EndingDate = '';
+  }
+
+  onClickLastDay(){
+    
+    let LastDayDate = new Date(new Date().setDate(new Date().getDate() - 1));
+    // console.log(sDate);
+    let FormatedLastDayDate =  (this.datePipe.transform(LastDayDate,'yyyyMMdd'));
+    console.log(FormatedLastDayDate);
+    // this.oneDay_30Day_Data = this.datePipe.transform(sDate,'yyyyMMdd');
+    this.dataService.getUniqueUnsubRecords(FormatedLastDayDate,FormatedLastDayDate).subscribe(data=>{
+      this.oneDay_30Day_Data=data['Value'];
+      // console.log(data);
+    },
+      err=>{
+       
+      });
+    
+    
+  }
+
+  onClickLastMonth(){
+    
+    //Date aj se 30 din pehle ki
+    let LastMonth =new Date(new Date().setDate(new Date().getDate() - 30));
+    let FormatedLastMonth =  (this.datePipe.transform(LastMonth,'yyyyMMdd'));
+
+    //Aj k din ki date
+    let Today=new Date();
+    let FormatedToday =  (this.datePipe.transform(Today,'yyyyMMdd'));
+
+  
+    this.dataService.getUniqueUnsubRecords(FormatedLastMonth,FormatedToday).subscribe(data=>{
+      this.oneDay_30Day_Data=data['Value'];
+      // console.log(data);
+    },
+      err=>{
+       
+      });
+  
+  
   }
 
 }

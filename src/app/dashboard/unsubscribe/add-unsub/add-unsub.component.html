@@ -12,7 +12,7 @@
 
 
 
-  <div class="row"  style="justify-content: space-evenly;margin-top: 70px;">
+  <div class="row"  style="justify-content: center;margin-top: 70px;">
       
       <div class="col-8 col-md-3 col-lg-3 form-group text-center" >
            
@@ -20,12 +20,12 @@
            <input class="inputNumber form-control" placeholder="03xxxxxxxxx" autocomplete="off" (input)="onInputChange()" [(ngModel)]="msisdn" type="number" id="msisdn" name="msisdn">
            <label>Enter MSISDN</label>
            <div>
-            <p style="position: absolute; left: 35%;" class="error">{{singleMsisdnError}}</p>
+            <p style="position: absolute; left: 0; right: 0; margin-left: auto; margin-right: auto;" class="error">{{singleMsisdnError}}</p>
           </div>
       
       </div>
 
-      <div  class="col-12 col-md-1 col-lg-1 text-center form-group" style="color:crimson;padding-top:5px;padding-bottom:15px">
+      <div  class="col-12 col-md-1 col-lg-1 text-center form-group" style="color:#8a252c;padding-top:5px;padding-bottom:15px">
         OR
       </div>
 
@@ -33,11 +33,11 @@
           <label>Upload CSV File</label>
           <input class="FileInput form-control" #file type="file" [(ngModel)]="myfile" accept=".csv"  (change)="handleFileSelect($event)">
           <ng-container  *ngIf="formatNotSupportedmsg != '' ">
-            <p style="position: absolute; left: 30%;" class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;{{formatNotSupportedmsg}}</p>
+            <p style="position: absolute;left: 0; right: 0; margin-left: auto; margin-right: auto;" class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;{{formatNotSupportedmsg}}</p>
           </ng-container>
           
           <ng-container  *ngIf="file.value != '' ">
-            <div  class="col-12 text-center">
+            <div style="position: absolute;left: 0; right: 0; margin-left: auto; margin-right: auto;"  class="col-12 text-center">
             <button class="RemoveFileBtn" (click)="onFileRemove(file)" style="margin-top: 20px;"><i class="fas fa-times"></i> Remove File</button>
             </div>
           </ng-container>   
@@ -47,7 +47,7 @@
 
 
   
-    <div class="row">
+    <div class="row mt-3">
       <div class="col text-center">
           <button (click)="onClickUnSub()" class="search_btn">UNSUBSCRIBE</button>
       </div>
@@ -80,12 +80,12 @@
 
 
 <ng-container  *ngIf="invalidNumbers != '' " >
-<div class="container">
+<div class="container" >
 <div style="margin-top: 10px;" class="alert alert-warning alert-dismissible fade show" role="alert">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <h5 class="error">These MSISDN's Wouldn't Get <strong>Unsubscribed !</strong> Due To <strong>Incorrect Format</strong></h5>
   
-  <ul class="error" style="margin-top: 10px;"  *ngFor="let number of invalidNumbers;let i=index">
+  <ul  class="error" style="margin-top: 10px;"  *ngFor="let number of invalidNumbers;let i=index">
     <p><strong>{{i+1 }}.&nbsp;</strong>{{number}}</p>
     
   </ul>

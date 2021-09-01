@@ -21,15 +21,20 @@ export class UnsubscribeService {
     return this.http.get(url);
     }
 
-    getSingleRecord(recordID:any){
-      let url="https://gamenow.noeticworld.com/api/stats/"+recordID;
-      return this.http.get(url);
-      }
-    
+  getStatus(){
+    let url="http://192.168.127.107:8080/getresults";
+    return this.http.get(url);
+  }
 
-      UnsubscribeRecord(data:any){
-        let body=JSON.stringify(data);
-        let url="https://gamenow.noeticworld.com/api/stats/";
-        return this.http.put(url,body,httpOptions);
-      }
+  UnsubscribeRecord(data:any){
+      let body=JSON.stringify(data);
+      let url="http://192.168.127.107:8080/unsubscribe";
+      return this.http.put(url,body,httpOptions);
+  }
+  
+  getUniqueUnsubRecords(fromDate:any,toDate:any){
+      let url="http://192.168.127.107:8080/getSumBlocked?fromDate="+fromDate+"&toDate="+toDate;
+    return this.http.get(url);
+  }
+
 }

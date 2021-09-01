@@ -217,7 +217,7 @@ tbody tr td{
   
 }
 
-.add_btn{
+.add_btn , .add_btn:hover , .add_btn:focus{
   background-color: #8a252c;
   color:white;
   border-radius: 3px;
@@ -227,7 +227,9 @@ tbody tr td{
   margin-top: -15px;
   margin-left:47%;
   font-size: 12px;
-  font-weight: bold;
+  padding:3px 8px;
+  font-weight: normal;
+  outline: none !important;
 }
 
 @media screen and (max-width: 767px) {
