@@ -82,8 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jazz-portal:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "jazz-portal:build"
           }
         },
         "test": {
