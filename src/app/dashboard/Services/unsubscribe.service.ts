@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   withCredentials: true,
   headers: new HttpHeaders({
-    "Access-Control-Allow-Origin": "*",
     'Content-Type':  'application/json',
     
     })
@@ -27,7 +26,7 @@ export class UnsubscribeService {
   getStatus(){
     let url="http://192.168.127.107:8080/getresults";
     console.log("GET STATUS Called");
-    return this.http.get(url,httpOptions);
+    return this.http.put(url,{'ads':'dasdas'});
   }
 
   UnsubscribeRecord(data:any){
@@ -39,9 +38,8 @@ export class UnsubscribeService {
   }
   
   getUniqueUnsubRecords(fromDate:any,toDate:any){
-      let url="http://192.168.127.107:8080/getSumBlocked?fromDate="+fromDate+"&toDate="+toDate;
-    return this.http.get(url);
+      let url="http://192.168.127.107:8080/getSumUnsubscribed?fromDate="+fromDate+"&toDate="+toDate;
+      return this.http.put(url,'');
   }
-
 
 }

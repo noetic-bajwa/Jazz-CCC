@@ -179,7 +179,18 @@ export class AddUnsubComponent implements OnInit {
         console.log(data);
 
         this.dataService.UnsubscribeRecord(data).subscribe(data=>{
+
           console.log(data);
+          this.dataService.getStatus().subscribe(data=>{
+            console.log('Success 1.1');
+            console.log(data);
+            // console.log(data['code']);
+            // console.log('Status is :');
+            console.log(status); 
+           },
+           err=>{
+            console.log(err);
+           })
           
          },
          err=>{
@@ -201,22 +212,26 @@ export class AddUnsubComponent implements OnInit {
       let data = {msisdn:this.validNumbers}
       console.log("case 3 ");
       // console.log(data);
-
-
+      
       this.dataService.UnsubscribeRecord(data).subscribe(data=>{
         console.log(data);
-       },
+          
+            this.dataService.getStatus().subscribe(data=>{
+              console.log('Success 1.1');
+              // console.log(data['code']);
+              // console.log('Status is :');
+              console.log(status); 
+             },
+             err=>{
+              console.log(err);
+             })
+            }
+          ,
        err=>{
         console.log(err);
        }
        )
-       this.dataService.getStatus().subscribe(data=>{
-        console.log(data);
-       },
-       err=>{
-        console.log(err);
-       }
-       )
+      
 
 
       //Empty all data / warning messages after Api is called
@@ -239,21 +254,23 @@ export class AddUnsubComponent implements OnInit {
       console.log(data);
       this.dataService.UnsubscribeRecord(data).subscribe(
         data=>{
-        console.log('Success');
+        console.log('Success 1');
         console.log(data);
         this.dataService.getStatus().subscribe(data=>{
+          console.log('Success 1.1');
           console.log(data);
+          // console.log(data['code']);
+          // console.log('Status is :');
+          console.log(status); 
          },
          err=>{
-           console.log("GET WALA ERROR")
           console.log(err);
-         }
-         )
+         })
   
         },
        err=>{
-         console.log('Error');
-         console.log(err);
+        //  console.log('Error');
+        //  console.log(err);
          
         
        })

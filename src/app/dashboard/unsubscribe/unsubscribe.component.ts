@@ -132,20 +132,24 @@ export class UnsubscribeComponent implements OnInit {
 
   onClickLastDay(){
     
-    let LastDayDate = new Date(new Date().setDate(new Date().getDate() - 1));
-    // console.log(sDate);
-    let FormatedLastDayDate =  (this.datePipe.transform(LastDayDate,'yyyyMMdd'));
-    console.log(FormatedLastDayDate);
-    // this.oneDay_30Day_Data = this.datePipe.transform(sDate,'yyyyMMdd');
-    this.dataService.getUniqueUnsubRecords(FormatedLastDayDate,FormatedLastDayDate).subscribe(data=>{
-      this.oneDay_30Day_Data=data['Value'];
-      // console.log(data);
+    //Kal ki Date
+    let LastDay =new Date(new Date().setDate(new Date().getDate() - 1));
+    let FormatedLastDay =  (this.datePipe.transform(LastDay,'yyyyMMdd'));
+
+    this.dataService.getUniqueUnsubRecords(FormatedLastDay,FormatedLastDay).subscribe(data=>{
+      if(data['Value'] != 0){
+        this.oneDay_30Day_Data=data['Value'];
+      }else{
+        this.oneDay_30Day_Data="No Record Found";
+      }
+      
+      
     },
       err=>{
        
       });
-    
-    
+  
+  
   }
 
   onClickLastMonth(){
@@ -161,7 +165,11 @@ export class UnsubscribeComponent implements OnInit {
   
     this.dataService.getUniqueUnsubRecords(FormatedLastMonth,FormatedToday).subscribe(data=>{
       this.oneDay_30Day_Data=data['Value'];
-      // console.log(data);
+      if(data['Value'] != 0){
+        this.oneDay_30Day_Data=data['Value'];
+      }else{
+        this.oneDay_30Day_Data="No Record Found";
+      }
     },
       err=>{
        
@@ -169,5 +177,8 @@ export class UnsubscribeComponent implements OnInit {
   
   
   }
+  }
 
-}
+  
+
+

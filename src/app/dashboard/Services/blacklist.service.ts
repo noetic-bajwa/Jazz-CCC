@@ -3,9 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 const httpOptions = {
-  withCredentials: false,
+  withCredentials: true,
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'  })
+    'Content-Type':  'application/json',
+    
+    })
 };
 
 @Injectable({
@@ -21,15 +23,20 @@ export class BlacklistService {
     return this.http.get(url);
     }
 
-    getSingleRecord(recordID:any){
-      let url="https://gamenow.noeticworld.com/api/stats/"+recordID;
-      return this.http.get(url);
-      }
-    
+  getStatus(){
+    let url="http://192.168.127.107:8080/blacklisted";
+    console.log("GET STATUS Called");
+    return this.http.put(url,{'ads':'dasdas'});
+  }
 
-      UnsubscribeRecord(data:any){
-        let body=JSON.stringify(data);
-        let url="https://gamenow.noeticworld.com/api/stats/";
-        return this.http.put(url,body,httpOptions);
-      }
+  UnsubscribeRecord(data:any){
+      let body=JSON.stringify(data);
+      console.log(body);
+      console.log("UnsubscribeRecord Called");
+      let url="http://192.168.127.107:8080/user/blackList";
+      return this.http.put(url,body,{responseType: 'text'});
+  }
+  
+  
+
 }
