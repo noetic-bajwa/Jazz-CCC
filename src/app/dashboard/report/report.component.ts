@@ -21,7 +21,7 @@ export class ReportComponent implements OnInit {
   maxDate: Date;
   currentPage:number;
   constructor(private dataService:ReportDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
-    this.pageTitle.setTitle('GameNow | Operator Stats');
+    this.pageTitle.setTitle('GameNow | Report');
     this.maxDate = new Date();
 
   }

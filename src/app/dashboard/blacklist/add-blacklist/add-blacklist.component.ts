@@ -27,7 +27,7 @@ export class AddBlacklistComponent implements OnInit {
 
   myfile:any;
   constructor(private pageTitle:Title,private dataService:BlacklistService,private router: Router,private toastr: ToastrService,private papa: Papa,@Inject(DOCUMENT) document) {
-    this.pageTitle.setTitle('GameNow | Unsubscribe');
+    this.pageTitle.setTitle('GameNow | Blacklist');
     
    }
 
@@ -152,7 +152,7 @@ export class AddBlacklistComponent implements OnInit {
     
     // Case 1 :  File is empty and msisdn is invalid    -- Not Calling API 
     if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) == null){
-      this.unsubscribeWarningMessage = "Please write valid msisdn or attach file (.csv)";
+      this.unsubscribeWarningMessage = "Please Enter valid msisdn or attach file (.csv)";
       document.getElementById("msisdn").focus();
       setTimeout(() => {
                 this.unsubscribeWarningMessage = "";

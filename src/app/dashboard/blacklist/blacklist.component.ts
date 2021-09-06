@@ -21,7 +21,7 @@ export class BlacklistComponent implements OnInit {
   maxDate: Date;
   currentPage:number;
   constructor(private dataService:BlacklistService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
-    this.pageTitle.setTitle('GameNow | Operator Stats');
+    this.pageTitle.setTitle('GameNow | Blacklist');
     this.maxDate = new Date();
 
   }

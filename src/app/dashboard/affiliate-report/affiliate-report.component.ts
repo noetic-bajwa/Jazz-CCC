@@ -47,7 +47,7 @@ export class AffiliateReportComponent implements OnInit {
     // };
 
     if(fromDate != '' && toDate != ''){
-      console.log("PAge Changed call hua hai")
+      // console.log("PAge Changed call hua hai")
       this.dataService.getData(this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd'),this.selectedValue,event.page-1).subscribe(data=>{
         this.data=data;
           
