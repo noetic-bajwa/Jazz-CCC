@@ -88,6 +88,7 @@ export class AffiliateReportComponent implements OnInit {
     //if 'From Date' and 'To Date' are not empty but 'Affiliate Select' is  Empty, then it will display error 
           if(fromDate != '' && toDate != '' && this.selectedValue == 0 ){ 
             this.data='';
+            document.getElementById("affiliateSelect").focus();
             this.msg = "Please Select Affiliate";
             setTimeout(() => {
               this.msg = "Searched Records Will be Displayed Below";

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { UnsubscribeService } from '../../Services/unsubscribe.service';
+import { BlacklistService } from '../../Services/blacklist.service';
 import { Papa } from 'ngx-papaparse';
 import { DOCUMENT } from '@angular/common'; 
 import { Inject }  from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-blacklist',
@@ -21,9 +23,10 @@ export class AddBlacklistComponent implements OnInit {
   singleMsisdnError='';
   csvDisable=false;
   singleDisable=false;
+  statuscode = 0;
 
   myfile:any;
-  constructor(private pageTitle:Title,private dataService:UnsubscribeService,private papa: Papa,@Inject(DOCUMENT) document) {
+  constructor(private pageTitle:Title,private dataService:BlacklistService,private router: Router,private toastr: ToastrService,private papa: Papa,@Inject(DOCUMENT) document) {
     this.pageTitle.setTitle('GameNow | Unsubscribe');
     
    }
@@ -105,12 +108,6 @@ export class AddBlacklistComponent implements OnInit {
               this.unsubscribeWarningMessage = "Proceeding will only unsubscribe MSISDN's with valid format";
             }
 
-
-
-
-
-
-
             
             // if(this.invalidNumbers != '' ){
             //   this.unsubscribeWarningMessage = "Proceeding will only unsubscribe MSISDN's with valid format.";
@@ -119,10 +116,7 @@ export class AddBlacklistComponent implements OnInit {
               // }, 3000); 
             // }
 
-
-            
-        
-           
+          
             //Funtion to Check Valid Number
             function returnValid(value) {
               if(regex_phone.exec(value)){
@@ -181,16 +175,9 @@ export class AddBlacklistComponent implements OnInit {
         this.dataService.UnsubscribeRecord(data).subscribe(data=>{
 
           console.log(data);
-          this.dataService.getStatus().subscribe(data=>{
-            console.log('Success 1.1');
-            console.log(data);
-            // console.log(data['code']);
-            // console.log('Status is :');
-            console.log(status); 
-           },
-           err=>{
-            console.log(err);
-           })
+          this.toastr.success('Record Uploaded Successfully',);
+          this.router.navigate(['blacklist/add'])
+          
           
          },
          err=>{
@@ -209,30 +196,23 @@ export class AddBlacklistComponent implements OnInit {
 
     // Case 3 : File is not empty and msisdn is invalid      - Api Calling Case
     if(this.validNumbers.length !== 0 && regex_phone.exec(this.msisdn) == null){
-      let data = {msisdn:this.validNumbers}
+      let data = {msisdn:JSON.stringify(this.validNumbers)};
       console.log("case 3 ");
       // console.log(data);
       
       this.dataService.UnsubscribeRecord(data).subscribe(data=>{
         console.log(data);
-          
-            this.dataService.getStatus().subscribe(data=>{
-              console.log('Success 1.1');
-              // console.log(data['code']);
-              // console.log('Status is :');
-              console.log(status); 
-             },
-             err=>{
-              console.log(err);
-             })
+        this.toastr.success('Record Uploaded Successfully',);
+          this.router.navigate(['blacklist/add'])
+      
             }
           ,
        err=>{
-        console.log(err);
-       }
-       )
-      
 
+        console.log(err);
+       
+        })
+      
 
       //Empty all data / warning messages after Api is called
       this.validNumbers = [];
@@ -256,23 +236,13 @@ export class AddBlacklistComponent implements OnInit {
         data=>{
         console.log('Success 1');
         console.log(data);
-        this.dataService.getStatus().subscribe(data=>{
-          console.log('Success 1.1');
-          console.log(data);
-          // console.log(data['code']);
-          // console.log('Status is :');
-          console.log(status); 
-         },
-         err=>{
-          console.log(err);
-         })
+        this.toastr.success('Record Uploaded Successfully',);
+        this.router.navigate(['blacklist/add'])
+        
   
         },
        err=>{
-        //  console.log('Error');
-        //  console.log(err);
-         
-        
+         console.log(err);
        })
 
        

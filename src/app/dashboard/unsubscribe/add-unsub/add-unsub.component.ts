@@ -4,6 +4,8 @@ import { UnsubscribeService } from '../../Services/unsubscribe.service';
 import { Papa } from 'ngx-papaparse';
 import { DOCUMENT } from '@angular/common'; 
 import { Inject }  from '@angular/core';
+import {Router} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-unsub',
@@ -23,7 +25,7 @@ export class AddUnsubComponent implements OnInit {
   singleDisable=false;
 
   myfile:any;
-  constructor(private pageTitle:Title,private dataService:UnsubscribeService,private papa: Papa,@Inject(DOCUMENT) document) {
+  constructor(private pageTitle:Title,private dataService:UnsubscribeService,private router: Router,private toastr: ToastrService,private papa: Papa,@Inject(DOCUMENT) document) {
     this.pageTitle.setTitle('GameNow | Unsubscribe');
     
    }
@@ -181,16 +183,8 @@ export class AddUnsubComponent implements OnInit {
         this.dataService.UnsubscribeRecord(data).subscribe(data=>{
 
           console.log(data);
-          this.dataService.getStatus().subscribe(data=>{
-            console.log('Success 1.1');
-            console.log(data);
-            // console.log(data['code']);
-            // console.log('Status is :');
-            console.log(status); 
-           },
-           err=>{
-            console.log(err);
-           })
+          this.toastr.success('Record Uploaded Successfully',);
+          this.router.navigate(['unsub/add'])
           
          },
          err=>{
@@ -216,15 +210,8 @@ export class AddUnsubComponent implements OnInit {
       this.dataService.UnsubscribeRecord(data).subscribe(data=>{
         console.log(data);
           
-            this.dataService.getStatus().subscribe(data=>{
-              console.log('Success 1.1');
-              // console.log(data['code']);
-              // console.log('Status is :');
-              console.log(status); 
-             },
-             err=>{
-              console.log(err);
-             })
+        this.toastr.success('Record Uploaded Successfully',);
+        this.router.navigate(['unsub/add'])
             }
           ,
        err=>{
@@ -256,16 +243,8 @@ export class AddUnsubComponent implements OnInit {
         data=>{
         console.log('Success 1');
         console.log(data);
-        this.dataService.getStatus().subscribe(data=>{
-          console.log('Success 1.1');
-          console.log(data);
-          // console.log(data['code']);
-          // console.log('Status is :');
-          console.log(status); 
-         },
-         err=>{
-          console.log(err);
-         })
+        this.toastr.success('Record Uploaded Successfully',);
+          this.router.navigate(['unsub/add'])
   
         },
        err=>{

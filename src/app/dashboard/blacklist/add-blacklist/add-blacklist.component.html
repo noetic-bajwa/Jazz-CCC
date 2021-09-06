@@ -80,12 +80,12 @@
 
 
 <ng-container  *ngIf="invalidNumbers != '' " >
-<div class="container">
+<div class="container" >
 <div style="margin-top: 10px;" class="alert alert-warning alert-dismissible fade show" role="alert">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <a href="#" class="close"  data-dismiss="alert" aria-label="close">&times;</a>
   <h5 class="error">These MSISDN's Wouldn't Get <strong>Unsubscribed !</strong> Due To <strong>Incorrect Format</strong></h5>
   
-  <ul class="error" style="margin-top: 10px;"  *ngFor="let number of invalidNumbers;let i=index">
+  <ul class="error" style="margin-top: 10px;"  *ngFor="let number of invalidNumbers;let i=index" >
     <p><strong>{{i+1 }}.&nbsp;</strong>{{number}}</p>
     
   </ul>
