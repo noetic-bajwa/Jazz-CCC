@@ -171,7 +171,8 @@ export class MSISDNLogsComponent implements OnInit {
 
     this.dataService.getUserStatus(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
-    this.currentStatus=(data["CurrentStatus"])
+    this.currentStatus=(Object.keys(data))
+    // console.log(data);
     
       
      },
@@ -181,7 +182,7 @@ export class MSISDNLogsComponent implements OnInit {
 
      this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
       // this.data=data;
-      console.log(data);
+      // console.log(data);
       // console.log(this.data);
         
        },
