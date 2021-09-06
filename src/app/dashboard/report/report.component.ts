@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorStatsDataService } from '../Services/operator-stats-data.service';
+import { ReportDataService } from '../Services/report-data.service';
 import { Inject }  from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
@@ -20,7 +20,7 @@ export class ReportComponent implements OnInit {
   EndingDate:any;
   maxDate: Date;
   currentPage:number;
-  constructor(private dataService:OperatorStatsDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
+  constructor(private dataService:ReportDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | Operator Stats');
     this.maxDate = new Date();
 
@@ -46,7 +46,7 @@ export class ReportComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
-      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyy-MM-dd'),this.datePipe.transform(toDate,'yyyy-MM-dd')).subscribe(data=>{
         this.data=data;
           
          },
@@ -109,7 +109,7 @@ export class ReportComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyy-MM-dd'),this.datePipe.transform(toDate,'yyyy-MM-dd')).subscribe(data=>{
     this.data=data;
     
       

@@ -41,8 +41,8 @@ export class SingleRecordComponent implements OnInit  {
     console.log(form.value);
     console.log(this.data.id);
     this.dataService.updateRecord(form.value,this.data.id).subscribe(data=>{
-      // this.toastr.success('Record Successfully Updated',);
-      // this.router.navigate(['operatorStats'])
+      this.toastr.success('Record Successfully Updated',);
+      this.router.navigate(['operatorStats'])
       
      },
      err=>{

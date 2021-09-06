@@ -77,46 +77,43 @@
       <table class="table table-striped table-bordered" style="overflow-x: scroll;">
         <thead>
           <tr >
-            <th>MSISDN<br></th>
             <th>Date<br></th>
-            <th>Total&nbsp;Monthly<br>Active&nbsp;Users</th>
-            <th>Unique&nbsp;Paid<br>Base</th>
-            <th>Total&nbsp;Daily<br>Active&nbsp;Users</th>
-            <th>Unique<br>Players</th>
-            <th>Total&nbsp;Weekly<br>Active&nbsp;Users</th>
-            <th>Total&nbsp;Engage<br>Base</th>
-            <th>Engagement<br>Rate</th>
-           <!--  <th>Engage<br>Time</th>
-            <th>Total&nbsp;Game<br>Played</th>
-            <th>Game&nbsp;Play<br>Rate</th> -->
-            <!-- <th>Total<br>Tournaments</th> -->
-            <th>Action<br></th>
-  
+            <th>Charged<br>Sub</th>
+            <th>New<br>Sub</th>
+            <th>Requests<br></th>
+            <th>Successful<br></th>
+            <th>Failed<br></th>
+            <th>Auto<br>RenewBase</th>
+            <th>Success<br>AutoRenew</th>
+            <th>Total<br>Charged</th>
+            <th>Manual<br>Unsub</th>
+            <th>Purge<br>Unsub</th>
+            <th>Jazz<br>Unsub</th>
+            <th>Blacklist<br></th>
+            <th>Block<br>PostBack</th>
+            <th>Revenue<br></th>
           </tr>
         </thead>
         <tbody>
           
           
           <tr *ngFor="let item of data.stats">
-            <td #recordID [routerLink]="['/operatorStats',item.id]">{{item.id}}</td>
-            <td>{{item.cDate | date}}</td>
-            <td >{{item.totalMonthlyActiveUsers}}</td>
-             <td >{{item.uniquePaidBase}}</td>
-            <td >{{item.totalDailyActiveUsers}}</td>
-            <td >{{item.uniquePlayers}}</td>
-            <td>{{item.totalWeeklyActiveUsers}}</td>
-            <td>{{item.totalEngageBase}}</td>
-            <td>{{item.engagementRate}}</td>
-            <!--<td>{{item.engageTime}}</td>
-            <td>{{item.totalGamePlayed}}</td>
-            <td>{{item.gamePlayRate}}</td> -->
-            <!-- <td>{{item.totalTournaments}}</td> -->
-  
-            <td style="cursor: pointer;text-decoration: underline;">Remove</td>
-            
+            <td>{{item.date | date}}</td>
+            <td >{{item.chargedSubs}}</td>
+             <td >{{item.newSub}}</td>
+            <td >{{item.requests}}</td>
+            <td >{{item.successful}}</td>
+            <td>{{item.failed}}</td>
+            <td>{{item.autoRenewBase}}</td>
+            <td>{{item.successAutoRenew}}</td>
+            <td>{{item.totalCharged}}</td>
+            <td>{{item.manualUnsub}}</td>
+            <td>{{item.purgeUnsub}}</td>
+            <td>{{item.jazzUnsub}}</td>
+            <td>{{item.blacklist}}</td>
+            <td>{{item.blockPostback}}</td>
+            <td>{{item.revenue}}</td>
           </tr>
-          
-         
         </tbody>
       </table>
       
