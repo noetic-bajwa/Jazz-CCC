@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   //For Changing Icon on Toggle ( Desktop View )
   $(".fas2").click(function () {
    $(".fas2").toggleClass("fa-angle-double-right");
-});
+});   
    
    function initMenu() {
       $('#menu ul').hide();

@@ -22,6 +22,12 @@ export class MSISDNLogsComponent implements OnInit {
   currentPage:number;
   msisdn='';
   singleMsisdnError='';
+
+
+  currentStatus:any;
+  smsLogs:any;
+  blacklistLogs:any;
+
   constructor(private dataService:MSISDNLogsService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | MSISDN LOGS');
     this.maxDate = new Date();
@@ -165,13 +171,44 @@ export class MSISDNLogsComponent implements OnInit {
 
     this.dataService.getUserStatus(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
-    console.log(data);
-    console.log(this.data);
+    this.currentStatus=(data["CurrentStatus"])
+    
       
      },
      err=>{
       
      }) 
+
+     this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+      // this.data=data;
+      console.log(data);
+      // console.log(this.data);
+        
+       },
+       err=>{
+        
+       }) 
+
+       this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+        this.smsLogs=data;
+        // console.log(this.smsLogs['entities'])
+        
+          
+         },
+         err=>{
+          
+         }) 
+
+
+
+       this.dataService.getBlacklistLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+        this.blacklistLogs=data;
+        
+          
+         },
+         err=>{
+          
+         }) 
     
   }
 

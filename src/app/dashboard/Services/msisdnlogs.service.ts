@@ -18,8 +18,8 @@ export class MSISDNLogsService {
   recordID = new BehaviorSubject(null); ;
   
   getUserStatus(msisdn:any,startDate:any,endDate:any){
-    let url="http://192.168.127.107:8080/api/msisdnlogs/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
-    return this.http.get(url);
+    let url="http://192.168.127.107:8080/api/msisdnlog/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+    return this.http.post(url,'');
     }
   
     getSmsLogs(msisdn:any,startDate:any,endDate:any){
