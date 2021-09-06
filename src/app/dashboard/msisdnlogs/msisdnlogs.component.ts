@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorStatsDataService } from '../Services/operator-stats-data.service';
+import { MSISDNLogsService } from '../Services/msisdnlogs.service';
 import { Inject }  from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
@@ -22,7 +22,7 @@ export class MSISDNLogsComponent implements OnInit {
   currentPage:number;
   msisdn='';
   singleMsisdnError='';
-  constructor(private dataService:OperatorStatsDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
+  constructor(private dataService:MSISDNLogsService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | MSISDN LOGS');
     this.maxDate = new Date();
 
@@ -37,68 +37,96 @@ export class MSISDNLogsComponent implements OnInit {
   }
 
   pageChanged(event: PageChangedEvent,fromDate:any,toDate:any): void {
-    if(fromDate == '' && toDate == ''){
-      this.dataService.getData(event.page-1,'','').subscribe(data=>{
-        this.data=data;
+    // if(fromDate == '' && toDate == ''){
+    //   this.dataService.getData(event.page-1,'','').subscribe(data=>{
+    //     this.data=data;
           
-         },
-         err=>{
+    //      },
+    //      err=>{
           
-         }) 
+    //      }) 
 
-    };
-    if(fromDate != '' && toDate != ''){
-      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
-        this.data=data;
+    // };
+    // if(fromDate != '' && toDate != ''){
+    //   this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+    //     this.data=data;
           
-         },
-         err=>{
+    //      },
+    //      err=>{
           
-         }) 
+    //      }) 
 
-    }
+    // }
     
   }
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
-    
-    //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
-    if(fromDate == '' && toDate == ''){
-    this.dataService.getData('','','').subscribe(data=>{
-    this.data=data;},
-    err=>{
-     
-    });
-    return;
-   };
+    let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
+    regex_phone.exec(this.msisdn) != null
 
-   //if 'From Date' is empty then it will display error for 3 sec and exit the function
-    if(fromDate == '' && toDate != ''){ 
+    //if all input fields are empty (Error)
+    if(fromDate == '' && toDate == '' && this.msisdn == ''){
       this.data='';
-       this.msg = "Please Select 'From' Date";
-       document.getElementById("fromDate").focus();
+      this.msg = "Please Enter MSISDN and Select Date Range";
+      document.getElementById("msisdn").focus();
       setTimeout(() => {
         this.msg = "Searched Records Will be Displayed Below";
       }, 3000);
       return;
-    };
-
-    //if 'To Date' is empty then it will display error for 3 sec and exit the function
-    if(toDate == '' && fromDate != ''){ 
-      this.data='';
-      this.msg = "Please Select 'To' Date";
-      document.getElementById("toDate").focus();
-     setTimeout(() => {
-       this.msg = "Searched Records Will be Displayed Below";
-     }, 3000);
-     return;
    };
 
+   //if from Date and To Date are empty and Msisdn is Invalid (Error)
+   if(fromDate == '' && toDate == '' && regex_phone.exec(this.msisdn) == null){
+    this.data='';
+    this.msg = "Please Enter Valid MSISDN and Select Date Range";
+    document.getElementById("msisdn").focus();
+    setTimeout(() => {
+      this.msg = "Searched Records Will be Displayed Below";
+    }, 3000);
+    return;
+    };
+
+    //if from Date and To Date are empty and Msisdn is valid (Error)
+   if(fromDate == '' && toDate == '' && regex_phone.exec(this.msisdn) != null){
+    this.data='';
+    this.msg = "Please Select Date Range";
+    document.getElementById("fromDate").focus();
+    setTimeout(() => {
+      this.msg = "Searched Records Will be Displayed Below";
+    }, 3000);
+    return;
+    };
+
+
+    //if from Date is empty and toDate and msisdn is valid (Error)
+   if(fromDate == '' && toDate != '' && regex_phone.exec(this.msisdn) != null){
+    this.data='';
+    this.msg = "Please Select From From Date";
+    document.getElementById("fromDate").focus();
+    setTimeout(() => {
+      this.msg = "Searched Records Will be Displayed Below";
+    }, 3000);
+    return;
+    };
+
+    //if to Date is empty and from Date and msisdn is empty (Error)
+   if(fromDate != '' && toDate == '' && regex_phone.exec(this.msisdn) != null){
+    this.data='';
+    this.msg = "Please Select To Range";
+    document.getElementById("toDate").focus();
+    setTimeout(() => {
+      this.msg = "Searched Records Will be Displayed Below";
+    }, 3000);
+    return;
+    };
+
+    
+
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(fromDate > toDate  ){ 
+    if(fromDate > toDate && this.msisdn == ''){ 
       this.data='';
-      this.msg = "Date Range is not Correct";
+      this.msg = "Enter  Msisdn and Correct Date Range";
      setTimeout(() => {
        this.msg = "Searched Records Will be Displayed Below";
      }, 3000);
@@ -107,13 +135,38 @@ export class MSISDNLogsComponent implements OnInit {
      return;
    };
 
+   //if From Date is greater than To Date then it will display error for 3 sec and exit the function
+   if(fromDate > toDate && regex_phone.exec(this.msisdn) == null){ 
+    this.data='';
+    this.msg = "Enter Valid Msisdn and Correct Date Range";
+   setTimeout(() => {
+     this.msg = "Searched Records Will be Displayed Below";
+   }, 3000);
+   this.StartingDate = '';
+   this.EndingDate = '';
+   return;
+ };
+
+ //if From Date is greater than To Date then it will display error for 3 sec and exit the function
+ if(fromDate > toDate && regex_phone.exec(this.msisdn) != null){ 
+  this.data='';
+  this.msg = "Enter Correct Date Range";
+ setTimeout(() => {
+   this.msg = "Searched Records Will be Displayed Below";
+ }, 3000);
+ this.StartingDate = '';
+ this.EndingDate = '';
+ return;
+};
+
    //If there is error then the function would exit in the Above condition (If/else) statments
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+    this.dataService.getUserStatus(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
     this.data=data;
-    
+    console.log(data);
+    console.log(this.data);
       
      },
      err=>{
@@ -127,6 +180,7 @@ export class MSISDNLogsComponent implements OnInit {
     let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
     if(regex_phone.exec(this.msisdn) != null){
         this.singleMsisdnError = 'Valid Format';
+
     }
     if (regex_phone.exec(this.msisdn) == null){
       this.singleMsisdnError = 'Invalid Format'

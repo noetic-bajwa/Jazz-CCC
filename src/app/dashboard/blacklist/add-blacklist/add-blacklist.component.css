@@ -120,4 +120,23 @@ input[type=number] {
     transform: scale(0.75) translateY(-70%) translateX(-14px);
 }
 
-  
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(158, 65, 65); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(235, 186, 186); 
+}

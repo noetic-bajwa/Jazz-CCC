@@ -81,17 +81,21 @@
 
 <ng-container  *ngIf="invalidNumbers != '' " >
 <div class="container" >
-<div style="margin-top: 10px;" class="alert alert-warning alert-dismissible fade show" role="alert">
-  <a href="#" class="close"  data-dismiss="alert" aria-label="close">&times;</a>
-  <h5 class="error">These MSISDN's Wouldn't Get <strong>Unsubscribed !</strong> Due To <strong>Incorrect Format</strong></h5>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <a href="#" class="close"  data-dismiss="alert" aria-label="close">&times;</a>
+  <h5 class="error">These MSISDN's Wouldn't Get <strong>Blacklisted !</strong> Due To <strong>Incorrect Format</strong></h5>
+  <div style="margin-top: 10px;height: 200px; overflow-y:scroll ;" >
   
-  <ul class="error" style="margin-top: 10px;"  *ngFor="let number of invalidNumbers;let i=index" >
+  
+  <ul style="margin-top: 10px;color:#000000;font-size: 12px;"  *ngFor="let number of invalidNumbers;let i=index" >
     <p><strong>{{i+1 }}.&nbsp;</strong>{{number}}</p>
     
   </ul>
 
-    <h5 class="error">Correct Format: <strong>(03xxxxxxxxx/ 92xxxxxxxxxx/ 3xxxxxxxxx)</strong></h5>
-    <h5 class="error">Please Read <strong style="cursor: pointer;text-decoration: underline;" data-toggle="modal" data-target="#exampleModal2" >Instructions</strong> For More Details</h5>
+    
+  </div>
+  <h5 class="error">Correct Format: <strong>(03xxxxxxxxx/ 92xxxxxxxxxx/ 3xxxxxxxxx)</strong></h5>
+  <h5 class="error">Please Read <strong style="cursor: pointer;text-decoration: underline;" data-toggle="modal" data-target="#exampleModal2" >Instructions</strong> For More Details</h5>
     
   </div>
   
