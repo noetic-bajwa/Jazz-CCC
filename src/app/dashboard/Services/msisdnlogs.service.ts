@@ -21,7 +21,21 @@ export class MSISDNLogsService {
     let url="http://192.168.127.107:8080/api/msisdnlogs/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
     return this.http.get(url);
     }
+  
+    getSmsLogs(msisdn:any,startDate:any,endDate:any){
+      let url="http://192.168.127.107:8080/api/smslogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+      return this.http.get(url);
+    }
 
-    
+    getChargedLogs(msisdn:any,startDate:any,endDate:any){
+      let url="http://192.168.127.107:8080/api/chargedlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+      return this.http.get(url);
+    }
+
+    getBlacklistLogs(msisdn:any,startDate:any,endDate:any){
+      let url="http://192.168.127.107:8080/api/blacklistlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+      return this.http.get(url);
+    }
+  
     
 }
