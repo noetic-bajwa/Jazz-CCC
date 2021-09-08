@@ -9,24 +9,35 @@
     </div>
     <!-- Main Heading (End) -->
     
-    <!-- <div class="row" >
-      <div  class="col"> 
-        <button  class="add_btn" routerLink="add">ADD</button>
+    <div class="row" style="margin-top: 50px;">
+      <div class="col message text-center">
+        <div class="d-inline">
+          <p class="d-inline">Search Period :</p>
+        </div>
+        <div class="d-inline ml-3">
+          <input (click)="onClick1Week()" style="height: 10px;" type="radio"  name="radio" >
+            <p style="font-size: 12px;" class="d-inline">1 Week</p>
+        </div>
+        <div class="d-inline ml-3">
+          <input (click)="onClick1Month()" style="height: 10px;" type="radio"  name="radio" >
+            <p style="font-size: 12px;" class="d-inline">1 Month</p>
+        </div>
+        
       </div>
-    </div> -->
+    </div>
   
-    <div class="row" style="margin-top: 70px;justify-content: center;">
+    <div class="row" style="margin-top: 40px;justify-content: center;">
         <div class="col-8 col-md-3 col-lg-2 form-group text-center" >
           <input 
                  id="fromDate"
                  autocomplete="off"
                  #fromDate 
                  type="text"
-                 placeholder="mm/dd/yy"
+                 placeholder="dd/mm/yyyy"
                  [(ngModel)]="StartingDate"
                  class="datepicker form-control"
                  bsDatepicker
-                 [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+                 [bsConfig]="{showTodayButton: false, todayPosition: 'center',dateInputFormat: 'DD/MM/YYYY' }"
                  [maxDate]="maxDate"
                  [bsConfig]="{ isAnimated: true }" 
                  
@@ -46,11 +57,11 @@
                    autocomplete="off"
                    #toDate
                    type="text"
-                   placeholder="mm/dd/yy"
+                   placeholder="dd/mm/yyyy"
                    [(ngModel)]="EndingDate"
                    class="datepicker form-control"
                    bsDatepicker
-                   [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+                   [bsConfig]="{showTodayButton: false, todayPosition: 'center',dateInputFormat: 'DD/MM/YYYY' }"
                    [maxDate]="maxDate"
                    [bsConfig]="{ isAnimated: true }"
                    
@@ -83,7 +94,7 @@
     </div>
     <div class="row" style="justify-content: center;">
         <div class="col-8 col-md-3 col-lg-2 text-center form-group" >
-            <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Record</button>
+            <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Records</button>
         </div>
     </div>
      
@@ -101,13 +112,13 @@
     <table class="table table-striped table-bordered" style="overflow-x: scroll;">
         <thead>
           <tr >
-            <th>ID<br>&nbsp;</th>
+            <th>ID</th>
             <th>Affiliate<br>ID</th>
-            <th>cDate<br>&nbsp;</th>
+            <th>cDate</th>
             <th>New<br>Sub</th>
             <th>Free<br>Sub</th>
             <th>Charged<br>Sub</th>
-            <th>Postbacks<br>&nbsp;</th>
+            <th>Postbacks</th>
             <th>Blocked<br>Postbacks</th>
             <th>Unsub<br>Users</th>
             <th>Total<br>Revenue</th>
@@ -116,22 +127,19 @@
         </thead>
         <tbody>
           
-          
           <tr *ngFor="let item of data.entities">
             <td>{{item.id}}</td>
             <td>{{item.affiliateId}}</td>
-            <td>{{item.cdate | date}}</td>
-            <td >{{item.newSub}}</td>
-            <td >{{item.freeSub}}</td>
-            <td >{{item.chargedSub}}</td>
-            <td >{{item.postBack}}</td>
-            <td>{{item.blockPostBack}}</td>
-            <td>{{item.unsubUser}}</td>
-            <td>{{item.totalRevenue}}</td>
-            
+            <td>{{item.cdate | date:'dd/MM/YYYY'}}</td>
+            <td >{{item.newSub | number}}</td>
+            <td >{{item.freeSub | number}}</td>
+            <td >{{item.chargedSub | number}}</td>
+            <td >{{item.postBack | number}}</td>
+            <td>{{item.blockPostBack | number}}</td>
+            <td>{{item.unsubUser | number}}</td>
+            <td>{{item.totalRevenue | number}}</td> 
           </tr>
           
-         
         </tbody>
       </table>
         
@@ -145,34 +153,10 @@
   <div class="mt-4" >
     <pagination 
     class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data['total_items']" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
-  
-  </pagination>
+    </pagination>
   </div>
  
   </ng-container>
   
-  
-  <!-- Affiliate Report Guide-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Affiliate Report Guide</h5>
-        
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-  
-      <div class="modal-body">
-        Instructions
-      </div>
-  
-      
-  
-    </div>
-  </div>
-  </div>
   
   

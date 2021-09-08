@@ -17,7 +17,7 @@ export class MSISDNLogsService {
 
   recordID = new BehaviorSubject(null); ;
   
-  getUserStatus(msisdn:any,startDate:any,endDate:any){
+  getCurrentStatus(msisdn:any,startDate:any,endDate:any){
     let url="http://192.168.127.107:8080/api/msisdnlog/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
     return this.http.post(url,'');
     }
@@ -36,6 +36,18 @@ export class MSISDNLogsService {
       let url="http://192.168.127.107:8080/api/blacklistlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
       return this.http.get(url);
     }
+
+    getUnsubLogs(msisdn:any,startDate:any,endDate:any){
+      let url="http://192.168.127.107:8080/api/unsublogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+      return this.http.get(url);
+    }
+
+    getSubLogs(msisdn:any,startDate:any,endDate:any){
+      let url="http://192.168.127.107:8080/api/sublogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+      return this.http.get(url);
+    }
+
+
   
     
 }

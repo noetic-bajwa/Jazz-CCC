@@ -25,7 +25,7 @@ export class UnsubscribeComponent implements OnInit {
   maxDate: Date;
   currentPage:number;
   constructor(private dataService:UnsubscribeService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
-    this.pageTitle.setTitle('GameNow | Operator Stats');
+    this.pageTitle.setTitle('GameNow | Unsubscribe');
     this.maxDate = new Date();
 
   }
@@ -50,7 +50,7 @@ export class UnsubscribeComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
-      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
         this.data=data;
           
          },
@@ -67,12 +67,13 @@ export class UnsubscribeComponent implements OnInit {
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
     if(fromDate == '' && toDate == ''){
-    this.dataService.getData('','','').subscribe(data=>{
-    this.data=data;},
-    err=>{
-     
-    });
-    return;
+      this.data='';
+      this.msg = "Please Select Date Range";
+      document.getElementById("fromDate").focus();
+     setTimeout(() => {
+       this.msg = "Searched Records Will Be Displayed Below";
+     }, 3000);
+     return;
    };
 
    //if 'From Date' is empty then it will display error for 3 sec and exit the function
@@ -81,7 +82,7 @@ export class UnsubscribeComponent implements OnInit {
        this.msg = "Please Select 'From' Date";
        document.getElementById("fromDate").focus();
       setTimeout(() => {
-        this.msg = "Searched Records Will be Displayed Below";
+        this.msg = "Searched Records Will Be Displayed Below";
       }, 3000);
       return;
     };
@@ -89,20 +90,20 @@ export class UnsubscribeComponent implements OnInit {
     //if 'To Date' is empty then it will display error for 3 sec and exit the function
     if(toDate == '' && fromDate != ''){ 
       this.data='';
-      this.msg = "Please Select 'To' Date";
+      this.msg = "Please Select To Date";
       document.getElementById("toDate").focus();
      setTimeout(() => {
-       this.msg = "Searched Records Will be Displayed Below";
+       this.msg = "Searched Records Will Be Displayed Below";
      }, 3000);
      return;
    };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(fromDate > toDate  ){ 
+    if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')){ 
       this.data='';
-      this.msg = "Date Range is not Correct";
+      this.msg = "Date Range Is Not Correct";
      setTimeout(() => {
-       this.msg = "Searched Records Will be Displayed Below";
+       this.msg = "Searched Records Will Be Displayed Below";
      }, 3000);
      this.StartingDate = '';
      this.EndingDate = '';
@@ -113,7 +114,7 @@ export class UnsubscribeComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
     this.data=data;
     console.log(this.data);
       
@@ -176,6 +177,16 @@ export class UnsubscribeComponent implements OnInit {
       });
   
   
+  }
+  onClick1Month(){
+    this.EndingDate = new Date();
+    this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 30))
+  
+  }
+
+  onClick1Week(){
+      this.EndingDate = new Date();
+      this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 7))
   }
   }
 

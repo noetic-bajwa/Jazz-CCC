@@ -160,7 +160,7 @@ export class AddUnsubComponent implements OnInit {
     
     // Case 1 :  File is empty and msisdn is invalid    -- Not Calling API 
     if(this.validNumbers.length === 0 && regex_phone.exec(this.msisdn) == null){
-      this.unsubscribeWarningMessage = "Please write valid msisdn or attach file (.csv)";
+      this.unsubscribeWarningMessage = "Please enter valid msisdn or attach file (.csv)";
       document.getElementById("msisdn").focus();
       setTimeout(() => {
                 this.unsubscribeWarningMessage = "";

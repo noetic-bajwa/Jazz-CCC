@@ -81,10 +81,7 @@ th{
 
 
   
-  .error{
-    color:#585858;
-    font-size: 14px;
-  }
+  
 
   .instructions{
     color:#000000;
@@ -183,12 +180,6 @@ input::placeholder {
     padding: 6px 12px;
   }
 
-  .mainHeading{
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    letter-spacing:0.2ch;
-  }
-  
  
 table{
     font-family: 'Roboto', sans-serif;

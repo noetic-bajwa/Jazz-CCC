@@ -10,19 +10,35 @@
     </div>
     <!-- Main Heading (End) -->
     
+    <div class="row" style="margin-top: 50px;">
+      <div class="col message text-center">
+        <div class="d-inline">
+          <p class="d-inline">Search Period :</p>
+        </div>
+        <div class="d-inline ml-3">
+          <input (click)="onClick1Week()" style="height: 10px;" type="radio"  name="radio" >
+          <p style="font-size: 12px;" class="d-inline">1 Week</p>
+        </div>
+        <div class="d-inline ml-3">
+          <input (click)="onClick1Month()" style="height: 10px;" type="radio"  name="radio" >
+          <p style="font-size: 12px;" class="d-inline">1 Month</p>
+        </div>
+        
+      </div>
+    </div>
 
-    <div class="row" style="margin-top: 70px;justify-content: center;">
+    <div class="row" style="margin-top: 40px;justify-content: center;">
         <div class="col-8 col-md-3 col-lg-2 form-group text-center" >
           <input 
                  id="fromDate"
                  autocomplete="off"
                  #fromDate 
                  type="text"
-                 placeholder="mm/dd/yy"
+                 placeholder="dd/mm/yyyy"
                  [(ngModel)]="StartingDate"
                  class="datepicker form-control"
                  bsDatepicker
-                 [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+                 [bsConfig]="{showTodayButton: false, todayPosition: 'center',dateInputFormat: 'DD/MM/YYYY' }"
                  [maxDate]="maxDate"
                  [bsConfig]="{ isAnimated: true }" 
                  
@@ -40,11 +56,11 @@
                    autocomplete="off"
                    #toDate
                    type="text"
-                   placeholder="mm/dd/yy"
+                   placeholder="dd/mm/yyyy"
                    [(ngModel)]="EndingDate"
                    class="datepicker form-control"
                    bsDatepicker
-                   [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+                   [bsConfig]="{showTodayButton: false, todayPosition: 'center',dateInputFormat: 'DD/MM/YYYY' }"
                    [maxDate]="maxDate"
                    [bsConfig]="{ isAnimated: true }"
                    
@@ -57,11 +73,13 @@
         </div>
         
         <div class="col-8 col-md-3 col-lg-2 text-center form-group" >
-          <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Record</button>
+          <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Records</button>
       </div>
         
           
     </div>
+
+    
      
 </div>
 
@@ -100,16 +118,16 @@
             
             <tr *ngFor="let item of data.stats">
               <td #recordID [routerLink]="['/operatorStats',item.id]">{{item.id}}</td>
-              <td>{{item.cDate | date}}</td>
-              <td >{{item.totalMonthlyActiveUsers}}</td>
-              <td >{{item.uniquePaidBase}}</td>
-              <td >{{item.totalDailyActiveUsers}}</td>
-              <td >{{item.uniquePlayers}}</td>
-              <td>{{item.totalWeeklyActiveUsers}}</td>
-              <td>{{item.totalEngageBase}}</td>
+              <td>{{item.cDate | date:'dd/MM/YYYY'}}</td>
+              <td >{{item.totalMonthlyActiveUsers | number}}</td>
+              <td >{{item.uniquePaidBase | number}}</td>
+              <td >{{item.totalDailyActiveUsers | number}}</td>
+              <td >{{item.uniquePlayers | number}}</td>
+              <td>{{item.totalWeeklyActiveUsers | number}}</td>
+              <td>{{item.totalEngageBase | number}}</td>
               <td>{{item.engagementRate}}</td>
               <td>{{item.engageTime}}</td>
-              <td>{{item.totalGamePlayed}}</td>
+              <td>{{item.totalGamePlayed | number}}</td>
               <td>{{item.gamePlayRate}}</td>
               <!-- <td>{{item.totalTournaments}}</td> -->
     

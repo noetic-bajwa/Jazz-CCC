@@ -201,11 +201,7 @@
     padding: 6px 12px;
   }
   
-  .mainHeading{
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.2ch;
-  }
+  
   
   
   table{
@@ -221,12 +217,17 @@
     font-size: 12px; 
   }
   
+  thead th {
+    padding: 10px 10px;
+    text-align: center;
+    vertical-align: top;
+  }
   
   
   tbody tr td{
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding: 10px 10px;
     text-align: center;
+    width: auto !important;
   
   }
   

@@ -26,7 +26,10 @@ export class MSISDNLogsComponent implements OnInit {
 
   currentStatus:any;
   smsLogs:any;
+  chargedLogs:any;
   blacklistLogs:any;
+  UnsubLogs:any;
+  subLogs:any;
 
   constructor(private dataService:MSISDNLogsService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | MSISDN LOGS');
@@ -82,6 +85,17 @@ export class MSISDNLogsComponent implements OnInit {
       return;
    };
 
+   //if Msisdn is Empty and Date is Not (Error)
+   if(fromDate != '' && toDate != '' && this.msisdn == ''){
+    this.data='';
+    this.msg = "Please Enter MSISDN";
+    document.getElementById("msisdn").focus();
+    setTimeout(() => {
+      this.msg = "Searched Records Will be Displayed Below";
+    }, 3000);
+    return;
+ };
+
    //if from Date and To Date are empty and Msisdn is Invalid (Error)
    if(fromDate == '' && toDate == '' && regex_phone.exec(this.msisdn) == null){
     this.data='';
@@ -130,7 +144,7 @@ export class MSISDNLogsComponent implements OnInit {
     
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(fromDate > toDate && this.msisdn == ''){ 
+    if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy') && this.msisdn == ''){ 
       this.data='';
       this.msg = "Enter  Msisdn and Correct Date Range";
      setTimeout(() => {
@@ -142,7 +156,7 @@ export class MSISDNLogsComponent implements OnInit {
    };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-   if(fromDate > toDate && regex_phone.exec(this.msisdn) == null){ 
+   if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy') && regex_phone.exec(this.msisdn) == null){ 
     this.data='';
     this.msg = "Enter Valid Msisdn and Correct Date Range";
    setTimeout(() => {
@@ -154,7 +168,7 @@ export class MSISDNLogsComponent implements OnInit {
  };
 
  //if From Date is greater than To Date then it will display error for 3 sec and exit the function
- if(fromDate > toDate && regex_phone.exec(this.msisdn) != null){ 
+ if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy') && regex_phone.exec(this.msisdn) != null){ 
   this.data='';
   this.msg = "Enter Correct Date Range";
  setTimeout(() => {
@@ -165,51 +179,61 @@ export class MSISDNLogsComponent implements OnInit {
  return;
 };
 
+
    //If there is error then the function would exit in the Above condition (If/else) statments
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getUserStatus(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+    //Current Status
+    this.dataService.getCurrentStatus(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
     this.data=data;
     this.currentStatus=(Object.keys(data))
-    // console.log(data);
-    
-      
-     },
+    },
      err=>{
       
-     }) 
-
-     this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
-      // this.data=data;
-      // console.log(data);
-      // console.log(this.data);
-        
-       },
+     });
+     
+     //SMS Logs
+     this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+      this.smsLogs=data;
+      },
        err=>{
         
-       }) 
+       }); 
 
-       this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
-        this.smsLogs=data;
-        // console.log(this.smsLogs['entities'])
-        
-          
-         },
-         err=>{
-          
-         }) 
-
-
-
-       this.dataService.getBlacklistLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
+       //Blacklist Logs
+       this.dataService.getBlacklistLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
         this.blacklistLogs=data;
-        
-          
          },
          err=>{
           
-         }) 
+         });
+
+       //Charged Logs
+       this.dataService.getChargedLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+        this.chargedLogs=data;  
+        },
+         err=>{
+          
+        }); 
+
+        
+         
+         //Unsub Logs
+         this.dataService.getUnsubLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+          this.UnsubLogs=data;
+           },
+           err=>{
+            
+           });
+           
+           //Sub Logs
+           this.dataService.getSubLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+            this.subLogs=data;
+             },
+             err=>{
+             });
+
     
   }
 
@@ -227,5 +251,16 @@ export class MSISDNLogsComponent implements OnInit {
     if(this.msisdn == null){
       this.singleMsisdnError = '';
     }
+  }
+
+  onClick1Month(){
+    this.EndingDate = new Date();
+    this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 30))
+  
+  }
+
+  onClick1Week(){
+      this.EndingDate = new Date();
+      this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 7))
   }
 }

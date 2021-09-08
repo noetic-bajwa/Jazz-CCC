@@ -8,12 +8,18 @@ import { LtvReportDataService } from '../Services/ltv-report-data.service';
   styleUrls: ['./ltvreport.component.css']
 })
 export class LTVReportComponent implements OnInit {
-
+  averageRevenue:any;
   constructor(private pageTitle:Title,private dataService:LtvReportDataService) {
     this.pageTitle.setTitle('GameNow | LTV Reports');
    }
 
   ngOnInit(): void {
+    this.dataService.getAverageRevenue().subscribe(data=>{
+      this.averageRevenue = data;
+    },
+    err=>{
+
+    })
   }
 
 }

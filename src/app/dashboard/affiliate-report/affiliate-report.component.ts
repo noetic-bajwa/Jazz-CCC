@@ -48,7 +48,7 @@ export class AffiliateReportComponent implements OnInit {
 
     if(fromDate != '' && toDate != ''){
       // console.log("PAge Changed call hua hai")
-      this.dataService.getData(this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd'),this.selectedValue,event.page-1).subscribe(data=>{
+      this.dataService.getData(this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM'),this.selectedValue,event.page-1).subscribe(data=>{
         this.data=data;
           
          },
@@ -88,7 +88,7 @@ export class AffiliateReportComponent implements OnInit {
     //if 'From Date' and 'To Date' are not empty but 'Affiliate Select' is  Empty, then it will display error 
           if(fromDate != '' && toDate != '' && this.selectedValue == 0 ){ 
             this.data='';
-            document.getElementById("affiliateSelect").focus();
+            // document.getElementById("affiliateSelect").focus();
             this.msg = "Please Select Affiliate";
             setTimeout(() => {
               this.msg = "Searched Records Will be Displayed Below";
@@ -113,17 +113,17 @@ export class AffiliateReportComponent implements OnInit {
             this.msg = "Please Select 'To' Date";
             document.getElementById("toDate").focus();
           setTimeout(() => {
-            this.msg = "Searched Records Will be Displayed Below";
+            this.msg = "Searched Records Will Be Displayed Below";
           }, 3000);
           return;
         };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-          if(fromDate > toDate  && this.selectedValue == 0){ 
+          if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')  && this.selectedValue == 0){ 
             this.data='';
-            this.msg = "Date Range is not Correct and Select Affilate";
+            this.msg = "Date Range Is Not Correct And Select Affilate";
           setTimeout(() => {
-            this.msg = "Searched Records Will be Displayed Below";
+            this.msg = "Searched Records Will Be Displayed Below";
           }, 3000);
           this.StartingDate = '';
           this.EndingDate = '';
@@ -131,11 +131,11 @@ export class AffiliateReportComponent implements OnInit {
         };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-        if(fromDate > toDate  && this.selectedValue != 0){ 
+        if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')  && this.selectedValue != 0){ 
           this.data='';
-          this.msg = "Date Range is not Correct";
+          this.msg = "Date Range Is Not Correct";
         setTimeout(() => {
-          this.msg = "Searched Records Will be Displayed Below";
+          this.msg = "Searched Records Will Be Displayed Below";
         }, 3000);
         this.StartingDate = '';
         this.EndingDate = '';
@@ -148,7 +148,7 @@ export class AffiliateReportComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
    
-      this.dataService.getData(this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd'),this.selectedValue,0).subscribe(data=>{
+      this.dataService.getData(this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM'),this.selectedValue,0).subscribe(data=>{
       
         this.data=data;
       
@@ -171,5 +171,15 @@ export class AffiliateReportComponent implements OnInit {
     }
   }
 
+  onClick1Month(){
+    this.EndingDate = new Date();
+    this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 30))
+  
+  }
+
+  onClick1Week(){
+      this.EndingDate = new Date();
+      this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 7))
+  }
   
 }

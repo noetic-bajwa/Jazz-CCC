@@ -208,14 +208,16 @@
     height: 30px;
 }
 
-/* @media screen and (max-width: 767px) {
-    .bs-datepicker{
-        margin-top: 1px;
-        background-color: #00000000;
-        box-shadow: none;
-        border-radius: 0px;  
-    }
-  } */
+.theme-green .btn-today-wrapper .btn-success, .theme-green .btn-clear-wrapper .btn-success {
+    background-color: #8a252c;
+    border-color: #8a252c;
+}
+
+.theme-green .btn-today-wrapper .btn-success:hover, .theme-green .btn-clear-wrapper .btn-success:hover {
+    background-color: #8a252c;
+    border-color: #8a252c;
+}
+
 
   html {
     overflow-y: scroll;
@@ -224,3 +226,53 @@
     
 }
 
+.message{
+    color:#585858;
+    font-size: 14px;
+  }
+
+  .add_btn  ,.add_btn:hover, .add_btn:focus{
+    background-color: #8a252c;
+    color:white;
+    border-radius: 4px;
+    cursor: pointer;
+    border:none;
+    padding: 8px 12px;
+    font-weight: normal;
+    outline: none !important;
+    letter-spacing: 0.2ch;
+    font-size: 15px;
+  }
+  
+  .add_row{
+    position: absolute;
+    margin-top: -55px;
+    right:20px
+  }
+  
+  @media screen and (max-width: 767px) {
+    .add_btn{
+      
+     
+    }
+  
+    .add_row{
+      position: relative;
+      margin-top: 0px;
+      justify-content: center;
+      text-align: center;
+      right:0px
+    }
+  }
+
+  .mainHeading{
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.2ch;
+  }
+
+
+  .error{
+    color:#8a252c;
+    font-size: 12px;
+  }

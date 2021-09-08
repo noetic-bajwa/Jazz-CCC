@@ -1,27 +1,42 @@
 <div class="container-fluid" >
     
-  <!-- Main Heading (Start) -->
+  
   <div class="row" >
       <div class="col text-center">
-          <p class="mainHeading">REPORT</p> 
-          <!-- <i id="guide_icon" class="fa fa-question-circle" style="color:#0000009a;cursor:pointer;" data-toggle="modal" data-target="#exampleModal"></i>  -->
+          <p class="mainHeading">REPORT</p>
       </div>
   </div>
-  <!-- Main Heading (End) -->
+
+  <div class="row" style="margin-top: 50px;">
+    <div class="col message text-center">
+      <div class="d-inline">
+        <p class="d-inline">Search Period :</p>
+      </div>
+      <div class="d-inline ml-3">
+        <input (click)="onClick1Week()" style="height: 10px;" type="radio"  name="radio" >
+          <p style="font-size: 12px;" class="d-inline">1 Week</p>
+      </div>
+      <div class="d-inline ml-3">
+        <input (click)="onClick1Month()" style="height: 10px;" type="radio"  name="radio" >
+          <p style="font-size: 12px;" class="d-inline">1 Month</p>
+      </div>
+      
+    </div>
+  </div>
   
 
-  <div class="row" style="margin-top: 70px;justify-content: center;">
+  <div class="row" style="margin-top: 40px;justify-content: center;">
       <div class="col-8 col-md-3 col-lg-2 form-group text-center" >
         <input 
                id="fromDate"
                autocomplete="off"
                #fromDate 
                type="text"
-               placeholder="mm/dd/yy"
+               placeholder="dd/mm/yyyy"
                [(ngModel)]="StartingDate"
                class="datepicker form-control"
                bsDatepicker
-               [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+               [bsConfig]="{showTodayButton: false, todayPosition: 'center', dateInputFormat: 'DD/MM/YYYY' }"
                [maxDate]="maxDate"
                [bsConfig]="{ isAnimated: true }" 
                
@@ -39,11 +54,11 @@
                  autocomplete="off"
                  #toDate
                  type="text"
-                 placeholder="mm/dd/yy"
+                 placeholder="dd/mm/yyyy"
                  [(ngModel)]="EndingDate"
                  class="datepicker form-control"
                  bsDatepicker
-                 [bsConfig]="{showTodayButton: false, todayPosition: 'center' }"
+                 [bsConfig]="{showTodayButton: false, todayPosition: 'center', dateInputFormat: 'DD/MM/YYYY' }"
                  [maxDate]="maxDate"
                  [bsConfig]="{ isAnimated: true }"
                  
@@ -56,7 +71,7 @@
       </div>
       
       <div class="col-8 col-md-3 col-lg-2 text-center form-group" >
-        <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Record</button>
+        <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Records</button>
     </div>
       
         
@@ -77,7 +92,7 @@
       <table class="table table-striped table-bordered" style="overflow-x: scroll;">
         <thead>
           <tr >
-            <th>Date<br></th>
+            <th>Date</th>
             <th>Charged<br>Sub</th>
             <th>New<br>Sub</th>
             <th>Requests<br></th>
@@ -98,21 +113,21 @@
           
           
           <tr *ngFor="let item of data.stats">
-            <td>{{item.date | date}}</td>
-            <td >{{item.chargedSubs}}</td>
-             <td >{{item.newSub}}</td>
-            <td >{{item.requests}}</td>
-            <td >{{item.successful}}</td>
-            <td>{{item.failed}}</td>
-            <td>{{item.autoRenewBase}}</td>
-            <td>{{item.successAutoRenew}}</td>
-            <td>{{item.totalCharged}}</td>
-            <td>{{item.manualUnsub}}</td>
-            <td>{{item.purgeUnsub}}</td>
-            <td>{{item.jazzUnsub}}</td>
-            <td>{{item.blacklist}}</td>
-            <td>{{item.blockPostback}}</td>
-            <td>{{item.revenue}}</td>
+            <td>{{item.date |  date:'dd/MM/YYYY'}}</td>
+            <td >{{item.chargedSubs | number}}</td>
+             <td >{{item.newSub | number}}</td>
+            <td >{{item.requests | number}}</td>
+            <td >{{item.successful | number}}</td>
+            <td>{{item.failed | number}}</td>
+            <td>{{item.autoRenewBase | number}}</td>
+            <td>{{item.successAutoRenew | number}}</td>
+            <td>{{item.totalCharged | number}}</td>
+            <td>{{item.manualUnsub | number}}</td>
+            <td>{{item.purgeUnsub | number}}</td>
+            <td>{{item.jazzUnsub | number}}</td>
+            <td>{{item.blacklist | number}}</td>
+            <td>{{item.blockPostback | number}}</td>
+            <td>{{item.revenue | number}}</td>
           </tr>
         </tbody>
       </table>

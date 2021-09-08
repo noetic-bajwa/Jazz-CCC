@@ -70,20 +70,13 @@ outline: none !important;
 
 
 
-.RemoveFileBtn{
+.RemoveFileBtn ,RemoveFileBtn:hover{
   border: 1px solid #c0302d;
-  border-radius: 3px;
   color: white;
   background-color: #c0302d ;
   padding: 2px 4px;
-  /* position: absolute; 
-  left: 0; 
-  right: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 100px; */
+  outline: none;
 }
-
 
 
 
@@ -101,13 +94,6 @@ margin: 0;
 input[type=number] {
 -moz-appearance: textfield;
 }
-
-.mainHeading{
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
-letter-spacing: 0.2ch;
-}
-
 
 label {
   padding-top:0;

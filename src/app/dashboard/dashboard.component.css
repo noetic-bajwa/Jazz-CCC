@@ -76,6 +76,8 @@
     
  }
  
+
+
  .sidebar-nav li {
     text-indent: 15px;
     line-height: 40px;
@@ -130,13 +132,15 @@
  }
  
  .sidebar-nav > .sidebar-brand a {
-   color: #fff;
+   color: #ae2424;
    background: none;
+   
  }
  
  .sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+    color: #ae2424;
     background: none;
+    
  }
  
  .no-margin {
@@ -238,3 +242,5 @@
    font-size: 20px;
    letter-spacing: 0.2ch;
  }
+
+ 

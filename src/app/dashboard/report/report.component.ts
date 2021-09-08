@@ -46,7 +46,7 @@ export class ReportComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
-      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyy-MM-dd'),this.datePipe.transform(toDate,'yyyy-MM-dd')).subscribe(data=>{
+      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyy-dd-MM'),this.datePipe.transform(toDate,'yyyy-dd-MM')).subscribe(data=>{
         this.data=data;
           
          },
@@ -63,12 +63,13 @@ export class ReportComponent implements OnInit {
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
     if(fromDate == '' && toDate == ''){
-    this.dataService.getData('','','').subscribe(data=>{
-    this.data=data;},
-    err=>{
-     
-    });
-    return;
+      this.data='';
+      this.msg = "Please Select Date Range";
+      document.getElementById("fromDate").focus();
+     setTimeout(() => {
+       this.msg = "Searched Records Will Be Displayed Below";
+     }, 3000);
+     return;
    };
 
    //if 'From Date' is empty then it will display error for 3 sec and exit the function
@@ -77,7 +78,7 @@ export class ReportComponent implements OnInit {
        this.msg = "Please Select 'From' Date";
        document.getElementById("fromDate").focus();
       setTimeout(() => {
-        this.msg = "Searched Records Will be Displayed Below";
+        this.msg = "Searched Records Will Be Displayed Below";
       }, 3000);
       return;
     };
@@ -88,17 +89,17 @@ export class ReportComponent implements OnInit {
       this.msg = "Please Select 'To' Date";
       document.getElementById("toDate").focus();
      setTimeout(() => {
-       this.msg = "Searched Records Will be Displayed Below";
+       this.msg = "Searched Records Will Be Displayed Below";
      }, 3000);
      return;
    };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(fromDate > toDate  ){ 
+    if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')){ 
       this.data='';
-      this.msg = "Date Range is not Correct";
+      this.msg = "Date Range Is Not Correct";
      setTimeout(() => {
-       this.msg = "Searched Records Will be Displayed Below";
+       this.msg = "Searched Records Will Be Displayed Below";
      }, 3000);
      this.StartingDate = '';
      this.EndingDate = '';
@@ -109,7 +110,7 @@ export class ReportComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyy-MM-dd'),this.datePipe.transform(toDate,'yyyy-MM-dd')).subscribe(data=>{
+    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyy-dd-MM'),this.datePipe.transform(toDate,'yyyy-dd-MM')).subscribe(data=>{
     this.data=data;
     
       
@@ -124,5 +125,16 @@ export class ReportComponent implements OnInit {
   onClickReset(){
     this.StartingDate = '';
     this.EndingDate = '';
+  }
+
+  onClick1Month(){
+    this.EndingDate = new Date();
+    this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 30))
+  
+  }
+
+  onClick1Week(){
+      this.EndingDate = new Date();
+      this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 7))
   }
 }

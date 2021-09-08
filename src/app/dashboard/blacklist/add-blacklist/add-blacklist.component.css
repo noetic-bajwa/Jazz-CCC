@@ -70,11 +70,13 @@
 
   
 
-  .RemoveFileBtn{
+  .RemoveFileBtn ,RemoveFileBtn:hover{
     border: 1px solid #c0302d;
     color: white;
     background-color: #c0302d ;
     padding: 2px 4px;
+    outline: none;
+
   }
 
 
@@ -95,11 +97,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.mainHeading{
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.2ch;
-}
 
 
   label {
