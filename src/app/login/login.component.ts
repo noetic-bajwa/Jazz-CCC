@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Inject }  from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,10 @@ export class LoginComponent implements OnInit {
   error:any;
   user="";
   pass="";
-  constructor(private authservice:AuthService, private router: Router , private cookieService:CookieService, @Inject(DOCUMENT) document) { }
-
+  constructor(private authservice:AuthService, private router: Router , private cookieService:CookieService, @Inject(DOCUMENT) document,private pageTitle:Title) {
+    this.pageTitle.setTitle('GameNow | Login');
+   }
+  
   ngOnInit(): void {
   }
   onClickLogin(username:any,password:any){ 
