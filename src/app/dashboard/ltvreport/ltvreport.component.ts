@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LtvReportDataService } from '../Services/ltv-report-data.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-ltvreport',
@@ -24,7 +25,10 @@ export class LTVReportComponent implements OnInit {
   }
   onClickDownload(){
     this.dataService.getCSVFile().subscribe(
-      data => {console.log(data)},
+      data => {console.log(data)
+        FileSaver.saveAs(data, `LTVreport.csv`)
+      },
+      
       error => {}
     )
   }

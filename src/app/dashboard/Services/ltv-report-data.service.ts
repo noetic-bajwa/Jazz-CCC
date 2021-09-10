@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 
 
+
 let headers: HttpHeaders = new HttpHeaders({
   'Content-Type':  'application/json'
 });
@@ -26,7 +27,7 @@ export class LtvReportDataService {
 
   getCSVFile() {
     let url = "http://192.168.127.107:8080/exportCSV";
-    return this.http.get(url,{headers});
+    return this.http.get(url,{headers,responseType: 'blob' });
   }
 
   
