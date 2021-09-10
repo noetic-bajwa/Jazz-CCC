@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
+import {CookieService} from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+
 declare var $:any;
 @Component({
   selector: 'app-dashboard',
@@ -7,12 +11,15 @@ declare var $:any;
 })
 export class DashboardComponent implements OnInit {
   
-  constructor() { 
-    
-  }
-
-  ngOnInit(): void {
    
+  constructor(private permission:AuthService ,private cookieService:CookieService , private router:Router) { 
+      
+  }
+  isNoetic=this.permission.isNoetic();
+  username= atob(this.cookieService.get('userSession'));
+
+  
+  ngOnInit(): void {
    // Mobile View Toggle FUnction
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
@@ -58,6 +65,14 @@ export class DashboardComponent implements OnInit {
    $(document).ready(function() {
       initMenu();
    });
+  }
+
+  onClickLogout(){
+   this.cookieService.set('SessionId','');
+   this.cookieService.set('userSession','');
+   this.cookieService.set('accountSession','');
+   this.router.navigate(['/login']);
+
   }
 
 }

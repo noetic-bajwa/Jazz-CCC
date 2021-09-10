@@ -9,25 +9,31 @@ import { MSISDNLogsComponent } from './dashboard/msisdnlogs/msisdnlogs.component
 import { OperatorStatsComponent } from './dashboard/operator-stats/operator-stats.component';
 import { SingleRecordComponent } from './dashboard/operator-stats/single-record/single-record.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { AuthenticationGuard } from './authentication.guard';
 import { ReportComponent } from './dashboard/report/report.component';
 import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.component';
 import { UnsubscribeComponent } from './dashboard/unsubscribe/unsubscribe.component';
+import { LoginComponent } from './login/login.component';
+import { IsNoeticGuard } from './is-noetic.guard';
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'operatorStats',pathMatch:'full'
+    path:'login',component:LoginComponent
   },
   {
-    path:'', component:DashboardComponent ,children:[
+    path:'',redirectTo:'unsub',pathMatch:'full'
+  },
+  {
+    path:'', canActivate:[AuthenticationGuard], component:DashboardComponent ,children:[
       {
-        path:'blacklist',
+        path:'blacklist', canActivate:[IsNoeticGuard],
         component:BlacklistComponent
       },
       {
-        path:'blacklist/add',component:AddBlacklistComponent
+        path:'blacklist/add', canActivate:[IsNoeticGuard],component:AddBlacklistComponent
       },
       { 
-        path:'ltv',
+        path:'ltv', canActivate:[IsNoeticGuard],
         component:LTVReportComponent
       },
       { 
@@ -35,25 +41,25 @@ const routes: Routes = [
         component:MSISDNLogsComponent
       },
       { 
-        path:'report',
+        path:'report', canActivate:[IsNoeticGuard],
         component:ReportComponent
       },
       {
-        path:'operatorStats/:id',component:SingleRecordComponent
+        path:'operatorStats/:id', canActivate:[IsNoeticGuard],component:SingleRecordComponent
       },
       { 
-        path:'operatorStats',
+        path:'operatorStats', canActivate:[IsNoeticGuard],
         component:OperatorStatsComponent
       },
       {
-        path:'unsub/add',component:AddUnsubComponent
+        path:'unsub/add',  component:AddUnsubComponent
       },
       { path:'unsub',
         component:UnsubscribeComponent
       },
       
       { 
-        path:'affiliate',
+        path:'affiliate', canActivate:[IsNoeticGuard],
         component:AffiliateReportComponent
       },
       { 

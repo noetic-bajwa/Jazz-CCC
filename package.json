@@ -25,6 +25,7 @@
     "jq-fakeloader": "^2.0.1",
     "jquery": "^3.6.0",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-cookie-service": "^12.0.3",
     "ngx-papaparse": "^5.0.0",
     "ngx-toastr": "^14.0.0",
     "ngx-ui-loader": "^11.0.0",

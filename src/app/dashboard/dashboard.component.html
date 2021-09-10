@@ -13,26 +13,41 @@
             
              <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
              <li>
-               <a routerLink="profile" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-circle fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username</a>
+               <a routerLink="profile" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-circle fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{username}}</a>
             </li>
             <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
              
-             <li>
-                <a routerLink="report" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-clipboard fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report</a>
-             </li>
+            <ng-template [ngIf]="isNoetic">
+               <li>
+                  <a routerLink="report" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-clipboard fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report</a>
+               </li>
+            </ng-template>
+             
 
-             <li>
-                <a routerLink="affiliate" [routerLinkActive]="['isActive']"> <span class="fa-stack fa-lg pull-left"><i class="fas fa-poll fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Affiliate Report</a>
-             </li>
-             <li>
-                <a routerLink="blacklist" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-alt-slash fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blacklist</a>
-             </li>
-             <li>
-                <a routerLink="ltv" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-file-excel fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LTV Report</a>
-             </li>
-             <li>
-                <a routerLink="operatorStats" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-chart-bar fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operator Stats</a>
-             </li>
+            <ng-template [ngIf]="isNoetic">
+               <li>
+                  <a routerLink="affiliate" [routerLinkActive]="['isActive']"> <span class="fa-stack fa-lg pull-left"><i class="fas fa-poll fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Affiliate Report</a>
+               </li>
+            </ng-template>
+             
+            <ng-template [ngIf]="isNoetic">
+               <li>
+                  <a routerLink="blacklist" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-alt-slash fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blacklist</a>
+               </li>
+            </ng-template>
+            
+            <ng-template [ngIf]="isNoetic">
+               <li>
+                  <a routerLink="ltv" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-file-excel fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LTV Report</a>
+               </li>
+            </ng-template> 
+            
+            <ng-template [ngIf]="isNoetic">
+               <li>
+                  <a routerLink="operatorStats" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-chart-bar fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operator Stats</a>
+               </li>
+            </ng-template>
+            
              <li>
                 <a routerLink="unsub" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fas fa-user-times fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unsubscribe</a>
              </li>
@@ -40,8 +55,8 @@
                 <a routerLink="msisdnlogs" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSISDN Logs</a>
              </li>
              <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
-             <li>
-                <a routerLink="" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-power-off fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
+             <li (click)="onClickLogout()">
+                <a  routerLink="" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-power-off fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
              </li>
           </ul>
        </div>

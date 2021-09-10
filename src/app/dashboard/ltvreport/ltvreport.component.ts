@@ -19,7 +19,14 @@ export class LTVReportComponent implements OnInit {
     },
     err=>{
 
-    })
+    });
+    
+  }
+  onClickDownload(){
+    this.dataService.getCSVFile().subscribe(
+      data => {console.log(data)},
+      error => {}
+    )
   }
 
 }

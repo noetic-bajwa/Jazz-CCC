@@ -155,7 +155,7 @@ input::placeholder {
 
 .search_btn , .search_btn:focus , .search_btn:active ,.search_btn:visited{
     border: none !important;
-    background-color:#504c4c;
+    background-color:#50504c;
     border-radius: 4px;
     outline: none !important;
     box-shadow: none;

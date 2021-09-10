@@ -222,8 +222,11 @@ export class AddUnsubComponent implements OnInit {
 
 
       //Empty all data / warning messages after Api is called
-      this.validNumbers = [];
+      this.msisdn='';
       this.myfile='';
+      this.invalidNumbers='';
+      this.validNumbers=[];
+      this.singleMsisdnError = '';
       this.unsubscribeWarningMessage = '';
       this.formatNotSupportedmsg = ''; 
     

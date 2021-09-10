@@ -9,8 +9,8 @@
     <!-- Main Heading (End) -->
     
     <div class="row" class="add_row" >
-      <div class="col text-center"> 
-        <button  class="add_btn" routerLink="add">DOWNLOAD CSV</button>
+      <div class="col add_col"> 
+        <button (click)="onClickDownload()" class="add_btn" routerLink="add"><i class="fas fa-download"></i>&nbsp;&nbsp;DOWNLOAD CSV</button>
       </div>
     </div>
 
@@ -18,7 +18,7 @@
     <div class="row" style="margin-top: 50px;justify-content: center;">
       <div class="col text-center"> 
         <p class="message">The average revenue per user is </p>
-        <h5>Rs. 139.5</h5>
+        <h3 style="color: #8a252c;">Rs. {{averageRevenue}}</h3>
         <!-- <p>Download MSISDN Record in CSV (.csv) Format</p> -->
       </div>
     </div>

@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportComponent } from './dashboard/report/report.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReportDataService } from './dashboard/Services/report-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -23,6 +22,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
 import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.component';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { AddBlacklistComponent } from './dashboard/blacklist/add-blacklist/add-blacklist.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -39,7 +39,8 @@ import { AddBlacklistComponent } from './dashboard/blacklist/add-blacklist/add-b
     SingleRecordComponent,
     ProfileComponent,
     AddUnsubComponent,
-    AddBlacklistComponent
+    AddBlacklistComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import { AddBlacklistComponent } from './dashboard/blacklist/add-blacklist/add-b
     NgxUiLoaderModule
     
   ],
-  providers: [ReportDataService,DatePipe],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

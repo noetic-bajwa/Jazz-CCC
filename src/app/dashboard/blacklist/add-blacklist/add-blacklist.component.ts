@@ -215,8 +215,11 @@ export class AddBlacklistComponent implements OnInit {
       
 
       //Empty all data / warning messages after Api is called
-      this.validNumbers = [];
+      this.msisdn='';
       this.myfile='';
+      this.invalidNumbers='';
+      this.validNumbers=[];
+      this.singleMsisdnError = '';
       this.unsubscribeWarningMessage = '';
       this.formatNotSupportedmsg = ''; 
     
@@ -243,7 +246,7 @@ export class AddBlacklistComponent implements OnInit {
         },
        err=>{
          console.log(err);
-       })
+       });
 
        
 
@@ -252,6 +255,7 @@ export class AddBlacklistComponent implements OnInit {
       //Empty all data / warning messages after Api is called
       this.msisdn='';
       this.myfile='';
+      this.invalidNumbers='';
       this.validNumbers=[];
       this.singleMsisdnError = '';
       this.unsubscribeWarningMessage = '';
@@ -277,7 +281,8 @@ export class AddBlacklistComponent implements OnInit {
     this.invalidNumbers='';
     this.validNumbers=[];
     this.unsubscribeWarningMessage = '';
-    this.formatNotSupportedmsg = ''; 
+    this.formatNotSupportedmsg = '';
+     
   }
 
   onInputChange(){
