@@ -47,8 +47,9 @@ export class AffiliateReportComponent implements OnInit {
     // };
 
     if(fromDate != '' && toDate != ''){
-      // console.log("PAge Changed call hua hai")
-      this.dataService.getData(this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM'),this.selectedValue,event.page-1).subscribe(data=>{
+      fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      this.dataService.getData(fromDate,toDate,this.selectedValue,event.page-1).subscribe(data=>{
         this.data=data;
           
          },
@@ -62,6 +63,8 @@ export class AffiliateReportComponent implements OnInit {
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
+    fromDate = fromDate.split("/").reverse().join("");
+    toDate = toDate.split("/").reverse().join("");
     
     //if 'From Date' and 'To Date' and 'Affiliate Select' fields are empty, then it will display Error
           if(fromDate == '' && toDate == '' && this.selectedValue == 0){
@@ -119,7 +122,7 @@ export class AffiliateReportComponent implements OnInit {
         };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-          if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')  && this.selectedValue == 0){ 
+          if(fromDate > toDate  && this.selectedValue == 0){ 
             this.data='';
             this.msg = "Date Range Is Not Correct And Select Affilate";
           setTimeout(() => {
@@ -131,7 +134,7 @@ export class AffiliateReportComponent implements OnInit {
         };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-        if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')  && this.selectedValue != 0){ 
+        if(fromDate > toDate  && this.selectedValue != 0){ 
           this.data='';
           this.msg = "Date Range Is Not Correct";
         setTimeout(() => {
@@ -148,7 +151,7 @@ export class AffiliateReportComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
    
-      this.dataService.getData(this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM'),this.selectedValue,0).subscribe(data=>{
+      this.dataService.getData(fromDate,toDate,this.selectedValue,0).subscribe(data=>{
       
         this.data=data;
       

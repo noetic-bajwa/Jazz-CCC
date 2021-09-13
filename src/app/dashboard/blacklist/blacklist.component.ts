@@ -47,7 +47,9 @@ export class BlacklistComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
-      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+      fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      this.dataService.getData(event.page-1,fromDate,toDate).subscribe(data=>{
         this.data=data;
           
          },
@@ -61,7 +63,10 @@ export class BlacklistComponent implements OnInit {
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
-    
+    fromDate = fromDate.split("/").reverse().join("");
+    toDate = toDate.split("/").reverse().join("");
+
+
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
     if(fromDate == '' && toDate == ''){
       this.data='';
@@ -96,7 +101,7 @@ export class BlacklistComponent implements OnInit {
    };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy')){ 
+    if(fromDate > toDate){ 
       this.data='';
       this.msg = "Date Range Is Not Correct";
      setTimeout(() => {
@@ -111,7 +116,14 @@ export class BlacklistComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+
+   console.log('Help');
+  //  fromDate = fromDate.replace(/\//g,'');
+  //  toDate = toDate.replace(/\//g,'')
+  // fromDate = fromDate.split("/").reverse().join("")
+  // console.log(fromDate);
+   
+    this.dataService.getData(0,fromDate,toDate).subscribe(data=>{
     this.data=data;
     console.log(data);
     console.log(data['total pages'])

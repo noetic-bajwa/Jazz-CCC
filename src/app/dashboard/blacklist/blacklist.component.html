@@ -10,7 +10,7 @@
   
   <div class="row">
     <div class="col add_col" > 
-      <button  class="add_btn" routerLink="add"><i class="fas fa-plus"></i>&nbsp;&nbsp;BLACKLIST MSISDN</button>
+      <button  class="add_btn" routerLink="add"><i class="fas fa-plus"></i>&nbsp;&nbsp;<span class="vertical-line"></span>BLACKLIST MSISDN</button>
     </div>
   </div>
 
@@ -43,9 +43,8 @@
                [(ngModel)]="StartingDate"
                class="datepicker form-control"
                bsDatepicker
-               [bsConfig]="{showTodayButton: false, todayPosition: 'center' ,dateInputFormat: 'DD/MM/YYYY' }"
+               [bsConfig]="{dateInputFormat: 'DD/MM/YYYY' , isAnimated: true}"
                [maxDate]="maxDate"
-               [bsConfig]="{ isAnimated: true }" 
                
         />
         <label>Select From Date</label>
@@ -65,9 +64,9 @@
                  [(ngModel)]="EndingDate"
                  class="datepicker form-control"
                  bsDatepicker
-                 [bsConfig]="{showTodayButton: false, todayPosition: 'center' , dateInputFormat: 'DD/MM/YYYY' }"
+                 [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' , isAnimated: true}"
                  [maxDate]="maxDate"
-                 [bsConfig]="{ isAnimated: true }"
+                 
                  
           /> 
 

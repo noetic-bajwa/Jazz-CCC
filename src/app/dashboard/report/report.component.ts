@@ -46,7 +46,18 @@ export class ReportComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
-      this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyy-dd-MM'),this.datePipe.transform(toDate,'yyyy-dd-MM')).subscribe(data=>{
+      let fromDate_ddmm = fromDate.slice(0,5);
+    let fromDate_yyyy = fromDate.slice(6,10)
+    fromDate = fromDate_yyyy.concat("/"+fromDate_ddmm);
+    fromDate = fromDate.replace(/\//g, "-")
+    console.log(fromDate);
+
+    let toDate_ddmm = toDate.slice(0,5);
+    let toDate_yyyy = toDate.slice(6,10)
+    toDate = toDate_yyyy.concat("/"+toDate_ddmm);
+    toDate = toDate.replace(/\//g, "-")
+    console.log(toDate);
+      this.dataService.getData(event.page-1,fromDate,toDate).subscribe(data=>{
         this.data=data;
           
          },
@@ -60,6 +71,17 @@ export class ReportComponent implements OnInit {
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
+    let fromDate_ddmm = fromDate.slice(0,5);
+    let fromDate_yyyy = fromDate.slice(6,10)
+    fromDate = fromDate_yyyy.concat("/"+fromDate_ddmm);
+    fromDate = fromDate.replace(/\//g, "-")
+    console.log(fromDate);
+
+    let toDate_ddmm = toDate.slice(0,5);
+    let toDate_yyyy = toDate.slice(6,10)
+    toDate = toDate_yyyy.concat("/"+toDate_ddmm);
+    toDate = toDate.replace(/\//g, "-")
+    console.log(toDate);
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
     if(fromDate == '' && toDate == ''){
@@ -110,7 +132,7 @@ export class ReportComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
-    this.dataService.getData(0,this.datePipe.transform(fromDate,'yyyy-dd-MM'),this.datePipe.transform(toDate,'yyyy-dd-MM')).subscribe(data=>{
+    this.dataService.getData(0,fromDate,toDate).subscribe(data=>{
     this.data=data;
     
       

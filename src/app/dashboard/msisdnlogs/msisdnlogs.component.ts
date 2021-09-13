@@ -71,6 +71,8 @@ export class MSISDNLogsComponent implements OnInit {
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
+    fromDate = fromDate.split("/").reverse().join("");
+    toDate = toDate.split("/").reverse().join("");
     let regex_phone = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
     regex_phone.exec(this.msisdn) != null
 
@@ -144,7 +146,7 @@ export class MSISDNLogsComponent implements OnInit {
     
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy') && this.msisdn == ''){ 
+    if(fromDate > toDate && this.msisdn == ''){ 
       this.data='';
       this.msg = "Enter  Msisdn and Correct Date Range";
      setTimeout(() => {
@@ -156,7 +158,7 @@ export class MSISDNLogsComponent implements OnInit {
    };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-   if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy') && regex_phone.exec(this.msisdn) == null){ 
+   if((fromDate > toDate) && regex_phone.exec(this.msisdn) == null){ 
     this.data='';
     this.msg = "Enter Valid Msisdn and Correct Date Range";
    setTimeout(() => {
@@ -168,7 +170,7 @@ export class MSISDNLogsComponent implements OnInit {
  };
 
  //if From Date is greater than To Date then it will display error for 3 sec and exit the function
- if(this.datePipe.transform(fromDate,'ddMMyyyy') > this.datePipe.transform(toDate,'ddMMyyyy') && regex_phone.exec(this.msisdn) != null){ 
+ if(fromDate > toDate && regex_phone.exec(this.msisdn) != null){ 
   this.data='';
   this.msg = "Enter Correct Date Range";
  setTimeout(() => {
@@ -185,7 +187,7 @@ export class MSISDNLogsComponent implements OnInit {
    // 1st Argument is 0 which means 1st page
 
     //Current Status
-    this.dataService.getCurrentStatus(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+    this.dataService.getCurrentStatus(this.msisdn,fromDate,toDate).subscribe(data=>{
     this.data=data;
     this.currentStatus=(Object.keys(data))
     },
@@ -194,7 +196,7 @@ export class MSISDNLogsComponent implements OnInit {
      });
      
      //SMS Logs
-     this.dataService.getSmsLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+     this.dataService.getSmsLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
       this.smsLogs=data;
       },
        err=>{
@@ -202,7 +204,7 @@ export class MSISDNLogsComponent implements OnInit {
        }); 
 
        //Blacklist Logs
-       this.dataService.getBlacklistLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+       this.dataService.getBlacklistLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
         this.blacklistLogs=data;
          },
          err=>{
@@ -210,7 +212,7 @@ export class MSISDNLogsComponent implements OnInit {
          });
 
        //Charged Logs
-       this.dataService.getChargedLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+       this.dataService.getChargedLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
         this.chargedLogs=data;  
         },
          err=>{
@@ -220,7 +222,7 @@ export class MSISDNLogsComponent implements OnInit {
         
          
          //Unsub Logs
-         this.dataService.getUnsubLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+         this.dataService.getUnsubLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
           this.UnsubLogs=data;
            },
            err=>{
@@ -228,7 +230,7 @@ export class MSISDNLogsComponent implements OnInit {
            });
            
            //Sub Logs
-           this.dataService.getSubLogs(this.msisdn,this.datePipe.transform(fromDate,'yyyyddMM'),this.datePipe.transform(toDate,'yyyyddMM')).subscribe(data=>{
+           this.dataService.getSubLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
             this.subLogs=data;
              },
              err=>{

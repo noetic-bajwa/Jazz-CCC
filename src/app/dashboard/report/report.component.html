@@ -36,7 +36,7 @@
                [(ngModel)]="StartingDate"
                class="datepicker form-control"
                bsDatepicker
-               [bsConfig]="{showTodayButton: false, todayPosition: 'center', dateInputFormat: 'DD/MM/YYYY' }"
+               [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
                [maxDate]="maxDate"
                [bsConfig]="{ isAnimated: true }" 
                
@@ -58,7 +58,7 @@
                  [(ngModel)]="EndingDate"
                  class="datepicker form-control"
                  bsDatepicker
-                 [bsConfig]="{showTodayButton: false, todayPosition: 'center', dateInputFormat: 'DD/MM/YYYY' }"
+                 [bsConfig]="{dateInputFormat: 'DD/MM/YYYY' }"
                  [maxDate]="maxDate"
                  [bsConfig]="{ isAnimated: true }"
                  
