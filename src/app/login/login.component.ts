@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']);
         },
         error => {
-          this.error = "Invalid Username or Password";
+          this.error = "Invalid Email or Password";
           setTimeout(() => {
             this.error = "";
           }, 3000);
