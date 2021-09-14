@@ -40,6 +40,7 @@
                  [bsConfig]="{showTodayButton: false, todayPosition: 'center',dateInputFormat: 'DD/MM/YYYY' }"
                  [maxDate]="maxDate"
                  [bsConfig]="{ isAnimated: true }" 
+                 (click)="onClick_From_DatePicker()"
                  
           />
           <label>Select From Date</label>
@@ -64,6 +65,7 @@
                    [bsConfig]="{showTodayButton: false, todayPosition: 'center',dateInputFormat: 'DD/MM/YYYY' }"
                    [maxDate]="maxDate"
                    [bsConfig]="{ isAnimated: true }"
+                   (click)="onClick_To_DatePicker()"
                    
             /> 
   

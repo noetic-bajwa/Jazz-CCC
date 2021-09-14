@@ -45,6 +45,7 @@
                bsDatepicker
                [bsConfig]="{dateInputFormat: 'DD/MM/YYYY' , isAnimated: true}"
                [maxDate]="maxDate"
+               (click)=" onClick_From_DatePicker()"
                
         />
         <label>Select From Date</label>
@@ -66,6 +67,7 @@
                  bsDatepicker
                  [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' , isAnimated: true}"
                  [maxDate]="maxDate"
+                 (click)=" onClick_To_DatePicker()"
                  
                  
           /> 

@@ -152,4 +152,23 @@ export class BlacklistComponent implements OnInit {
       this.EndingDate = new Date();
       this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 7))
   }
+
+  onClick_From_DatePicker(){
+    if(this.StartingDate == undefined){
+      this.StartingDate = new Date();
+    }
+    else{
+      return;
+    }
+  }
+
+  onClick_To_DatePicker(){
+    if(this.EndingDate == undefined){
+      this.EndingDate = new Date();
+    }
+    else{
+      return;
+    }
+  }
+
 }
