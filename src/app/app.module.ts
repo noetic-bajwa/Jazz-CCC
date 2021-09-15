@@ -23,6 +23,7 @@ import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.c
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { AddBlacklistComponent } from './dashboard/blacklist/add-blacklist/add-blacklist.component';
 import { LoginComponent } from './login/login.component';
+import { DailyEngagementReportComponent } from './dashboard/daily-engagement-report/daily-engagement-report.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     ProfileComponent,
     AddUnsubComponent,
     AddBlacklistComponent,
-    LoginComponent
+    LoginComponent,
+    DailyEngagementReportComponent
   ],
   imports: [
     BrowserModule,

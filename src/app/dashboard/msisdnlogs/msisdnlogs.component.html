@@ -33,7 +33,7 @@
             <label>Enter MSISDN</label>
             
             <div>
-              <p style="position: absolute;left: 0; right: 0; margin-left: auto; margin-right: auto;" class="error">{{singleMsisdnError}}</p>
+              <p style="position: absolute;left: 0; right: 0; margin-left: auto; margin-right: auto;" [ngStyle]="{'color': (singleMsisdnError=='Valid Format') ? 'green' : '8a252c'}" class="error">{{singleMsisdnError}}</p>
             </div>
         </div>
 

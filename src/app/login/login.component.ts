@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   error:any;
   user="";
   pass="";
+  emailFormatError='';
   constructor(private authservice:AuthService, private router: Router , private cookieService:CookieService, @Inject(DOCUMENT) document,private pageTitle:Title) {
     this.pageTitle.setTitle('GameNow | Login');
    }
@@ -23,6 +24,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onClickLogin(username:any,password:any){ 
+    let regex_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if (regex_email.exec(username) == null){
+      this.error = "";
+      return;
+    }
+    
     if(username == '' && password == ''){
       this.error = "Please Enter Username and Password";
       document.getElementById("username").focus();
@@ -68,6 +76,21 @@ export class LoginComponent implements OnInit {
     );
     
   }
+
+  onInputChange(){
+    let regex_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if(regex_email.exec(this.user) != null){
+        this.emailFormatError = 'Valid Format';
+    }
+    if (regex_email.exec(this.user) == null){
+      this.emailFormatError = 'Invalid Format'
+    }
+    
+    if(this.user == ''){
+      this.emailFormatError = '';
+    }
+  }
+  
 
   
 

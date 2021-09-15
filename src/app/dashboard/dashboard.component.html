@@ -54,6 +54,11 @@
              <li>
                 <a routerLink="msisdnlogs" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSISDN Logs</a>
              </li>
+             <ng-template [ngIf]="isNoetic">
+             <li>
+               <a routerLink="der" [routerLinkActive]="['isActive']"><span class="fa-stack fa-lg pull-left"><i class="fa fa-file-alt fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daily Engagement Report</a>
+            </li>
+            </ng-template>
              <hr style="background-color: rgba(235, 231, 231, 0.233); width: auto;">
              <li (click)="onClickLogout()">
                 <a  routerLink="" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-power-off fa-stack-1x myGlyph"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>

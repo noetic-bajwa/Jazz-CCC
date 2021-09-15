@@ -1,0 +1,174 @@
+<div class="container-fluid" >
+    
+  
+    <div class="row" >
+        <div class="col text-center">
+            <p class="mainHeading">Daily Engagement Report</p>
+        </div>
+    </div>
+  
+    <div class="row" style="margin-top: 50px;">
+      <div class="col message text-center">
+        <div class="d-inline">
+          <p class="d-inline">Search Period :</p>
+        </div>
+        <div class="d-inline ml-3">
+          <input (click)="onClick1Week()" style="height: 10px;" type="radio"  name="radio" >
+            <p style="font-size: 12px;" class="d-inline">1 Week</p>
+        </div>
+        <div class="d-inline ml-3">
+          <input (click)="onClick1Month()" style="height: 10px;" type="radio"  name="radio" >
+            <p style="font-size: 12px;" class="d-inline">1 Month</p>
+        </div>
+        
+      </div>
+    </div>
+    
+  
+    <div class="row" style="margin-top: 40px;justify-content: center;">
+        <div class="col-8 col-md-3 col-lg-2 form-group text-center" >
+          <input 
+                 id="fromDate"
+                 autocomplete="off"
+                 #fromDate 
+                 type="text"
+                 placeholder="dd/mm/yyyy"
+                 [(ngModel)]="StartingDate"
+                 class="datepicker form-control"
+                 bsDatepicker
+                 [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                 [maxDate]="maxDate"
+                 [bsConfig]="{ isAnimated: true }" 
+                 (click)="onClick_From_DatePicker()"
+                 
+          />
+          <label>Select From Date</label>
+            
+  
+        </div>
+  
+        
+  
+        <div class="col-8 col-md-3 col-lg-2 form-group text-center"  >
+          <input  
+                   id="toDate"
+                   autocomplete="off"
+                   #toDate
+                   type="text"
+                   placeholder="dd/mm/yyyy"
+                   [(ngModel)]="EndingDate"
+                   class="datepicker form-control"
+                   bsDatepicker
+                   [bsConfig]="{dateInputFormat: 'DD/MM/YYYY' }"
+                   [maxDate]="maxDate"
+                   [bsConfig]="{ isAnimated: true }"
+                   (click)="onClick_To_DatePicker()"
+                   
+            /> 
+  
+            <label>Select To Date</label>
+  
+            
+  
+        </div>
+        
+        <div class="col-8 col-md-3 col-lg-2 text-center form-group" >
+          <button class="search_btn form-control" (click)="onClickCheckRecord(fromDate.value,toDate.value)">Search Records</button>
+      </div>
+        
+          
+    </div>
+     
+  </div>
+  
+  <div class="container-fluid" style="margin-top: 30px;overflow-x: auto;" >
+  <ng-container *ngIf="isEmpty() == true; else elseData" class="row" >
+      <div class="col text-center">
+        <p class="error">{{msg}}</p>
+    </div>
+  </ng-container>
+    
+  <ng-template  #elseData class="table-responsive">
+      
+    
+        <table class="table table-striped table-bordered" style="overflow-x: scroll;">
+          <thead>
+            <tr >
+              <th>Date</th>
+              <th>Daily<br>Charged<br>Users</th>
+              <th>Monthly<br>Charged<br>Users</th>
+              <th>DAU(GA)</th>
+              <th>MAU(GA)</th>
+              <th>DAU To Daily<br>Charged Ratio</th>
+              <th>MAU To Monthly<br>Charged Ratio</th>
+              <th>Daily<br>New Users</th>
+              <th>Daily<br>UNSUB</th>
+              <th>Daily<br>Purged</th>
+              <th>Total<br>Platform Base</th>
+              <th>Daily<br>Revenue</th>
+              <th>Expected<br>Monthly Revenue</th>
+              <th>Last<br>Month's Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            
+            <tr *ngFor="let item of data.stats">
+              <td>{{item.date |  date:'dd/MM/YYYY'}}</td>
+              <td>{{item.chargedSubs | number}}</td>
+              <td>{{item.newSub | number}}</td>
+              <td>{{item.requests | number}}</td>
+              <td>{{item.successful | number}}</td>
+              <td>{{item.failed | number}}</td>
+              <td>{{item.autoRenewBase | number}}</td>
+              <td>{{item.successAutoRenew | number}}</td>
+              <td>{{item.totalCharged | number}}</td>
+              <td>{{item.manualUnsub | number}}</td>
+              <td>{{item.purgeUnsub | number}}</td>
+              <td>{{item.jazzUnsub | number}}</td>
+              <td>{{item.blacklist | number}}</td>
+              <td>{{item.blockPostback | number}}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+    </ng-template>
+    
+  
+    
+  </div>  
+  
+  <ng-container *ngIf="isEmpty() == false;">
+  <div class="mt-4" >
+    <pagination 
+    class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data.totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
+  
+  </pagination>
+  </div>
+  </ng-container>
+  
+  
+  <!-- Report Guide-->
+  <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Report Guide</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+        Instructions
+      </div>
+  
+      
+  
+    </div>
+  </div>
+  </div>
+  
+  

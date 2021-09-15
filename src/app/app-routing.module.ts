@@ -15,6 +15,7 @@ import { AddUnsubComponent } from './dashboard/unsubscribe/add-unsub/add-unsub.c
 import { UnsubscribeComponent } from './dashboard/unsubscribe/unsubscribe.component';
 import { LoginComponent } from './login/login.component';
 import { IsNoeticGuard } from './is-noetic.guard';
+import { DailyEngagementReportComponent } from './dashboard/daily-engagement-report/daily-engagement-report.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
       { 
         path:'profile',
         component:ProfileComponent
+      },
+      {
+        path:'der',
+        component:DailyEngagementReportComponent
       }
     ]
   }

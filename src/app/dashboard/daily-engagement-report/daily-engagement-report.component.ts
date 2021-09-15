@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportDataService } from '../Services/report-data.service';
+import { DailyEngagementReportService } from '../Services/daily-engagement-report.service';
 import { Inject }  from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
@@ -7,20 +7,20 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-daily-engagement-report',
+  templateUrl: './daily-engagement-report.component.html',
+  styleUrls: ['./daily-engagement-report.component.css']
 })
-export class ReportComponent implements OnInit {
+export class DailyEngagementReportComponent implements OnInit {
+
   msg:string = "Searched Records Will be Displayed Below";
   data:any={};
   StartingDate:any;
   EndingDate:any;
   maxDate: Date;
   currentPage:number;
-  constructor(private dataService:ReportDataService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
+  constructor(private dataService:DailyEngagementReportService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | Report');
     this.maxDate = new Date();
 
@@ -84,7 +84,7 @@ export class ReportComponent implements OnInit {
     console.log(toDate);
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
-    if(fromDate == '-' && toDate == '-'){
+    if(fromDate == '' && toDate == ''){
       this.data='';
       this.msg = "Please Select Date Range";
       document.getElementById("fromDate").focus();
@@ -95,7 +95,7 @@ export class ReportComponent implements OnInit {
    };
 
    //if 'From Date' is empty then it will display error for 3 sec and exit the function
-    if(fromDate == '-' && toDate != '-'){ 
+    if(fromDate == '' && toDate != ''){ 
       this.data='';
        this.msg = "Please Select 'From' Date";
        document.getElementById("fromDate").focus();
@@ -106,7 +106,7 @@ export class ReportComponent implements OnInit {
     };
 
     //if 'To Date' is empty then it will display error for 3 sec and exit the function
-    if(toDate == '-' && fromDate != '-'){ 
+    if(toDate == '' && fromDate != ''){ 
       this.data='';
       this.msg = "Please Select 'To' Date";
       document.getElementById("toDate").focus();
@@ -152,6 +152,7 @@ export class ReportComponent implements OnInit {
   onClick1Month(){
     this.EndingDate = new Date();
     this.StartingDate = new Date(new Date().setDate(new Date().getDate() - 30))
+  
   }
 
   onClick1Week(){
@@ -176,4 +177,5 @@ export class ReportComponent implements OnInit {
       return;
     }
   }
+
 }

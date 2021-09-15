@@ -250,7 +250,7 @@ export class MSISDNLogsComponent implements OnInit {
       this.singleMsisdnError = 'Invalid Format'
     }
     
-    if(this.msisdn == null){
+    if(this.msisdn == ''){
       this.singleMsisdnError = '';
     }
   }
