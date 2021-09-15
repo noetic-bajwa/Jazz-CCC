@@ -119,10 +119,10 @@
             <td >{{item.chargedSubs | number}}</td>
              <td >{{item.newSub | number}}</td>
             <td >{{item.requests | number}}</td>
-            <td >{{item.successful | number}}</td>
-            <td>{{item.failed | number}}</td>
+            <td [title]="(item.successful/item.requests) | percent:'1.2'">{{item.successful | number}}</td>
+            <td [title]="(item.failed/item.requests) | percent:'1.2'">{{item.failed | number}}</td>
             <td>{{item.autoRenewBase | number}}</td>
-            <td>{{item.successAutoRenew | number}}</td>
+            <td [title]="(item.successAutoRenew/item.autoRenewBase) | percent:'1.2'">{{item.successAutoRenew | number}}</td>
             <td>{{item.totalCharged | number}}</td>
             <td>{{item.manualUnsub | number}}</td>
             <td>{{item.purgeUnsub | number}}</td>
@@ -135,6 +135,7 @@
       </table>
       
   </ng-template>
+  
   
 
   

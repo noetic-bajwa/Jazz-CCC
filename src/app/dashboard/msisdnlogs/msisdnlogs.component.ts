@@ -45,29 +45,85 @@ export class MSISDNLogsComponent implements OnInit {
     return (Object.keys(this.data).length === 0);
   }
 
-  pageChanged(event: PageChangedEvent,fromDate:any,toDate:any): void {
-    // if(fromDate == '' && toDate == ''){
-    //   this.dataService.getData(event.page-1,'','').subscribe(data=>{
-    //     this.data=data;
-          
-    //      },
-    //      err=>{
-          
-    //      }) 
+  pageChangedSMSLogs(event: PageChangedEvent,fromDate:any,toDate:any): void {
+    fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      if(fromDate != '' && toDate != ''){
 
-    // };
-    // if(fromDate != '' && toDate != ''){
-    //   this.dataService.getData(event.page-1,this.datePipe.transform(fromDate,'yyyyMMdd'),this.datePipe.transform(toDate,'yyyyMMdd')).subscribe(data=>{
-    //     this.data=data;
+      //SMS Logs
+      this.dataService.getSmsLogs(this.msisdn,fromDate,toDate,event.page-1).subscribe(data=>{
+        this.UnsubLogs=data;
+         },
+         err=>{
           
-    //      },
-    //      err=>{
-          
-    //      }) 
+         });
+    } 
+  }
 
-    // }
+  pageChangedBlacklist(event: PageChangedEvent,fromDate:any,toDate:any): void {
+    fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      if(fromDate != '' && toDate != ''){
+
+      //Blacklist Logs
+      this.dataService.getBlacklistLogs(this.msisdn,fromDate,toDate,event.page-1).subscribe(data=>{
+        this.UnsubLogs=data;
+         },
+         err=>{
+          
+         });
+    } 
+  }
+
+  pageChangedChargedLogs(event: PageChangedEvent,fromDate:any,toDate:any): void {
+    fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      if(fromDate != '' && toDate != ''){
+
+      //Charged Logs
+      this.dataService.getChargedLogs(this.msisdn,fromDate,toDate,event.page-1).subscribe(data=>{
+        this.UnsubLogs=data;
+         },
+         err=>{
+          
+         });
+    } 
+  }
+
+  pageChangedUnsub(event: PageChangedEvent,fromDate:any,toDate:any): void {
+    fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      if(fromDate != '' && toDate != ''){
+
+      //Unsub Logs
+      this.dataService.getUnsubLogs(this.msisdn,fromDate,toDate,event.page-1).subscribe(data=>{
+        this.UnsubLogs=data;
+         },
+         err=>{
+          
+         });
+
+    }
     
   }
+
+  pageChangedSub(event: PageChangedEvent,fromDate:any,toDate:any): void {
+    fromDate = fromDate.split("/").reverse().join("");
+      toDate = toDate.split("/").reverse().join("");
+      if(fromDate != '' && toDate != ''){
+
+      //Sub Logs
+      this.dataService.getSubLogs(this.msisdn,fromDate,toDate,event.page-1).subscribe(data=>{
+        this.UnsubLogs=data;
+         },
+         err=>{
+          
+         });
+
+    }
+    
+  }
+
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
@@ -196,7 +252,7 @@ export class MSISDNLogsComponent implements OnInit {
      });
      
      //SMS Logs
-     this.dataService.getSmsLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
+     this.dataService.getSmsLogs(this.msisdn,fromDate,toDate,0).subscribe(data=>{
       this.smsLogs=data;
       },
        err=>{
@@ -204,7 +260,7 @@ export class MSISDNLogsComponent implements OnInit {
        }); 
 
        //Blacklist Logs
-       this.dataService.getBlacklistLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
+       this.dataService.getBlacklistLogs(this.msisdn,fromDate,toDate,0).subscribe(data=>{
         this.blacklistLogs=data;
          },
          err=>{
@@ -212,7 +268,7 @@ export class MSISDNLogsComponent implements OnInit {
          });
 
        //Charged Logs
-       this.dataService.getChargedLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
+       this.dataService.getChargedLogs(this.msisdn,fromDate,toDate,0).subscribe(data=>{
         this.chargedLogs=data;  
         },
          err=>{
@@ -222,7 +278,7 @@ export class MSISDNLogsComponent implements OnInit {
         
          
          //Unsub Logs
-         this.dataService.getUnsubLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
+         this.dataService.getUnsubLogs(this.msisdn,fromDate,toDate,0).subscribe(data=>{
           this.UnsubLogs=data;
            },
            err=>{
@@ -230,7 +286,7 @@ export class MSISDNLogsComponent implements OnInit {
            });
            
            //Sub Logs
-           this.dataService.getSubLogs(this.msisdn,fromDate,toDate).subscribe(data=>{
+           this.dataService.getSubLogs(this.msisdn,fromDate,toDate,0).subscribe(data=>{
             this.subLogs=data;
              },
              err=>{

@@ -132,7 +132,7 @@
           <tr *ngFor="let item of data.entities">
             <td>{{item.id}}</td>
             <td>{{item.affiliateId}}</td>
-            <td>{{item.cdate | date:'dd/MM/yyyy'}}</td>
+            <td>{{item.cdate | date:'dd/MM/yyyy':'GMT'}}</td>
             <td >{{item.newSub | number}}</td>
             <td >{{item.freeSub | number}}</td>
             <td >{{item.chargedSub | number}}</td>

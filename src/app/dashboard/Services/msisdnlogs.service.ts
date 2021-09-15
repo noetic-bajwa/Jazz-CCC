@@ -22,28 +22,28 @@ export class MSISDNLogsService {
     return this.http.get(url,{headers});
     }
   
-    getSmsLogs(msisdn:any,startDate:any,endDate:any){ 
-      let url="http://192.168.127.107:8080/api/smslogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+    getSmsLogs(msisdn:any,startDate:any,endDate:any,page:any){ 
+      let url="http://192.168.127.107:8080/api/smslogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate+"&page="+page;
       return this.http.get(url,{headers});
     }
 
-    getChargedLogs(msisdn:any,startDate:any,endDate:any){ 
-      let url="http://192.168.127.107:8080/api/chargedlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+    getChargedLogs(msisdn:any,startDate:any,endDate:any,page:any){ 
+      let url="http://192.168.127.107:8080/api/chargedlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate+"&page="+page;
       return this.http.get(url,{headers});
     }
 
-    getBlacklistLogs(msisdn:any,startDate:any,endDate:any){ 
-      let url="http://192.168.127.107:8080/api/blacklistlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+    getBlacklistLogs(msisdn:any,startDate:any,endDate:any,page:any){ 
+      let url="http://192.168.127.107:8080/api/blacklistlogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate+"&page="+page;
       return this.http.get(url,{headers});
     }
 
-    getUnsubLogs(msisdn:any,startDate:any,endDate:any){ 
-      let url="http://192.168.127.107:8080/api/unsublogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+    getUnsubLogs(msisdn:any,startDate:any,endDate:any,page:any){ 
+      let url="http://192.168.127.107:8080/api/unsublogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate+"&page="+page;
       return this.http.get(url,{headers});
     }
 
-    getSubLogs(msisdn:any,startDate:any,endDate:any){ 
-      let url="http://192.168.127.107:8080/api/sublogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate;
+    getSubLogs(msisdn:any,startDate:any,endDate:any,page:any){ 
+      let url="http://192.168.127.107:8080/api/sublogs1/?msisdn="+msisdn+"&fromDate="+startDate+"&toDate="+endDate+"&page="+page;
       return this.http.get(url,{headers});
     }
 
