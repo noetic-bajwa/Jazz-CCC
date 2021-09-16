@@ -46,16 +46,11 @@ export class ReportComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
-      let fromDate_ddmm = fromDate.slice(0,5);
-    let fromDate_yyyy = fromDate.slice(6,10)
-    fromDate = fromDate_yyyy.concat("/"+fromDate_ddmm);
-    fromDate = fromDate.replace(/\//g, "-")
+      fromDate = fromDate.split("/").reverse().join("-");
+      toDate = toDate.split("/").reverse().join("-");
     console.log(fromDate);
 
-    let toDate_ddmm = toDate.slice(0,5);
-    let toDate_yyyy = toDate.slice(6,10)
-    toDate = toDate_yyyy.concat("/"+toDate_ddmm);
-    toDate = toDate.replace(/\//g, "-")
+    
     console.log(toDate);
       this.dataService.getData(event.page-1,fromDate,toDate).subscribe(data=>{
         this.data=data;
@@ -71,16 +66,11 @@ export class ReportComponent implements OnInit {
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
-    let fromDate_ddmm = fromDate.slice(0,5);
-    let fromDate_yyyy = fromDate.slice(6,10)
-    fromDate = fromDate_yyyy.concat("/"+fromDate_ddmm);
-    fromDate = fromDate.replace(/\//g, "-")
+    fromDate = fromDate.split("/").reverse().join("-");
+    toDate = toDate.split("/").reverse().join("-");
     console.log(fromDate);
 
-    let toDate_ddmm = toDate.slice(0,5);
-    let toDate_yyyy = toDate.slice(6,10)
-    toDate = toDate_yyyy.concat("/"+toDate_ddmm);
-    toDate = toDate.replace(/\//g, "-")
+    
     console.log(toDate);
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
@@ -117,7 +107,7 @@ export class ReportComponent implements OnInit {
    };
 
    //if From Date is greater than To Date then it will display error for 3 sec and exit the function
-    if(this.datePipe.transform(fromDate,'yyyyddMM') > this.datePipe.transform(toDate,'yyyyddMM')){ 
+    if(this.datePipe.transform(fromDate,'yyyyMMdd') > this.datePipe.transform(toDate,'yyyyMMdd')){ 
       this.data='';
       this.msg = "Date Range Is Not Correct";
      setTimeout(() => {
