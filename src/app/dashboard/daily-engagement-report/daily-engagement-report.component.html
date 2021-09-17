@@ -116,19 +116,19 @@
             
             <tr *ngFor="let item of data.stats">
               <td>{{item.date |  date:'dd/MM/YYYY'}}</td>
-              <td>{{item.dailyChargedUsers }}</td>
-              <td>{{item.monthlyCHargedUsers }}</td>
-              <td>{{item.dailyActiveUsers }}</td>
-              <td>{{item.monthlyActiveUsers }}</td>
+              <td>{{item.dailyChargedUsers | number }}</td>
+              <td>{{item.monthlyCHargedUsers | number }}</td>
+              <td>{{item.dailyActiveUsers | number }}</td>
+              <td>{{item.monthlyActiveUsers | number }}</td>
               <td>{{item.dailyRatio}}&nbsp;% </td>
               <td>{{item.monthlyRatio}}&nbsp;%</td>
-              <td>{{item.dailyNewUsers }}</td>
-              <td>{{item.dailyUnsub }}</td>
-              <td>{{item.dailyPurged }}</td>
+              <td>{{item.dailyNewUsers | number }}</td>
+              <td>{{item.dailyUnsub | number }}</td>
+              <td>{{item.dailyPurged | number }}</td>
               <td>{{item.totalPlatformBase | number }}</td>
-              <td>{{item.dailyRevenue }}</td>
-              <td>{{item.expectedMonthlyRevenue }}</td>
-              <td>{{item.lastMonthRevenue }}</td>
+              <td>{{item.dailyRevenue | number }}</td>
+              <td>{{item.expectedMonthlyRevenue | number }}</td>
+              <td>{{item.lastMonthRevenue | number }}</td>
             </tr>
           </tbody>
         </table>

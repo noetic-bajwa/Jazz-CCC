@@ -166,16 +166,16 @@
       <table class="table table-striped table-bordered" style="overflow-x: scroll;">
         <thead>
           <tr >
-            <th>Msisdn</th>
+            <th>Charged Status</th>
+            <th>Transaction ID</th>
             <th>Time Stamp</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody> 
           <tr *ngFor="let item of chargedLogs['entities']" >
             <td >{{item[0]}}</td>
-            <td >{{item[1] | date:'dd/MM/YYYY'}}</td>
-            <td >{{item[2]}}</td>  
+            <td >{{item[1] }}</td>
+            <td >{{item[2] | date:'dd/MM/YYYY'}}</td>  
           </tr>
         </tbody>
       </table>
