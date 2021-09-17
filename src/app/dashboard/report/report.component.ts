@@ -66,15 +66,16 @@ export class ReportComponent implements OnInit {
 
 
   onClickCheckRecord(fromDate:any,toDate:any){
+    console.log(fromDate);
     fromDate = fromDate.split("/").reverse().join("-");
     toDate = toDate.split("/").reverse().join("-");
-    console.log(fromDate);
+    
 
     
     console.log(toDate);
     
     //if Both 'From Date' and 'To Date' fields are empty, then it will display all Data of Operator Stats
-    if(fromDate == '-' && toDate == '-'){
+    if(fromDate == '' && toDate == ''){
       this.data='';
       this.msg = "Please Select Date Range";
       document.getElementById("fromDate").focus();
@@ -85,7 +86,7 @@ export class ReportComponent implements OnInit {
    };
 
    //if 'From Date' is empty then it will display error for 3 sec and exit the function
-    if(fromDate == '-' && toDate != '-'){ 
+    if(fromDate == '' && toDate != ''){ 
       this.data='';
        this.msg = "Please Select 'From' Date";
        document.getElementById("fromDate").focus();
@@ -96,7 +97,7 @@ export class ReportComponent implements OnInit {
     };
 
     //if 'To Date' is empty then it will display error for 3 sec and exit the function
-    if(toDate == '-' && fromDate != '-'){ 
+    if(toDate == '' && fromDate != ''){ 
       this.data='';
       this.msg = "Please Select 'To' Date";
       document.getElementById("toDate").focus();

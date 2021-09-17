@@ -124,9 +124,9 @@
             <td>{{item.autoRenewBase | number}}</td>
             <td [title]="(item.successAutoRenew/item.autoRenewBase) | percent:'1.2'">{{item.successAutoRenew | number}}</td>
             <td>{{item.totalCharged | number}}</td>
-            <td>{{item.manualUnsub | number}}</td>
-            <td>{{item.purgeUnsub | number}}</td>
-            <td>{{item.jazzUnsub | number}}</td>
+            <td [title]="(item.manualUnsub/item.autoRenewBase) | percent:'1.2'">{{item.manualUnsub | number}}</td>
+            <td [title]="(item.purgeUnsub/item.autoRenewBase) | percent:'1.2'">{{item.purgeUnsub | number}}</td>
+            <td [title]="(item.jazzUnsub/item.autoRenewBase) | percent:'1.2'">{{item.jazzUnsub | number}}</td>
             <td>{{item.blacklist | number}}</td>
             <td>{{item.blockPostback | number}}</td>
             <td>{{item.revenue | number}}</td>
