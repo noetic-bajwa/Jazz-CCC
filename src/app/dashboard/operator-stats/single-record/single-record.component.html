@@ -6,7 +6,7 @@
   
   <div >
       
-  <form class="p-5"  #myForm="ngForm">
+  <form (keydown.enter)="$event.preventDefault()" class="p-5"  #myForm="ngForm">
       <!-- <b>{{recordID}}</b> -->
       <div class="text-center"><p><b>ID : </b> {{data.id}}</p></div>
       <!-- <p>Created Date {{data.cDate}}</p> -->
@@ -50,7 +50,7 @@
   
       <div class="form-group">
           <label for="totalTournaments"><b>Total Tournaments</b></label>
-          <input type="text" autocomplete="off" class="form-control" id="totalTournaments"  name="totalTournaments" placeholder="Enter Total Tournaments" [(ngModel)]="data.totalTournaments" >
+          <input  type="text" autocomplete="off" class="form-control" id="totalTournaments"  name="totalTournaments" placeholder="Enter Total Tournaments" [(ngModel)]="data.totalTournaments" >
       </div>
       
       <div class="form-group">

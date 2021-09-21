@@ -119,7 +119,7 @@
             
             
             <tr *ngFor="let item of data.stats">
-              <td #recordID [routerLink]="['/operatorStats',item.id]">{{item.id}}</td>
+              <td #recordID >{{item.id}}</td>
               <td>{{item.cDate | date:'dd/MM/YYYY'}}</td>
               <td >{{item.totalMonthlyActiveUsers | number}}</td>
               <td >{{item.uniquePaidBase | number}}</td>
@@ -133,7 +133,7 @@
               <td>{{item.gamePlayRate}}</td>
               <!-- <td>{{item.totalTournaments}}</td> -->
     
-              <td>Edit</td>
+              <td [routerLink]="['/operatorStats',item.id]" style="cursor: pointer;">Edit</td>
               
             </tr>
             

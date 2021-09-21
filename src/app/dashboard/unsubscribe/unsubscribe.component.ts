@@ -119,6 +119,8 @@ export class UnsubscribeComponent implements OnInit {
    //Only the valid input field will bypass contional statments the reach this section of Function
    // 1st Argument is 0 which means 1st page
 
+   this.msg = "<b>Loading ...</b>";
+    this.data='';
     this.dataService.getData(0,fromDate,toDate).subscribe(data=>{
     this.data=data;
     console.log(this.data);

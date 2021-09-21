@@ -117,16 +117,19 @@ export class BlacklistComponent implements OnInit {
    // 1st Argument is 0 which means 1st page
 
 
-   console.log('Help');
+   
   //  fromDate = fromDate.replace(/\//g,'');
   //  toDate = toDate.replace(/\//g,'')
   // fromDate = fromDate.split("/").reverse().join("")
   // console.log(fromDate);
-   
+    this.msg = "<b style='color:blue'>Loading ...</b>";
+    this.data='';
     this.dataService.getData(0,fromDate,toDate).subscribe(data=>{
+    
     this.data=data;
     console.log(data);
-    console.log(data['total pages'])
+    
+    
     
       
      },

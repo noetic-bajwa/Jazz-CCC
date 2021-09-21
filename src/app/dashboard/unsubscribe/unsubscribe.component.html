@@ -110,44 +110,52 @@
 
 
 <div  class="container-fluid" style="margin-top: 30px;overflow-x: auto;" >
-  <ng-container  *ngIf="isEmpty() == true; else elseData" class="row" >
+  <ng-container  *ngIf="isEmpty() == true;else elseData" class="row" >
     <div class="col text-center">
-      <p class="error">{{msg}}</p>
+      <p class="error" [innerHTML]="msg"></p>
     </div>
   </ng-container>
 
   
-  <ng-template  #elseData class="table-responsive">
-  
-      <table class="table table-striped table-bordered" style="overflow-x: scroll;">
-        <thead>
-          <tr>
-            <th>MSISDN</th>
-            <th>Unsubscribed Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody> 
-          <tr *ngFor="let item of data.items">
-            <td>{{item.msisdn}}</td>
-            <td>{{item.date | date:'dd/MM/YYYY':'GMT'}}</td>
-            <td style="cursor: pointer;text-decoration: underline;">Remove</td>
-          </tr> 
-        </tbody>
-      </table>
+  <ng-template #elseData  class="table-responsive">
+      <ng-container *ngIf="data.items.length != 0;else noRecord" >
+        <table class="table table-striped table-bordered" style="overflow-x: scroll;">
+          <thead>
+            <tr>
+              <th>MSISDN</th>
+              <th>Unsubscribed Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody> 
+            <tr *ngFor="let item of data.items">
+              <td>{{item.msisdn}}</td>
+              <td>{{item.date | date:'dd/MM/YYYY':'GMT'}}</td>
+              <td style="cursor: pointer;text-decoration: underline;">Remove</td>
+            </tr> 
+          </tbody>
+        </table>
+        <ng-container *ngIf="isEmpty() == false;">
+          <div class="mt-4" >
+            <pagination class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data['total items']" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
+            </pagination>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #noRecord>
+          <div class="row">
+            <div class="col text-center">
+                <p style="color: red;">NO RECORD EXIST</p>
+            </div>
+          </div>
+      </ng-template>
       
   </ng-template>
   
+  
 
   
-</div>  
-
-      <ng-container *ngIf="isEmpty() == false;">
-        <div class="mt-4" >
-          <pagination class="my-pagination justify-content-center" [maxSize]="5"  [totalItems]="data['total items']" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event,fromDate.value,toDate.value)">
-          </pagination>
-        </div>
-      </ng-container>
+</div> 
 
 
          
