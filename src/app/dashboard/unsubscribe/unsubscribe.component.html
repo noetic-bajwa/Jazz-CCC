@@ -111,8 +111,9 @@
 
 <div  class="container-fluid" style="margin-top: 30px;overflow-x: auto;" >
   <ng-container  *ngIf="isEmpty() == true;else elseData" class="row" >
-    <div class="col text-center">
+    <div class="col text-center"  style="overflow: hidden;">
       <p class="error" [innerHTML]="msg"></p>
+      <p class="loader" [hidden]="isLoaderHidden" style="margin:auto;"></p>
     </div>
   </ng-container>
 

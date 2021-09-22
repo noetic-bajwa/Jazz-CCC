@@ -25,6 +25,7 @@ export class UnsubscribeComponent implements OnInit {
   EndingDate:any;
   maxDate: Date;
   currentPage:number;
+  isLoaderHidden=true;
   constructor(private dataService:UnsubscribeService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | Unsubscribe');
     this.maxDate = new Date();
@@ -120,6 +121,7 @@ export class UnsubscribeComponent implements OnInit {
    // 1st Argument is 0 which means 1st page
 
    this.msg = "<b>Loading ...</b>";
+   this.isLoaderHidden=false;
     this.data='';
     this.dataService.getData(0,fromDate,toDate).subscribe(data=>{
     this.data=data;

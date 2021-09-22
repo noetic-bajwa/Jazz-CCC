@@ -10,6 +10,7 @@ import * as FileSaver from 'file-saver';
 })
 export class LTVReportComponent implements OnInit {
   averageRevenue:any;
+  isLoaderHidden=true;
   constructor(private pageTitle:Title,private dataService:LtvReportDataService) {
     this.pageTitle.setTitle('GameNow | LTV Reports');
    }
@@ -24,9 +25,11 @@ export class LTVReportComponent implements OnInit {
     
   }
   onClickDownload(){
+    this.isLoaderHidden=false;
     this.dataService.getCSVFile().subscribe(
       data => {console.log(data)
         FileSaver.saveAs(data, `LTVreport.csv`)
+        this.isLoaderHidden=true;
       },
       
       error => {}

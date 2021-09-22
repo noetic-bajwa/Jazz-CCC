@@ -10,7 +10,12 @@
     
     <div class="row" class="add_row" >
       <div class="col add_col"> 
-        <button (click)="onClickDownload()" class="add_btn" routerLink="add"><i class="fas fa-download"></i>&nbsp;&nbsp;DOWNLOAD CSV</button>
+        <button (click)="onClickDownload()" class="add_btn" routerLink="add">
+          <i class="fas fa-download"></i>
+          &nbsp;&nbsp;DOWNLOAD CSV
+          <p class="loader" [hidden]="isLoaderHidden" style="margin:auto;"></p>
+        </button>
+        
       </div>
     </div>
 

@@ -20,6 +20,7 @@ export class BlacklistComponent implements OnInit {
   EndingDate:any;
   maxDate: Date;
   currentPage:number;
+  isLoaderHidden=true;
   constructor(private dataService:BlacklistService, private datePipe: DatePipe,private router: Router,private pageTitle:Title,@Inject(DOCUMENT) document) { 
     this.pageTitle.setTitle('GameNow | Blacklist');
     this.maxDate = new Date();
@@ -47,6 +48,7 @@ export class BlacklistComponent implements OnInit {
 
     };
     if(fromDate != '' && toDate != ''){
+      
       fromDate = fromDate.split("/").reverse().join("");
       toDate = toDate.split("/").reverse().join("");
       this.dataService.getData(event.page-1,fromDate,toDate).subscribe(data=>{
@@ -124,13 +126,11 @@ export class BlacklistComponent implements OnInit {
   // console.log(fromDate);
     this.msg = "<b style='color:blue'>Loading ...</b>";
     this.data='';
+    this.isLoaderHidden=false;
     this.dataService.getData(0,fromDate,toDate).subscribe(data=>{
     
     this.data=data;
     console.log(data);
-    
-    
-    
       
      },
      err=>{
